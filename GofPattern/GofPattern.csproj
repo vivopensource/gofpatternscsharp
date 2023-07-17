@@ -5,10 +5,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Optimize>true</Optimize>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Structural\" />
+        <Folder Include="Behavioral\"/>
+        <InternalsVisibleTo Include="$(AssemblyName)Tests" />
     </ItemGroup>
 
 </Project>
