@@ -10,7 +10,7 @@
 
     <ItemGroup>
         <Folder Include="Behavioral\"/>
-        <InternalsVisibleTo Include="$(AssemblyName)Tests" />
+        <InternalsVisibleTo Include="$(AssemblyName)Tests"/>
     </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 
 namespace Core.Logging;
 
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
 internal class CustomLogger : ICustomLogger
 {
     private readonly ILogger logger;
@@ -11,13 +12,13 @@ internal class CustomLogger : ICustomLogger
         this.logger = logger;
     }
 
-    public virtual void LogInformation(string message)
+    public virtual void LogInformation(string info)
     {
-        logger.LogInformation(message);
+        logger.LogInformation("Message: {Info}",info);
     }
 }
 
 internal interface ICustomLogger
 {
-    void LogInformation(string message);
+    void LogInformation(string info);
 }
