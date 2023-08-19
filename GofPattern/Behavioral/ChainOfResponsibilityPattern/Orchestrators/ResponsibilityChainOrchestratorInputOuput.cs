@@ -5,7 +5,9 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
-public class ResponsibilityChainOrchestrator<TInput, TOutput> : IResponsibilityChainOrchestrator<TInput, TOutput>
+public class ResponsibilityChainOrchestrator<TInput, TOutput> :
+    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput, TOutput>>,
+    IResponsibilityChainOrchestrator<TInput, TOutput>
 {
     public IResponsibilityChainOrchestrator<TInput, TOutput> Append(IResponsibility<TInput, TOutput> responsibility,
         string? name = null)
@@ -13,10 +15,7 @@ public class ResponsibilityChainOrchestrator<TInput, TOutput> : IResponsibilityC
         var responsibilityChain =
             new ResponsibilityChain<TInput, TOutput>(responsibility, name ?? responsibility.GetType().Name);
 
-        if (Chain is null)
-            Chain = responsibilityChain;
-        else
-            Chain.SetNext(responsibilityChain);
+        AppendChain(responsibilityChain);
 
         return this;
     }
@@ -57,10 +56,7 @@ public class ResponsibilityChainOrchestrator<TInput, TOutput> : IResponsibilityC
         ActionInputBeforeHandling?.Invoke(input);
     }
 
-    public ResponsibilityChain<TInput, TOutput>? Chain { get; private set; }
-
     public Action? ActionBeforeHandling { get; set; }
 
     public Action<TInput>? ActionInputBeforeHandling { get; set; }
-
 }

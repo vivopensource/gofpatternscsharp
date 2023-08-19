@@ -7,5 +7,4 @@ public interface IResponsibilityChainActionBeforeHandling<TInput>
     Action? ActionBeforeHandling { get; set; }
 
     Action<TInput>? ActionInputBeforeHandling { get; set; }
-    
 }

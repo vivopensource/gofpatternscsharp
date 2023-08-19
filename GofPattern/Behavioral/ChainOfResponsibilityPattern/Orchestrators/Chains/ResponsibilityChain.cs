@@ -3,32 +3,24 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
 
-public class ResponsibilityChain<TInput>
+public class
+    ResponsibilityChain<TInput> : AbstractResponsibilityChain<ResponsibilityChain<TInput>, IResponsibility<TInput>>
 {
     internal ResponsibilityChain(IResponsibility<TInput> responsibility, ChainOrchestratorHandleOptions handleOption,
-        ChainOrchestratorInvokeNextOptions invokeNextHandlerOption, string name)
+        ChainOrchestratorInvokeNextOptions invokeNextHandlerOption, string name) : base(responsibility, name)
     {
-        Responsibility = responsibility;
         HandleOption = handleOption;
         InvokeNextHandlerOption = invokeNextHandlerOption;
-        Name = name;
     }
-
-    internal void SetNext(ResponsibilityChain<TInput> next)
-    {
-        if (Next is null)
-            Next = next;
-        else
-            Next.SetNext(next);
-    }
-
-    public ResponsibilityChain<TInput>? Next { get; private set; }
-
-    public IResponsibility<TInput> Responsibility { get; }
 
     public ChainOrchestratorHandleOptions HandleOption { get; }
 
     public ChainOrchestratorInvokeNextOptions InvokeNextHandlerOption { get; }
+}
 
-    public string Name { get; }
+public class ResponsibilityChain<TInput, TOutput> : AbstractResponsibilityChain<ResponsibilityChain<TInput, TOutput>,
+    IResponsibility<TInput, TOutput>>
+{
+    public ResponsibilityChain(IResponsibility<TInput, TOutput> responsibility, string name) : base(responsibility,
+        name) { }
 }

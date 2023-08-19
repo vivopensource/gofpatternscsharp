@@ -15,3 +15,13 @@ public interface IResponsibilityChainOrchestrator<TInput> : IResponsibilityChain
 
     ResponsibilityChain<TInput>? Chain { get; }
 }
+
+public interface IResponsibilityChainOrchestrator<TInput, TOutput> : IResponsibilityChainActionBeforeHandling<TInput>
+{
+    IResponsibilityChainOrchestrator<TInput, TOutput> Append(IResponsibility<TInput, TOutput> responsibility,
+        string? name = null);
+
+    TOutput Execute(TInput input);
+
+    ResponsibilityChain<TInput, TOutput>? Chain { get; }
+}
