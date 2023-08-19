@@ -9,8 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Behavioral\"/>
-        <InternalsVisibleTo Include="$(AssemblyName)Tests"/>
+        <Folder Include="Behavioral\" />
+        <InternalsVisibleTo Include="$(AssemblyName)Tests" />
     </ItemGroup>
 
 </Project>

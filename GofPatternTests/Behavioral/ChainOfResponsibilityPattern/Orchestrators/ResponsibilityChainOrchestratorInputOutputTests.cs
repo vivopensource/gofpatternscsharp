@@ -1,7 +1,6 @@
 ﻿using GofPattern.Behavioral.ChainOfResponsibilityPattern.Exceptions;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
-using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 using NUnit.Framework;
 
 namespace GofPatternTests.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
@@ -25,7 +24,7 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain();
 
-        var chain = new ResponsibilityChainOrchestrator<IResponsibility<string, string>, string, string>()
+        var chain = new ResponsibilityChainOrchestrator<string, string>()
             .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
 
         // act
@@ -41,7 +40,7 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
         // arrange
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain();
 
-        var chain = new ResponsibilityChainOrchestrator<IResponsibility<string, string>, string, string>()
+        var chain = new ResponsibilityChainOrchestrator<string, string>()
             .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
 
         // act - assert

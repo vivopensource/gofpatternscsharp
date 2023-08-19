@@ -1,21 +1,26 @@
-﻿namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
+﻿using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 
-public class ResponsibilityChain<TResponsibility, TInput, TOutput>
+namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
+
+public class ResponsibilityChain<TInput, TOutput>
 {
-    public ResponsibilityChain(TResponsibility responsibility)
+    public ResponsibilityChain(IResponsibility<TInput, TOutput> responsibility, string name)
     {
         Responsibility = responsibility;
+        Name = name;
     }
 
-    internal void SetNext(ResponsibilityChain<TResponsibility, TInput, TOutput> next)
+    internal void SetNext(ResponsibilityChain<TInput, TOutput> responsibilityChain)
     {
         if (Next is null)
-            Next = next;
+            Next = responsibilityChain;
         else
-            Next.SetNext(next);
+            Next.SetNext(responsibilityChain);
     }
 
-    internal ResponsibilityChain<TResponsibility, TInput, TOutput>? Next { get; private set; }
+    public ResponsibilityChain<TInput, TOutput>? Next { get; private set; }
 
-    public TResponsibility Responsibility { get; }
+    public IResponsibility<TInput, TOutput> Responsibility { get; }
+
+    public string Name { get; }
 }

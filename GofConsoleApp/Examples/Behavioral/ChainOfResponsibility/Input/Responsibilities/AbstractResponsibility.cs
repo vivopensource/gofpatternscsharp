@@ -3,12 +3,12 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Responsibilities;
 
-internal abstract class AbstractResponsibilityInput : IResponsibility<string>
+internal abstract class AbstractResponsibility : IResponsibility<string>
 {
     private readonly ICustomLogger log;
     private readonly string name;
 
-    internal AbstractResponsibilityInput(ICustomLogger log, string name)
+    protected AbstractResponsibility(ICustomLogger log, string name)
     {
         this.log = log;
         this.name = name;
@@ -18,6 +18,6 @@ internal abstract class AbstractResponsibilityInput : IResponsibility<string>
 
     public void Handle(string input)
     {
-        log.LogInformation($"Handling '{input}' by '{name}'");
+        log.LogInformation($"Handled '{input}' by '{name}'");
     }
 }

@@ -5,39 +5,45 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
-public class
-    ResponsibilityChainOrchestrator<TResponsibility, TInput, TOutput> : IResponsibilityChainOrchestrator<TResponsibility
-        , TInput, TOutput> where TResponsibility : IResponsibility<TInput, TOutput>
+public class ResponsibilityChainOrchestrator<TInput, TOutput> : IResponsibilityChainOrchestrator<TInput, TOutput>
 {
-    public IResponsibilityChainOrchestrator<TResponsibility, TInput, TOutput> Append(TResponsibility nextHandler)
+    public IResponsibilityChainOrchestrator<TInput, TOutput> Append(IResponsibility<TInput, TOutput> responsibility,
+        string? name = null)
     {
         var responsibilityChain =
-            new ResponsibilityChain<TResponsibility, TInput, TOutput>(nextHandler);
+            new ResponsibilityChain<TInput, TOutput>(responsibility, name ?? responsibility.GetType().Name);
 
-        if (root is null)
-            root = responsibilityChain;
+        if (Chain is null)
+            Chain = responsibilityChain;
         else
-            root.SetNext(responsibilityChain);
+            Chain.SetNext(responsibilityChain);
 
         return this;
     }
 
     public TOutput Execute(TInput input)
     {
-        return Execute(input, root!);
+        return Execute(input, Chain!);
     }
 
-    private TOutput Execute(TInput input, ResponsibilityChain<TResponsibility, TInput, TOutput> responsibilityChain)
+    private TOutput Execute(TInput input, ResponsibilityChain<TInput, TOutput> responsibilityChain)
     {
         var responsibilitySatisfied = responsibilityChain.Responsibility.IsResponsible(input);
 
         if (responsibilitySatisfied)
-            return responsibilityChain.Responsibility.Handle(input);
+            return HandleResponsibility(input, responsibilityChain);
 
         return InvokeNext(input, responsibilityChain);
     }
 
-    private TOutput InvokeNext(TInput input, ResponsibilityChain<TResponsibility, TInput, TOutput> responsibilityChain)
+    private TOutput HandleResponsibility(TInput input, ResponsibilityChain<TInput, TOutput> responsibilityChain)
+    {
+        ExecuteBeforeHandling(input);
+
+        return responsibilityChain.Responsibility.Handle(input);
+    }
+
+    private TOutput InvokeNext(TInput input, ResponsibilityChain<TInput, TOutput> responsibilityChain)
     {
         if (responsibilityChain.Next is null)
             throw new MissingResponsibilityException();
@@ -45,5 +51,16 @@ public class
         return Execute(input, responsibilityChain.Next);
     }
 
-    private ResponsibilityChain<TResponsibility, TInput, TOutput>? root;
+    private void ExecuteBeforeHandling(TInput input)
+    {
+        ActionBeforeHandling?.Invoke();
+        ActionInputBeforeHandling?.Invoke(input);
+    }
+
+    public ResponsibilityChain<TInput, TOutput>? Chain { get; private set; }
+
+    public Action? ActionBeforeHandling { get; set; }
+
+    public Action<TInput>? ActionInputBeforeHandling { get; set; }
+
 }

@@ -1,12 +1,12 @@
 ﻿using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Output.Responsibilities;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput.Responsibilities;
 
-internal abstract class AbstractResponsibilityInputOutput : IResponsibility<string, string>
+internal abstract class AbstractResponsibility : IResponsibility<string, string>
 {
     private readonly string name;
 
-    internal AbstractResponsibilityInputOutput(string name)
+    private protected AbstractResponsibility(string name)
     {
         this.name = name;
     }

@@ -4,15 +4,14 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 
-public interface IResponsibilityChainOrchestrator<TResponsibility, TInput>
-    where TResponsibility : IResponsibility<TInput>
+public interface IResponsibilityChainOrchestrator<TInput> : IResponsibilityChainActionBeforeHandling<TInput>,
+    IResponsibilityChainActionAfterHandling<TInput>
 {
-    IResponsibilityChainOrchestrator<TResponsibility, TInput> Append(TResponsibility nextHandler,
-        ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption);
+    IResponsibilityChainOrchestrator<TInput> Append(IResponsibility<TInput> responsibility,
+        ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption,
+        string? name = null);
 
     void Execute(TInput input);
 
-    void ExecuteBeforeHandling(TInput input, ResponsibilityChain<TResponsibility, TInput> responsibilityChain);
-
-    void ExecuteAfterHandling(TInput input, ResponsibilityChain<TResponsibility, TInput> responsibilityChain);
+    ResponsibilityChain<TInput>? Chain { get; }
 }

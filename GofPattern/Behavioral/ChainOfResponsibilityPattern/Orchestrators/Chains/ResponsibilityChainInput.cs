@@ -1,18 +1,20 @@
 ﻿using GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums;
+using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
 
-public class ResponsibilityChain<TResponsibility, TInput>
+public class ResponsibilityChain<TInput>
 {
-    public ResponsibilityChain(TResponsibility responsibility, ChainOrchestratorHandleOptions handleOption,
-        ChainOrchestratorInvokeNextOptions invokeNextHandlerOption)
+    internal ResponsibilityChain(IResponsibility<TInput> responsibility, ChainOrchestratorHandleOptions handleOption,
+        ChainOrchestratorInvokeNextOptions invokeNextHandlerOption, string name)
     {
         Responsibility = responsibility;
         HandleOption = handleOption;
         InvokeNextHandlerOption = invokeNextHandlerOption;
+        Name = name;
     }
 
-    internal void SetNext(ResponsibilityChain<TResponsibility, TInput> next)
+    internal void SetNext(ResponsibilityChain<TInput> next)
     {
         if (Next is null)
             Next = next;
@@ -20,11 +22,13 @@ public class ResponsibilityChain<TResponsibility, TInput>
             Next.SetNext(next);
     }
 
-    internal ResponsibilityChain<TResponsibility, TInput>? Next { get; private set; }
+    public ResponsibilityChain<TInput>? Next { get; private set; }
 
-    public TResponsibility Responsibility { get; }
+    public IResponsibility<TInput> Responsibility { get; }
 
     public ChainOrchestratorHandleOptions HandleOption { get; }
 
     public ChainOrchestratorInvokeNextOptions InvokeNextHandlerOption { get; }
+
+    public string Name { get; }
 }

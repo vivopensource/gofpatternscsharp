@@ -1,1 +1,1 @@
-﻿new GofConsoleApp.Examples.Behavioral.CommandPattern.CommandPatternExample().Execute();
+﻿new GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput.ChainOfResponsibilityExample().Execute();

@@ -8,30 +8,29 @@ using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrche
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
-public class
-    ResponsibilityChainOrchestrator<TResponsibility, TInput> : IResponsibilityChainOrchestrator<TResponsibility, TInput>
-    where TResponsibility : IResponsibility<TInput>
+public class ResponsibilityChainOrchestrator<TInput> : IResponsibilityChainOrchestrator<TInput>
 {
-    public IResponsibilityChainOrchestrator<TResponsibility, TInput> Append(TResponsibility nextHandler,
-        ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption)
+    public IResponsibilityChainOrchestrator<TInput> Append(IResponsibility<TInput> responsibility,
+        ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption,
+        string? name = null)
     {
-        var responsibilityChain =
-            new ResponsibilityChain<TResponsibility, TInput>(nextHandler, handleOption, invokeNextHandlerOption);
+        var responsibilityChain = new ResponsibilityChain<TInput>(responsibility, handleOption, invokeNextHandlerOption,
+            name ?? responsibility.GetType().Name);
 
-        if (root is null)
-            root = responsibilityChain;
+        if (Chain is null)
+            Chain = responsibilityChain;
         else
-            root.SetNext(responsibilityChain);
+            Chain.SetNext(responsibilityChain);
 
         return this;
     }
 
     public void Execute(TInput input)
     {
-        Execute(input, root!);
+        Execute(input, Chain!);
     }
 
-    private void Execute(TInput input, ResponsibilityChain<TResponsibility, TInput> responsibilityChain)
+    private void Execute(TInput input, ResponsibilityChain<TInput> responsibilityChain)
     {
         var isResponsible = HandleWhenResponsible == responsibilityChain.HandleOption;
 
@@ -43,7 +42,7 @@ public class
     }
 
     private void ExecuteHandle(TInput input, bool responsibilitySatisfied,
-        ResponsibilityChain<TResponsibility, TInput> responsibilityChain)
+        ResponsibilityChain<TInput> responsibilityChain)
     {
         switch (responsibilityChain.HandleOption)
         {
@@ -51,43 +50,47 @@ public class
                 if (responsibilitySatisfied)
                     HandleResponsibility(input, responsibilityChain);
                 break;
+
             case HandleAlways:
                 HandleResponsibility(input, responsibilityChain);
                 break;
         }
     }
 
-    private void HandleResponsibility(TInput input, ResponsibilityChain<TResponsibility, TInput> responsibilityChain)
+    private void HandleResponsibility(TInput input, ResponsibilityChain<TInput> responsibilityChain)
     {
-        ExecuteBeforeHandling(input, responsibilityChain);
+        ExecuteBeforeHandling(input);
 
         responsibilityChain.Responsibility.Handle(input);
 
-        ExecuteAfterHandling(input, responsibilityChain);
+        ExecuteAfterHandling(input);
     }
 
     private void InvokeNext(TInput input, bool responsibilitySatisfied,
-        ResponsibilityChain<TResponsibility, TInput> responsibilityChain)
+        ResponsibilityChain<TInput> responsibilityChain)
     {
         switch (responsibilityChain.InvokeNextHandlerOption)
         {
             case InvokeNextAlways:
                 InvokeNext(input, responsibilityChain);
                 return;
+
             case InvokeNextWhenResponsible:
                 if (responsibilitySatisfied)
                     InvokeNext(input, responsibilityChain);
                 return;
+
             case InvokeNextWhenNotResponsible:
                 if (!responsibilitySatisfied)
                     InvokeNext(input, responsibilityChain);
                 return;
+
             case InvokeNextNever:
                 return;
         }
     }
 
-    private void InvokeNext(TInput input, ResponsibilityChain<TResponsibility, TInput> responsibilityChain)
+    private void InvokeNext(TInput input, ResponsibilityChain<TInput> responsibilityChain)
     {
         if (responsibilityChain.Next is null)
             throw new MissingResponsibilityException();
@@ -95,17 +98,25 @@ public class
         Execute(input, responsibilityChain.Next);
     }
 
-    private ResponsibilityChain<TResponsibility, TInput>? root;
+    public ResponsibilityChain<TInput>? Chain { get; private set; }
 
-    public virtual void ExecuteBeforeHandling(TInput input,
-        ResponsibilityChain<TResponsibility, TInput> responsibilityChain)
+    private void ExecuteBeforeHandling(TInput input)
     {
-        // can be implemented by child
+        ActionBeforeHandling?.Invoke();
+        ActionInputBeforeHandling?.Invoke(input);
     }
 
-    public virtual void ExecuteAfterHandling(TInput input,
-        ResponsibilityChain<TResponsibility, TInput> responsibilityChain)
+    private void ExecuteAfterHandling(TInput input)
     {
-        // can be implemented by child
+        ActionInputAfterHandling?.Invoke(input);
+        ActionAfterHandling?.Invoke();
     }
+
+    public Action? ActionBeforeHandling { get; set; }
+
+    public Action<TInput>? ActionInputBeforeHandling { get; set; }
+
+    public Action? ActionAfterHandling { get; set; }
+
+    public Action<TInput>? ActionInputAfterHandling { get; set; }
 }

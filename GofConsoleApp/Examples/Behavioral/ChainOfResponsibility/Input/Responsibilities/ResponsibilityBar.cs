@@ -2,9 +2,9 @@
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Responsibilities;
 
-internal class ResponsibilityBar : AbstractResponsibilityInput
+internal class ResponsibilityBar : AbstractResponsibility
 {
-    internal ResponsibilityBar(ICustomLogger log) : base(log, nameof(ResponsibilityBar)) { }
+    public ResponsibilityBar(ICustomLogger log) : base(log, nameof(ResponsibilityBar)) { }
 
     public override bool IsResponsible(string input)
     {
