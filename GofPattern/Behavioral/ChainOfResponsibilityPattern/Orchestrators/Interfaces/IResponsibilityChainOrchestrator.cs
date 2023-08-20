@@ -4,7 +4,15 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 
-public interface IResponsibilityChainOrchestrator<TInput> : IResponsibilityChainActionBeforeHandling<TInput>,
+public interface IBaseResponsibilityChainOrchestrator<TResponsibilityChain>
+{
+    TResponsibilityChain? Chain { get; }
+    TResponsibilityChain? CurrentChain { get; }
+}
+
+public interface IResponsibilityChainOrchestrator<TInput> :
+    IBaseResponsibilityChainOrchestrator<ResponsibilityChain<TInput>>,
+    IResponsibilityChainActionBeforeHandling<TInput>,
     IResponsibilityChainActionAfterHandling<TInput>
 {
     IResponsibilityChainOrchestrator<TInput> Append(IResponsibility<TInput> responsibility,
@@ -12,16 +20,14 @@ public interface IResponsibilityChainOrchestrator<TInput> : IResponsibilityChain
         string? name = null);
 
     void Execute(TInput input);
-
-    ResponsibilityChain<TInput>? Chain { get; }
 }
 
-public interface IResponsibilityChainOrchestrator<TInput, TOutput> : IResponsibilityChainActionBeforeHandling<TInput>
+public interface IResponsibilityChainOrchestrator<TInput, TOutput> :
+    IBaseResponsibilityChainOrchestrator<ResponsibilityChain<TInput, TOutput>>, 
+    IResponsibilityChainActionBeforeHandling<TInput>
 {
     IResponsibilityChainOrchestrator<TInput, TOutput> Append(IResponsibility<TInput, TOutput> responsibility,
         string? name = null);
 
     TOutput Execute(TInput input);
-
-    ResponsibilityChain<TInput, TOutput>? Chain { get; }
 }

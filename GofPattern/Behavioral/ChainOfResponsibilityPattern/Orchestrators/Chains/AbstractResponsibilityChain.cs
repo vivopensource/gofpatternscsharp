@@ -1,11 +1,13 @@
 ﻿namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
 
-public abstract class AbstractResponsibilityChain<TResponsibilityChain>
-    where TResponsibilityChain : AbstractResponsibilityChain<TResponsibilityChain>
+
+public abstract class AbstractResponsibilityChain<TResponsibilityChain, TResponsibility>
+    where TResponsibilityChain : AbstractResponsibilityChain<TResponsibilityChain, TResponsibility>
 {
-    protected AbstractResponsibilityChain(string name)
+    protected AbstractResponsibilityChain(TResponsibility responsibility)
     {
-        Name = name;
+        Name = GetType().Name;
+        Responsibility = responsibility;
     }
 
     internal void SetNext(TResponsibilityChain responsibilityChain)
@@ -18,17 +20,7 @@ public abstract class AbstractResponsibilityChain<TResponsibilityChain>
 
     public TResponsibilityChain? Next { get; private set; }
 
-    public string Name { get; }
-}
-
-public abstract class AbstractResponsibilityChain<TResponsibilityChain, TResponsibility>
-   : AbstractResponsibilityChain<TResponsibilityChain>
-    where TResponsibilityChain : AbstractResponsibilityChain<TResponsibilityChain, TResponsibility>
-{
-    protected AbstractResponsibilityChain(TResponsibility responsibility, string name) : base(name)
-    {
-        Responsibility = responsibility;
-    }
+    public string Name { get; internal set; }
 
     public TResponsibility Responsibility { get; }
 }

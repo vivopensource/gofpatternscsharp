@@ -6,16 +6,13 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
 public class ResponsibilityChainOrchestrator<TInput, TOutput> :
-    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput, TOutput>>,
+    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput, TOutput>, IResponsibility<TInput, TOutput>>,
     IResponsibilityChainOrchestrator<TInput, TOutput>
 {
     public IResponsibilityChainOrchestrator<TInput, TOutput> Append(IResponsibility<TInput, TOutput> responsibility,
         string? name = null)
     {
-        var responsibilityChain =
-            new ResponsibilityChain<TInput, TOutput>(responsibility, name ?? responsibility.GetType().Name);
-
-        AppendChain(responsibilityChain);
+        AssembleChain(new ResponsibilityChain<TInput, TOutput>(responsibility), name);
 
         return this;
     }
@@ -27,7 +24,7 @@ public class ResponsibilityChainOrchestrator<TInput, TOutput> :
 
     private TOutput Execute(TInput input, ResponsibilityChain<TInput, TOutput> responsibilityChain)
     {
-        var responsibilitySatisfied = responsibilityChain.Responsibility.IsResponsible(input);
+        var responsibilitySatisfied =  IsResponsible(responsibilityChain, input);
 
         if (responsibilitySatisfied)
             return HandleResponsibility(input, responsibilityChain);

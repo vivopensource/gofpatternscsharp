@@ -9,17 +9,14 @@ using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrche
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
 public class ResponsibilityChainOrchestrator<TInput> :
-    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput>>,
+    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput>, IResponsibility<TInput>>,
     IResponsibilityChainOrchestrator<TInput>
 {
     public IResponsibilityChainOrchestrator<TInput> Append(IResponsibility<TInput> responsibility,
         ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption,
         string? name = null)
     {
-        var responsibilityChain = new ResponsibilityChain<TInput>(responsibility, handleOption, invokeNextHandlerOption,
-            name ?? responsibility.GetType().Name);
-
-        AppendChain(responsibilityChain);
+        AssembleChain(new ResponsibilityChain<TInput>(responsibility, handleOption, invokeNextHandlerOption), name);
 
         return this;
     }
@@ -33,7 +30,7 @@ public class ResponsibilityChainOrchestrator<TInput> :
     {
         var isResponsible = HandleWhenResponsible == responsibilityChain.HandleOption;
 
-        var responsibilitySatisfied = isResponsible && responsibilityChain.Responsibility.IsResponsible(input);
+        var responsibilitySatisfied = isResponsible && IsResponsible(responsibilityChain, input);
 
         ExecuteHandle(input, responsibilitySatisfied, responsibilityChain);
 
