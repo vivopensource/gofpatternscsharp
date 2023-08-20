@@ -2,7 +2,6 @@
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Exceptions;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
-using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -42,7 +41,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<IResponsibility<string>, string>()
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleAlways, InvokeNextAlways)
             .Append(responsibilityBar, HandleWhenResponsible, InvokeNextWhenNotResponsible)
             .Append(responsibilityFooBar, HandleWhenResponsible, InvokeNextWhenNotResponsible);
@@ -65,7 +64,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
 
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<IResponsibility<string>, string>()
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleAlways, InvokeNextNever);
 
         // act
@@ -87,7 +86,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         bool IsResponsibleFoo(string v) => Foo.Contains(v);
         var responsibilityFoo = new Responsibility<string>(IsResponsibleFoo, executeFunction);
 
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<IResponsibility<string>, string>()
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextNever);
 
         // act
@@ -112,7 +111,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<IResponsibility<string>, string>()
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextWhenNotResponsible)
             .Append(responsibilityBar, HandleWhenResponsible, InvokeNextWhenNotResponsible)
             .Append(responsibilityFooBar, HandleWhenResponsible, InvokeNextNever);
@@ -135,7 +134,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<IResponsibility<string>, string>()
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextWhenNotResponsible)
             .Append(responsibilityBar, HandleWhenResponsible, InvokeNextWhenResponsible)
             .Append(responsibilityFooBar, HandleWhenResponsible, InvokeNextNever);
@@ -153,7 +152,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         // arrange
         var fooHandler = new Responsibility<string>(v => Foo.Equals(v), new Action<string>(WriteText));
 
-        var sut = new ResponsibilityChainOrchestrator<IResponsibility<string>, string>()
+        var sut = new ResponsibilityChainOrchestrator<string>()
             .Append(fooHandler, HandleAlways, InvokeNextAlways);
 
         // act - assert
