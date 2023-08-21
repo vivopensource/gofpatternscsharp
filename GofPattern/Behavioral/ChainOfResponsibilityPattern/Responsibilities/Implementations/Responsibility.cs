@@ -2,7 +2,7 @@
 
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 
-public class Responsibility<TInput> : AbstractResponsibility<TInput>, IResponsibility<TInput>
+public class Responsibility<TInput> : BaseResponsibility<TInput>, IResponsibility<TInput>
 {
     private readonly Delegate function;
 
@@ -17,7 +17,7 @@ public class Responsibility<TInput> : AbstractResponsibility<TInput>, IResponsib
     }
 }
 
-public class Responsibility<TInput, TOutput> : AbstractResponsibility<TInput>, IResponsibility<TInput, TOutput>
+public class Responsibility<TInput, TOutput> : BaseResponsibility<TInput>, IResponsibility<TInput, TOutput>
 {
     private readonly Func<TInput, TOutput>? function;
     private readonly TOutput? output;

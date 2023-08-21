@@ -1,14 +1,15 @@
-﻿using Core.Logging;
+﻿using Core.Console;
+using Core.Console.Interfaces;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Responsibilities;
 
 internal abstract class AbstractResponsibility : IResponsibility<string>
 {
-    private readonly ICustomLogger log;
+    private readonly IConsoleLogger log;
     private readonly string name;
 
-    protected AbstractResponsibility(ICustomLogger log, string name)
+    protected AbstractResponsibility(IConsoleLogger log, string name)
     {
         this.log = log;
         this.name = name;

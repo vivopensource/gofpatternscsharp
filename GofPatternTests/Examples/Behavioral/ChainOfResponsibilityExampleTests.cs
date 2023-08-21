@@ -1,7 +1,7 @@
 ﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input;
 using GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput;
 using NUnit.Framework;
-using ChainOfResponsibilityExample = GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.ChainOfResponsibilityExample;
+using Example = GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Example;
 
 namespace GofPatternTests.Examples.Behavioral;
 
@@ -13,7 +13,7 @@ internal class ChainOfResponsibilityExampleTests
     public void ChainOfResponsibilityExampleInput_Execute()
     {
         // act
-        var actualResult = new ChainOfResponsibilityExample().Execute();
+        var actualResult = new Example().Execute();
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -23,7 +23,7 @@ internal class ChainOfResponsibilityExampleTests
     public void ChainOfResponsibilityExampleInputOutput_Execute()
     {
         // act
-        var actualResult = new GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput.ChainOfResponsibilityExample().Execute();
+        var actualResult = new GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput.Example().Execute();
 
         // assert
         Assert.That(actualResult, Is.True);

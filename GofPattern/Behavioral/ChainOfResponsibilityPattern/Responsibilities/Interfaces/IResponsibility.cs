@@ -1,15 +1,11 @@
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 
-public interface IResponsibility<in TInput>
+public interface IResponsibility<in TInput> : IBaseResponsibility<TInput>
 {
-    bool IsResponsible(TInput input);
-
     void Handle(TInput input);
 }
 
-public interface IResponsibility<in TInput, out TOutput>
+public interface IResponsibility<in TInput, out TOutput> : IBaseResponsibility<TInput>
 {
-    bool IsResponsible(TInput input);
-
     TOutput Handle(TInput input);
 }

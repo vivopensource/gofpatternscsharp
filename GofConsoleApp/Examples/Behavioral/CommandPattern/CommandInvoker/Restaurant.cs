@@ -1,4 +1,5 @@
-﻿using Core.Logging;
+﻿using Core.Console;
+using Core.Console.Interfaces;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests.Interfaces;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
@@ -9,9 +10,9 @@ namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 
 internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
 {
-    private readonly ICustomLogger log;
+    private readonly IConsoleLogger log;
 
-    public Restaurant(ICustomLogger log)
+    public Restaurant(IConsoleLogger log)
     {
         this.log = log;
     }

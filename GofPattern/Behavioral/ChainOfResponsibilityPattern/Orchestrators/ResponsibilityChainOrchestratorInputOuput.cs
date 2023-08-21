@@ -6,16 +6,13 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interf
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
 public class ResponsibilityChainOrchestrator<TInput, TOutput> :
-    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput, TOutput>>,
+    BaseResponsibilityChainOrchestrator<ResponsibilityChain<TInput, TOutput>, IResponsibility<TInput, TOutput>>,
     IResponsibilityChainOrchestrator<TInput, TOutput>
 {
     public IResponsibilityChainOrchestrator<TInput, TOutput> Append(IResponsibility<TInput, TOutput> responsibility,
         string? name = null)
     {
-        var responsibilityChain =
-            new ResponsibilityChain<TInput, TOutput>(responsibility, name ?? responsibility.GetType().Name);
-
-        AppendChain(responsibilityChain);
+        AssembleChain(new ResponsibilityChain<TInput, TOutput>(responsibility), name);
 
         return this;
     }
@@ -27,12 +24,13 @@ public class ResponsibilityChainOrchestrator<TInput, TOutput> :
 
     private TOutput Execute(TInput input, ResponsibilityChain<TInput, TOutput> responsibilityChain)
     {
-        var responsibilitySatisfied = responsibilityChain.Responsibility.IsResponsible(input);
+        var isResponsible = IsResponsible(responsibilityChain, input);
 
-        if (responsibilitySatisfied)
-            return HandleResponsibility(input, responsibilityChain);
+        var output = isResponsible
+            ? HandleResponsibility(input, responsibilityChain)
+            : InvokeNext(input, responsibilityChain);
 
-        return InvokeNext(input, responsibilityChain);
+        return output;
     }
 
     private TOutput HandleResponsibility(TInput input, ResponsibilityChain<TInput, TOutput> responsibilityChain)
@@ -52,11 +50,11 @@ public class ResponsibilityChainOrchestrator<TInput, TOutput> :
 
     private void ExecuteBeforeHandling(TInput input)
     {
-        ActionBeforeHandling?.Invoke();
-        ActionInputBeforeHandling?.Invoke(input);
+        ExecuteBefore?.Invoke();
+        ExecuteBeforeWithInput?.Invoke(input);
     }
 
-    public Action? ActionBeforeHandling { get; set; }
+    public Action? ExecuteBefore { get; set; }
 
-    public Action<TInput>? ActionInputBeforeHandling { get; set; }
+    public Action<TInput>? ExecuteBeforeWithInput { get; set; }
 }

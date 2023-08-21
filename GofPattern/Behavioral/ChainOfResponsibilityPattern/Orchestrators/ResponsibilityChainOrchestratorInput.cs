@@ -9,17 +9,14 @@ using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrche
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
 public class ResponsibilityChainOrchestrator<TInput> :
-    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput>>,
+    BaseResponsibilityChainOrchestrator<ResponsibilityChain<TInput>, IResponsibility<TInput>>,
     IResponsibilityChainOrchestrator<TInput>
 {
     public IResponsibilityChainOrchestrator<TInput> Append(IResponsibility<TInput> responsibility,
         ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption,
         string? name = null)
     {
-        var responsibilityChain = new ResponsibilityChain<TInput>(responsibility, handleOption, invokeNextHandlerOption,
-            name ?? responsibility.GetType().Name);
-
-        AppendChain(responsibilityChain);
+        AssembleChain(new ResponsibilityChain<TInput>(responsibility, handleOption, invokeNextHandlerOption), name);
 
         return this;
     }
@@ -31,9 +28,7 @@ public class ResponsibilityChainOrchestrator<TInput> :
 
     private void Execute(TInput input, ResponsibilityChain<TInput> responsibilityChain)
     {
-        var isResponsible = HandleWhenResponsible == responsibilityChain.HandleOption;
-
-        var responsibilitySatisfied = isResponsible && responsibilityChain.Responsibility.IsResponsible(input);
+        var responsibilitySatisfied = IsResponsible(responsibilityChain, input);
 
         ExecuteHandle(input, responsibilitySatisfied, responsibilityChain);
 
@@ -99,21 +94,21 @@ public class ResponsibilityChainOrchestrator<TInput> :
 
     private void ExecuteBeforeHandling(TInput input)
     {
-        ActionBeforeHandling?.Invoke();
-        ActionInputBeforeHandling?.Invoke(input);
+        ExecuteBefore?.Invoke();
+        ExecuteBeforeWithInput?.Invoke(input);
     }
 
     private void ExecuteAfterHandling(TInput input)
     {
-        ActionInputAfterHandling?.Invoke(input);
-        ActionAfterHandling?.Invoke();
+        ExecuteAfterWithInput?.Invoke(input);
+        ExecuteAfter?.Invoke();
     }
 
-    public Action? ActionBeforeHandling { get; set; }
+    public Action? ExecuteBefore { get; set; }
 
-    public Action<TInput>? ActionInputBeforeHandling { get; set; }
+    public Action<TInput>? ExecuteBeforeWithInput { get; set; }
 
-    public Action? ActionAfterHandling { get; set; }
+    public Action? ExecuteAfter { get; set; }
 
-    public Action<TInput>? ActionInputAfterHandling { get; set; }
+    public Action<TInput>? ExecuteAfterWithInput { get; set; }
 }

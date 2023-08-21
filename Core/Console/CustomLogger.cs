@@ -1,13 +1,14 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Core.Console.Interfaces;
+using Microsoft.Extensions.Logging;
 
-namespace Core.Logging;
+namespace Core.Console;
 
 // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
-internal class CustomLogger : ICustomLogger
+internal class ConsoleLogger : IConsoleLogger
 {
     private readonly ILogger logger;
 
-    internal CustomLogger(ILogger logger)
+    public ConsoleLogger(ILogger logger)
     {
         this.logger = logger;
     }
@@ -16,9 +17,4 @@ internal class CustomLogger : ICustomLogger
     {
         logger.LogInformation("Message: {Info}",info);
     }
-}
-
-internal interface ICustomLogger
-{
-    void LogInformation(string info);
 }
