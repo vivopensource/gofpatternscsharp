@@ -6,7 +6,7 @@ using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrche
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input;
 
-internal class ChainOfResponsibilityExample : AbstractExample
+internal class Example : AbstractExample
 {
     protected override void Steps()
     {
@@ -55,22 +55,22 @@ internal class ChainOfResponsibilityExample : AbstractExample
 
     private void SetBeforeHandling(IResponsibilityChainOrchestrator<string> orchestrator)
     {
-        orchestrator.ActionBeforeHandling = () =>
+        orchestrator.ExecuteBefore = () =>
         {
             Logger.LogInformation("---- Start Responsibility - Handling ----");
             Logger.LogInformation(GetChainDetail(orchestrator));
         };
 
-        orchestrator.ActionInputBeforeHandling =
+        orchestrator.ExecuteBeforeWithInput =
             input => Logger.LogInformation($"Executing before with input '{input}'.");
     }
 
-    private void SetAfterHandling(IResponsibilityChainActionAfterHandling<string> orchestrator)
+    private void SetAfterHandling(IOrchestrationAfterHandling<string> orchestrator)
     {
-        orchestrator.ActionInputAfterHandling =
+        orchestrator.ExecuteAfterWithInput =
             input => Logger.LogInformation($"Executing before with input '{input}'.");
 
-        orchestrator.ActionAfterHandling = () =>
+        orchestrator.ExecuteAfter = () =>
         {
             Logger.LogInformation("---- End Responsibility - Handling ----");
             Logger.LogInformation("------------");

@@ -10,7 +10,7 @@ internal class CommandPatternExampleTests
     public void CommandPatternExample_Execute()
     {
         // act
-        var actualResult = new CommandPatternExample().Execute();
+        var actualResult = new Example().Execute();
 
         // assert
         Assert.That(actualResult, Is.True);

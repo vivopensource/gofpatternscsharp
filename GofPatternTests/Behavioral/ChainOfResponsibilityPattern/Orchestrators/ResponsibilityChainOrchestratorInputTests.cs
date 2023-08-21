@@ -1,4 +1,4 @@
-﻿using Core.Logging;
+﻿using Core.Console;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Exceptions;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
@@ -20,7 +20,7 @@ internal class ResponsibilityChainOrchestratorInputTests
     [SetUp]
     public void Setup()
     {
-        _loggerFactory = LogExtensions.GetLoggerFactory();
+        _loggerFactory = ConsoleExtensions.GetLoggerFactory();
         _log = _loggerFactory.CreateLogger<ResponsibilityChainOrchestratorInputTests>();
     }
 
@@ -34,7 +34,7 @@ internal class ResponsibilityChainOrchestratorInputTests
     public void Execute_AlwaysHandleResponsibility_WithHandleAlways()
     {
         // arrange
-        var mockLogger = new Mock<CustomLogger>(_log);
+        var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
         var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
@@ -57,7 +57,7 @@ internal class ResponsibilityChainOrchestratorInputTests
     public void Execute_NeverInvokesNextResponsibility_WithNothingToInvoke()
     {
         // arrange
-        var mockLogger = new Mock<CustomLogger>(_log);
+        var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
         var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
@@ -78,7 +78,7 @@ internal class ResponsibilityChainOrchestratorInputTests
     public void Execute_HandlesResponsibilityIfResponsible_WithHandleWhenResponsible()
     {
         // arrange
-        var mockLogger = new Mock<CustomLogger>(_log);
+        var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
         var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
@@ -104,7 +104,7 @@ internal class ResponsibilityChainOrchestratorInputTests
             string givenValue)
     {
         // arrange
-        var mockLogger = new Mock<CustomLogger>(_log);
+        var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
         var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
@@ -127,7 +127,7 @@ internal class ResponsibilityChainOrchestratorInputTests
     public void Execute_InvokesNextResponsibilityIfResponsible_WithHandleWhenResponsibleAndInvokeNextWhenResponsible()
     {
         // arrange
-        var mockLogger = new Mock<CustomLogger>(_log);
+        var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
         var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
@@ -173,6 +173,6 @@ internal class ResponsibilityChainOrchestratorInputTests
 
     private static void WriteText(string text) => _log.LogInformation(text);
 
-    private static ILoggerFactory _loggerFactory = LogExtensions.GetLoggerFactory();
+    private static ILoggerFactory _loggerFactory = ConsoleExtensions.GetLoggerFactory();
     private static ILogger _log = _loggerFactory.CreateLogger<ResponsibilityChainOrchestratorInputTests>();
 }

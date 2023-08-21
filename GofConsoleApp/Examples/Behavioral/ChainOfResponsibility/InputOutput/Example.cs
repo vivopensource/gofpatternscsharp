@@ -4,15 +4,15 @@ using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interface
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput;
 
-internal class ChainOfResponsibilityExample : AbstractExample
+internal class Example : AbstractExample
 {
     protected override void Steps()
     {
         var orchestrator = GetOrchestrator();
 
-        orchestrator.Append(new ResponsibilityFoo());
-        orchestrator.Append(new ResponsibilityBar());
-        orchestrator.Append(new ResponsibilityFooBar());
+        orchestrator.Append(new ResponsibilityFoo(), "FooChain");
+        orchestrator.Append(new ResponsibilityBar(), "BarChain");
+        orchestrator.Append(new ResponsibilityFooBar(), "FooBarChain");
 
         SetBeforeHandling(orchestrator);
 
@@ -41,13 +41,13 @@ internal class ChainOfResponsibilityExample : AbstractExample
     private void SetBeforeHandling(IResponsibilityChainOrchestrator<string, string> orchestrator)
     {
         // Adding Before Handling Tasks
-        orchestrator.ActionBeforeHandling = () =>
+        orchestrator.ExecuteBefore = () =>
         {
             Logger.LogInformation("---- Responsibility Chain ----");
             Logger.LogInformation($"Name({orchestrator.CurrentChain!.Name}).");
         };
 
-        orchestrator.ActionInputBeforeHandling = input =>
+        orchestrator.ExecuteBeforeWithInput = input =>
         {
             Logger.LogInformation($"Executing before with input '{input}'.");
         };

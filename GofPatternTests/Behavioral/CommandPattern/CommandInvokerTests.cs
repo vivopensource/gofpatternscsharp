@@ -1,4 +1,4 @@
-﻿using Core.Logging;
+﻿using Core.Console;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -12,8 +12,8 @@ internal class CommandInvokerTests
     [SetUp]
     public void Setup()
     {
-        var log = LogExtensions.GetLoggerFactory().CreateLogger<CommandInvokerTests>();
-        props.MockLog = new Mock<CustomLogger>(log);
+        var log = ConsoleExtensions.GetLoggerFactory().CreateLogger<CommandInvokerTests>();
+        props.MockLog = new Mock<ConsoleLogger>(log);
         props.Sut = new Restaurant(props.MockLog.Object);
     }
 
@@ -52,6 +52,6 @@ internal class CommandInvokerTests
     private struct TestProps
     {
         public Restaurant Sut { get; set; }
-        public Mock<CustomLogger> MockLog { get; set; }
+        public Mock<ConsoleLogger> MockLog { get; set; }
     }
 }

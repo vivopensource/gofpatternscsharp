@@ -9,7 +9,7 @@ using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrche
 namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
 public class ResponsibilityChainOrchestrator<TInput> :
-    AbstractResponsibilityChainOrchestrator<ResponsibilityChain<TInput>, IResponsibility<TInput>>,
+    BaseResponsibilityChainOrchestrator<ResponsibilityChain<TInput>, IResponsibility<TInput>>,
     IResponsibilityChainOrchestrator<TInput>
 {
     public IResponsibilityChainOrchestrator<TInput> Append(IResponsibility<TInput> responsibility,
@@ -28,9 +28,7 @@ public class ResponsibilityChainOrchestrator<TInput> :
 
     private void Execute(TInput input, ResponsibilityChain<TInput> responsibilityChain)
     {
-        var isResponsible = HandleWhenResponsible == responsibilityChain.HandleOption;
-
-        var responsibilitySatisfied = isResponsible && IsResponsible(responsibilityChain, input);
+        var responsibilitySatisfied = IsResponsible(responsibilityChain, input);
 
         ExecuteHandle(input, responsibilitySatisfied, responsibilityChain);
 
@@ -96,21 +94,21 @@ public class ResponsibilityChainOrchestrator<TInput> :
 
     private void ExecuteBeforeHandling(TInput input)
     {
-        ActionBeforeHandling?.Invoke();
-        ActionInputBeforeHandling?.Invoke(input);
+        ExecuteBefore?.Invoke();
+        ExecuteBeforeWithInput?.Invoke(input);
     }
 
     private void ExecuteAfterHandling(TInput input)
     {
-        ActionInputAfterHandling?.Invoke(input);
-        ActionAfterHandling?.Invoke();
+        ExecuteAfterWithInput?.Invoke(input);
+        ExecuteAfter?.Invoke();
     }
 
-    public Action? ActionBeforeHandling { get; set; }
+    public Action? ExecuteBefore { get; set; }
 
-    public Action<TInput>? ActionInputBeforeHandling { get; set; }
+    public Action<TInput>? ExecuteBeforeWithInput { get; set; }
 
-    public Action? ActionAfterHandling { get; set; }
+    public Action? ExecuteAfter { get; set; }
 
-    public Action<TInput>? ActionInputAfterHandling { get; set; }
+    public Action<TInput>? ExecuteAfterWithInput { get; set; }
 }

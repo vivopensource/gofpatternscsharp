@@ -1,5 +1,4 @@
-﻿using Core.Logging;
-using Microsoft.Extensions.Logging;
+﻿using Core.Console;
 
 namespace GofConsoleApp.Examples;
 
@@ -7,9 +6,9 @@ internal abstract class AbstractExample
 {
     public bool Execute()
     {
-        using var logFactory = LogExtensions.GetLoggerFactory();
+        using var logFactory = ConsoleExtensions.GetLoggerFactory();
 
-        Logger = new CustomLogger(logFactory.CreateLogger<Program>());
+        Logger = new ConsoleLogger(logFactory.CreateLogger(string.Empty));
 
         Steps();
 
@@ -20,5 +19,6 @@ internal abstract class AbstractExample
 
     protected abstract void Steps();
 
-    protected CustomLogger Logger { get; private set; } = new(LogExtensions.GetLoggerFactory().CreateLogger<Program>());
+    protected ConsoleLogger Logger { get; private set; } =
+        new(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));
 }

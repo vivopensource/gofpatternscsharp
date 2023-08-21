@@ -1,13 +1,17 @@
-﻿namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
+﻿using GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums;
 
+namespace GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
 
 public abstract class AbstractResponsibilityChain<TResponsibilityChain, TResponsibility>
     where TResponsibilityChain : AbstractResponsibilityChain<TResponsibilityChain, TResponsibility>
 {
-    protected AbstractResponsibilityChain(TResponsibility responsibility)
+    protected AbstractResponsibilityChain(TResponsibility responsibility, ChainOrchestratorHandleOptions handleOption,
+        ChainOrchestratorInvokeNextOptions invokeNextHandlerOption)
     {
         Name = GetType().Name;
         Responsibility = responsibility;
+        HandleOption = handleOption;
+        InvokeNextHandlerOption = invokeNextHandlerOption;
     }
 
     internal void SetNext(TResponsibilityChain responsibilityChain)
@@ -18,9 +22,13 @@ public abstract class AbstractResponsibilityChain<TResponsibilityChain, TRespons
             Next.SetNext(responsibilityChain);
     }
 
-    public TResponsibilityChain? Next { get; private set; }
-
     public string Name { get; internal set; }
 
     public TResponsibility Responsibility { get; }
+
+    public ChainOrchestratorHandleOptions HandleOption { get; }
+
+    public ChainOrchestratorInvokeNextOptions InvokeNextHandlerOption { get; }
+
+    public TResponsibilityChain? Next { get; private set; }
 }

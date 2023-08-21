@@ -1,1 +1,1 @@
-﻿new GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.ChainOfResponsibilityExample().Execute();
+﻿GofConsoleApp.Examples.ExampleExecution.Run(new Core.Console.ConsoleReader(Console.In));
