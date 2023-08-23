@@ -6,12 +6,12 @@ namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Responsi
 
 internal abstract class AbstractResponsibility : IResponsibility<string>
 {
-    private readonly IConsoleLogger log;
+    private readonly IConsoleLogger logger;
     private readonly string name;
 
-    protected AbstractResponsibility(IConsoleLogger log, string name)
+    protected AbstractResponsibility(IConsoleLogger logger, string name)
     {
-        this.log = log;
+        this.logger = logger;
         this.name = name;
     }
 
@@ -19,6 +19,6 @@ internal abstract class AbstractResponsibility : IResponsibility<string>
 
     public void Handle(string input)
     {
-        log.LogInformation($"Handled '{input}' by '{name}'");
+        logger.LogInformation($"Handled '{input}' by '{name}'");
     }
 }

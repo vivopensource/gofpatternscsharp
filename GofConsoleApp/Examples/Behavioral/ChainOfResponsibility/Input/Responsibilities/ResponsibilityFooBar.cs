@@ -5,7 +5,7 @@ namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Responsi
 
 internal class ResponsibilityFooBar : AbstractResponsibility
 {
-    public ResponsibilityFooBar(IConsoleLogger log) : base(log, nameof(ResponsibilityFooBar)) { }
+    public ResponsibilityFooBar(IConsoleLogger logger) : base(logger, nameof(ResponsibilityFooBar)) { }
 
     public override bool IsResponsible(string input)
     {
