@@ -1,11 +1,11 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Example = GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Example;
+using Example = GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input.Example;
 
 namespace GofPatternTests.Examples.Behavioral;
 
 [TestFixture]
-internal class ChainOfResponsibilityExampleTests : BaseTest
+internal class ChainOfResponsibilityPatternExampleTests : BaseTest
 {
     [Test]
     public void ChainOfResponsibilityExampleInput_Execute()
@@ -23,7 +23,7 @@ internal class ChainOfResponsibilityExampleTests : BaseTest
     {
         // act
         var actualResult =
-            new GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput.Example()
+            new GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput.Example()
                 .Execute(MockLogger.Object);
 
         // assert

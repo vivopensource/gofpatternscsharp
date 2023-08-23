@@ -14,7 +14,7 @@ internal class ExampleExecutionTests
     {
         // arrange
         var mockReader = new Mock<TextReader>();
-        mockReader.Setup(m => m.ReadLine()).Returns(ChainOfResponsibilityOption);
+        mockReader.Setup(m => m.ReadLine()).Returns(ChainOfResponsibilityPatternOption);
         var reader = new ConsoleReader(mockReader.Object);
 
         // act

@@ -1,6 +1,6 @@
 ﻿using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput.Responsibilities;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput.Responsibilities;
 
 internal abstract class AbstractResponsibility : IResponsibility<string, string>
 {

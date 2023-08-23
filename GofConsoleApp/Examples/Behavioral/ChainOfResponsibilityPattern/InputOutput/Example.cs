@@ -1,8 +1,8 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput.Responsibilities;
+﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput.Responsibilities;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.InputOutput;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput;
 
 internal class Example : AbstractExample
 {

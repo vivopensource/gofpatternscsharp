@@ -1,10 +1,10 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input.Responsibilities;
+﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input.Responsibilities;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
 using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorInvokeNextOptions;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibility.Input;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
 
 internal class Example : AbstractExample
 {
