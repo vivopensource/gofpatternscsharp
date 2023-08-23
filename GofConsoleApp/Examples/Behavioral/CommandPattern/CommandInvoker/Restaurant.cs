@@ -10,16 +10,16 @@ namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 
 internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
 {
-    private readonly IConsoleLogger log;
+    private readonly IConsoleLogger logger;
 
-    public Restaurant(IConsoleLogger log)
+    public Restaurant(IConsoleLogger logger)
     {
-        this.log = log;
+        this.logger = logger;
     }
 
     public void EatPizza(int count = 1)
     {
-        var pizzas = new Pizza(log, count);
+        var pizzas = new Pizza(logger, count);
 
         var serveOrder = new ServeOrderCommand();
         serveOrder.AddRequest(pizzas);
@@ -29,7 +29,7 @@ internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
 
     public void DeliverPizza(int count = 1)
     {
-        var pizzas = new Pizza(log, count);
+        var pizzas = new Pizza(logger, count);
 
         var deliverOrder = new DeliverOrderCommand();
         deliverOrder.AddRequest(pizzas);
@@ -39,7 +39,7 @@ internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
 
     public void EatBurger(int count = 1)
     {
-        var burgers = new Burger(log, count);
+        var burgers = new Burger(logger, count);
 
         var serveOrder = new ServeOrderCommand();
         serveOrder.AddRequest(burgers);
@@ -49,7 +49,7 @@ internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
 
     public void DeliverBurger(int count = 1)
     {
-        var burgers = new Burger(log, count);
+        var burgers = new Burger(logger, count);
 
         var deliverOrder = new DeliverOrderCommand();
         deliverOrder.AddRequest(burgers);

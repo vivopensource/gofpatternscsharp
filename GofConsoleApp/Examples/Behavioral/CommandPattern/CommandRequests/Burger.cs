@@ -5,5 +5,5 @@ namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests;
 
 internal class Burger : AbstractFoodCommandRequest
 {
-    internal Burger(IConsoleLogger log, int count = 1) : base(log, nameof(Burger), count) { }
+    internal Burger(IConsoleLogger logger, int count = 1) : base(logger, nameof(Burger), count) { }
 }

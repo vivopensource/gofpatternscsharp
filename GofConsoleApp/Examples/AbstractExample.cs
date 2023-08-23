@@ -4,15 +4,22 @@ namespace GofConsoleApp.Examples;
 
 internal abstract class AbstractExample
 {
-    public bool Execute()
+    public void Execute()
+    {
+        Execute(new ConsoleLogger());
+
+        Thread.Sleep(100);
+    }
+
+    public bool Execute(ConsoleLogger logger)
     {
         using var logFactory = ConsoleExtensions.GetLoggerFactory();
 
-        Logger = new ConsoleLogger(logFactory.CreateLogger(string.Empty));
+        logger.Logger = logFactory.CreateLogger(string.Empty);
+
+        Logger = logger;
 
         Steps();
-
-        Thread.Sleep(100);
 
         return true;
     }

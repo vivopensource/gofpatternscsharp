@@ -6,14 +6,14 @@ namespace GofConsoleApp.Examples;
 
 internal static class ExampleExecution
 {
-    public static bool Run(IConsoleReader reader)
+    public static void Run(IConsoleReader reader)
     {
         using var logFactory = ConsoleExtensions.GetLoggerFactory();
         var logger = logFactory.CreateLogger("");
 
         var example = UserInput(reader, logger);
 
-        return example.Execute();
+        example.Execute();
     }
 
     private static AbstractExample UserInput(IConsoleReader reader, ILogger logger)
