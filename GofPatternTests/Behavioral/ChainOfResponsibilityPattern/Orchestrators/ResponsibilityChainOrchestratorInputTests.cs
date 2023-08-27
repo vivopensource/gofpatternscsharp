@@ -37,7 +37,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
@@ -50,7 +50,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(2));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Test]
@@ -60,7 +60,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
 
@@ -71,7 +71,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(1));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(1));
     }
 
     [Test]
@@ -81,7 +81,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         bool IsResponsibleFoo(string v) => Foo.Contains(v);
         var responsibilityFoo = new Responsibility<string>(IsResponsibleFoo, executeFunction);
@@ -93,7 +93,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(0));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(0));
     }
 
     [TestCase(Foo)]
@@ -107,7 +107,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
@@ -120,7 +120,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute(givenValue);
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(1));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(1));
     }
 
     [Test]
@@ -130,7 +130,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
@@ -143,7 +143,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(2));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Test]

@@ -1,6 +1,8 @@
-﻿using Moq;
+﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
+using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
+using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput;
+using Moq;
 using NUnit.Framework;
-using Example = GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input.Example;
 
 namespace GofPatternTests.Examples.Behavioral;
 
@@ -11,11 +13,11 @@ internal class ChainOfResponsibilityPatternExampleTests : BaseTest
     public void ChainOfResponsibilityExampleInput_Execute()
     {
         // act
-        var actualResult = new Example().Execute(MockLogger.Object);
+        var actualResult = new ExampleWithInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockLogger.Verify(x => x.LogInformation(It.IsAny<string>()), Times.Exactly(30));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(30));
     }
 
     [Test]
@@ -23,11 +25,10 @@ internal class ChainOfResponsibilityPatternExampleTests : BaseTest
     {
         // act
         var actualResult =
-            new GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput.Example()
-                .Execute(MockLogger.Object);
+            new ExampleWithInputOutput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockLogger.Verify(x => x.LogInformation(It.IsAny<string>()), Times.Exactly(40));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(40));
     }
 }

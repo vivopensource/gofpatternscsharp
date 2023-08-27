@@ -11,10 +11,10 @@ internal class CommandPatternExampleTests : BaseTest
     public void CommandPatternExample_Execute()
     {
         // act
-        var actualResult = new Example().Execute(MockLogger.Object);
+        var actualResult = new Example().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockLogger.Verify(x => x.LogInformation(It.IsAny<string>()), Times.Exactly(5));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(5));
     }
 }

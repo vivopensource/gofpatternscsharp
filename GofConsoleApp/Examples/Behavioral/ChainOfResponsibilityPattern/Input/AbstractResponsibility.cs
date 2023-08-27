@@ -1,7 +1,7 @@
 ﻿using Core.Console.Interfaces;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input.Responsibilities;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
 
 internal abstract class AbstractResponsibility : IResponsibility<string>
 {
@@ -18,6 +18,6 @@ internal abstract class AbstractResponsibility : IResponsibility<string>
 
     public void Handle(string input)
     {
-        logger.LogInformation($"Handled '{input}' by '{name}'");
+        logger.Log($"Handled '{input}' by '{name}'");
     }
 }

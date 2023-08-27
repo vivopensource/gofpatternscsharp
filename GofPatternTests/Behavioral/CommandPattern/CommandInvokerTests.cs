@@ -31,7 +31,7 @@ internal class CommandInvokerTests
         sut.HandleCommands();
 
         // assert
-        props.MockLog.Verify(m => m.LogInformation(It.IsAny<string>()), Times.Exactly(expectedResult));
+        props.MockLog.Verify(m => m.Log(It.IsAny<string>()), Times.Exactly(expectedResult));
     }
 
     [Test]
@@ -44,7 +44,7 @@ internal class CommandInvokerTests
         props.Sut.HandleCommands();
 
         // assert
-        props.MockLog.Verify(m => m.LogInformation(It.IsAny<string>()), Times.Exactly(expectedResult));
+        props.MockLog.Verify(m => m.Log(It.IsAny<string>()), Times.Exactly(expectedResult));
     }
 
     private TestProps props;

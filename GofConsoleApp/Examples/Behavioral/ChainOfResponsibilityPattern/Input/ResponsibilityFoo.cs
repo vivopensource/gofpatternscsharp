@@ -1,8 +1,6 @@
-﻿using Core.Console;
-using Core.Console.Interfaces;
-using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input.Responsibilities;
+﻿using Core.Console.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input.Responsibilities;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
 
 internal class ResponsibilityFoo : AbstractResponsibility
 {

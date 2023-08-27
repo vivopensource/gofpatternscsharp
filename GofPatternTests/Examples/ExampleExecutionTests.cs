@@ -2,7 +2,7 @@
 using GofConsoleApp.Examples;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.PatternOptions;
+using static GofConsoleApp.Examples.ExecutionHelpers.PatternOptions;
 
 namespace GofPatternTests.Examples;
 
@@ -13,14 +13,24 @@ internal class ExampleExecutionTests
     public void Run_ExecutesTheExample()
     {
         // arrange
+        var readerValues = new Queue<string>(new[]
+        {
+            DecoratorPatternOption,
+            "You are busted!!!"
+        });
+
         var mockReader = new Mock<TextReader>();
-        mockReader.Setup(m => m.ReadLine()).Returns(ChainOfResponsibilityPatternOption);
-        var reader = new ConsoleReader(mockReader.Object);
+        mockReader.Setup(m => m.ReadLine()).Returns(readerValues.Dequeue);
+
+        var reader = new InputReader(mockReader.Object);
+
+        using var logFactory = ConsoleExtensions.GetLoggerFactory();
+        var logger = new ConsoleLogger(logFactory.CreateLogger(string.Empty));
 
         // act
-        ExampleExecution.Run(reader);
+        var actualResult = Execution.Run(logger, reader);
 
         // assert
-        mockReader.Verify(x => x.ReadLine(), Times.Exactly(1));
+        Assert.That(actualResult, Is.True);
     }
 }

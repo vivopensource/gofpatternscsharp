@@ -1,12 +1,12 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input.Responsibilities;
+﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
 using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorInvokeNextOptions;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 
-internal class Example : AbstractExample
+internal class ExampleWithInput : AbstractExample
 {
     protected override void Steps()
     {
@@ -32,7 +32,7 @@ internal class Example : AbstractExample
         SetBeforeHandling(orchestrator);
         SetAfterHandling(orchestrator);
 
-        Logger.LogInformation("------------- START Orchestrator -------------");
+        Logger.Log("------------- START Orchestrator -------------");
 
         // Start with >>> Foo
         // HandleAlways >>>> Foo (Executes) 
@@ -41,7 +41,7 @@ internal class Example : AbstractExample
         // !!! Stops
         orchestrator.Execute("Bar");
 
-        Logger.LogInformation("------------- START Orchestrator -------------");
+        Logger.Log("------------- START Orchestrator -------------");
 
         // Start with >>> Foo
         // HandleAlways >>>> Foo (Executes) 
@@ -57,23 +57,23 @@ internal class Example : AbstractExample
     {
         orchestrator.ExecuteBefore = () =>
         {
-            Logger.LogInformation("---- Start Responsibility - Handling ----");
-            Logger.LogInformation(GetChainDetail(orchestrator));
+            Logger.Log("---- Start Responsibility - Handling ----");
+            Logger.Log(GetChainDetail(orchestrator));
         };
 
         orchestrator.ExecuteBeforeWithInput =
-            input => Logger.LogInformation($"Executing before with input '{input}'.");
+            input => Logger.Log($"Executing before with input '{input}'.");
     }
 
     private void SetAfterHandling(IOrchestrationAfterHandling<string> orchestrator)
     {
         orchestrator.ExecuteAfterWithInput =
-            input => Logger.LogInformation($"Executing before with input '{input}'.");
+            input => Logger.Log($"Executing before with input '{input}'.");
 
         orchestrator.ExecuteAfter = () =>
         {
-            Logger.LogInformation("---- End Responsibility - Handling ----");
-            Logger.LogInformation("------------");
+            Logger.Log("---- End Responsibility - Handling ----");
+            Logger.Log("------------");
         };
     }
 

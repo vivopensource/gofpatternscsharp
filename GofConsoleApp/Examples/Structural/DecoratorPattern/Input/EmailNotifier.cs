@@ -13,6 +13,6 @@ internal class EmailNotifier : INotifier
 
     public void Execute(string input)
     {
-        logger.LogInformation($"Email-Notifier executed with message: '{input}'");
+        logger.Log($"Email-Notifier executed with message: '{input}'.");
     }
 }

@@ -19,11 +19,11 @@ internal abstract class AbstractFoodCommandRequest : IFoodCommandRequest
 
     public void Serve()
     {
-        logger.LogInformation($"Serving {count} {name}.");
+        logger.Log($"Serving {count} {name}.");
     }
 
     public void Pack()
     {
-        logger.LogInformation($"Packing {count} {name}.");
+        logger.Log($"Packing {count} {name}.");
     }
 }

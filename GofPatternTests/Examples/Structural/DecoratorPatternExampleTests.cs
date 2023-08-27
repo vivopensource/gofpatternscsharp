@@ -1,4 +1,5 @@
-﻿using GofConsoleApp.Examples.Structural.DecoratorPattern.NoInput;
+﻿using GofConsoleApp.Examples.Structural.DecoratorPattern.Input;
+using GofConsoleApp.Examples.Structural.DecoratorPattern.NoInput;
 using Moq;
 using NUnit.Framework;
 
@@ -11,22 +12,23 @@ internal class DecoratorPatternExampleTests : BaseTest
     public void DecoratorPatternExample_Execute()
     {
         // act
-        var actualResult = new Example().Execute(MockLogger.Object);
+        var actualResult = new ExampleNoInput().Execute(MockConsoleLogger.Object,
+            MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockLogger.Verify(x => x.LogInformation(It.IsAny<string>()), Times.Exactly(2));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Test]
     public void DecoratorPatternExampleInput_Execute()
     {
         // act
-        var actualResult =
-            new GofConsoleApp.Examples.Structural.DecoratorPattern.Input.Example().Execute(MockLogger.Object);
+        var actualResult = new ExampleWithInput().Execute(MockConsoleLogger.Object,
+            MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockLogger.Verify(x => x.LogInformation(It.IsAny<string>()), Times.Exactly(4));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(4));
     }
 }

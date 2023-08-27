@@ -16,6 +16,6 @@ internal class SmsNotifier : BaseDecorator<INotifier, string>
     {
         base.Execute(input);
 
-        logger.LogInformation($"Sms-Notifier executed with message: '{input}'");
+        logger.Log($"Sms-Notifier executed with message: '{input}'.");
     }
 }

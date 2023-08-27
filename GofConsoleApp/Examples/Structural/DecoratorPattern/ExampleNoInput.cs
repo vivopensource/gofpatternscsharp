@@ -1,6 +1,6 @@
 ﻿namespace GofConsoleApp.Examples.Structural.DecoratorPattern.NoInput;
 
-internal class Example : AbstractExample
+internal class ExampleNoInput : AbstractExample
 {
     protected override void Steps()
     {

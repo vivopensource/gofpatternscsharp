@@ -1,23 +1,14 @@
 ﻿using Core.Console;
+using Core.Console.Interfaces;
 
 namespace GofConsoleApp.Examples;
 
 internal abstract class AbstractExample
 {
-    public void Execute()
+    public bool Execute(IConsoleLogger logger, IInputReader reader)
     {
-        Execute(new ConsoleLogger());
-
-        Thread.Sleep(100);
-    }
-
-    public bool Execute(ConsoleLogger logger)
-    {
-        using var logFactory = ConsoleExtensions.GetLoggerFactory();
-
-        logger.Logger = logFactory.CreateLogger(string.Empty);
-
         Logger = logger;
+        InputReader = reader;
 
         Steps();
 
@@ -26,6 +17,8 @@ internal abstract class AbstractExample
 
     protected abstract void Steps();
 
-    protected ConsoleLogger Logger { get; private set; } =
-        new(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));
+    protected IConsoleLogger Logger { get; private set; } =
+        new ConsoleLogger(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));
+
+    protected IInputReader InputReader { get; private set; } = new InputReader(Console.In);
 }

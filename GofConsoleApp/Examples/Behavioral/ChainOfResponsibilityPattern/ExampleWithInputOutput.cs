@@ -1,10 +1,10 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput.Responsibilities;
+﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput;
+namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 
-internal class Example : AbstractExample
+internal class ExampleWithInputOutput : AbstractExample
 {
     protected override void Steps()
     {
@@ -16,17 +16,17 @@ internal class Example : AbstractExample
 
         SetBeforeHandling(orchestrator);
 
-        Logger.LogInformation("------------- START Orchestrator -------------");
+        Logger.Log("------------- START Orchestrator -------------");
 
         // Start with >>> Foo
         // IsNotResponsible >> Foo (Not Executes)
         // Invokes >>> Bar
         // IsResponsible >>>>> Bar (Executes)
         var outputBar = orchestrator.Execute("Bar");
-        Logger.LogInformation(outputBar);
+        Logger.Log(outputBar);
 
 
-        Logger.LogInformation("------------- START Orchestrator -------------");
+        Logger.Log("------------- START Orchestrator -------------");
 
         // Start with >>> Foo
         // IsNotResponsible >> Foo (Not Executes)
@@ -35,7 +35,7 @@ internal class Example : AbstractExample
         // Invokes >> FooBar
         // IsResponsible >>>>> FooBar (Executes)
         var outputFooBar = orchestrator.Execute("FooBar");
-        Logger.LogInformation(outputFooBar);
+        Logger.Log(outputFooBar);
     }
 
     private void SetBeforeHandling(IResponsibilityChainOrchestrator<string, string> orchestrator)
@@ -43,13 +43,13 @@ internal class Example : AbstractExample
         // Adding Before Handling Tasks
         orchestrator.ExecuteBefore = () =>
         {
-            Logger.LogInformation("---- Responsibility Chain ----");
-            Logger.LogInformation($"Name({orchestrator.CurrentChain!.Name}).");
+            Logger.Log("---- Responsibility Chain ----");
+            Logger.Log($"Name({orchestrator.CurrentChain!.Name}).");
         };
 
         orchestrator.ExecuteBeforeWithInput = input =>
         {
-            Logger.LogInformation($"Executing before with input '{input}'.");
+            Logger.Log($"Executing before with input '{input}'.");
         };
     }
 

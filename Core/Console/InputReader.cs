@@ -2,11 +2,11 @@
 
 namespace Core.Console;
 
-internal class ConsoleReader : IConsoleReader
+internal class InputReader : IInputReader
 {
     private readonly TextReader reader;
 
-    public ConsoleReader(TextReader reader)
+    public InputReader(TextReader reader)
     {
         this.reader = reader;
     }
