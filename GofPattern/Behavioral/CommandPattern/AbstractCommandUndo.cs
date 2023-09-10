@@ -3,7 +3,7 @@ using GofPattern.Behavioral.CommandPattern.Interfaces.Commands;
 
 namespace GofPattern.Behavioral.CommandPattern;
 
-public abstract class AbstractCommand<TRequest> : ICommand<TRequest> where TRequest : ICommandRequest
+public abstract class AbstractCommandUndo<TRequest> : ICommandUndo<TRequest> where TRequest : ICommandRequest
 {
     protected TRequest? Request;
 
@@ -13,4 +13,6 @@ public abstract class AbstractCommand<TRequest> : ICommand<TRequest> where TRequ
     }
 
     public abstract void Execute();
+
+    public abstract void UnExecute();
 }

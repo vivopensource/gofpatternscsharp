@@ -6,7 +6,7 @@ namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 
 internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExample
 {
-    protected override void Execute()
+    protected override bool Execute()
     {
         var orchestrator = GetOrchestrator();
 
@@ -36,6 +36,8 @@ internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExam
         // IsResponsible >>>>> FooBar (Executes)
         var outputFooBar = orchestrator.Execute("FooBar");
         Logger.Log(outputFooBar);
+
+        return true;
     }
 
     private void SetBeforeHandling(IResponsibilityChainOrchestrator<string, string> orchestrator)

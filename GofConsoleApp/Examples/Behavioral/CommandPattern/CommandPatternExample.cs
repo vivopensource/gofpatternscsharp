@@ -4,19 +4,28 @@ namespace GofConsoleApp.Examples.Behavioral.CommandPattern;
 
 internal class CommandPatternExample : AbstractExample
 {
-    protected override void Execute()
+    protected override bool Execute()
     {
+        // ReSharper disable once JoinDeclarationAndInitializer
+
+        int orderCount;
         var restaurant = new Restaurant(Logger);
 
-        // Order >> 1
+        // 1st Order Batch
         restaurant.DeliverPizza(2);
         restaurant.DeliverBurger(5);
         restaurant.EatBurger(6);
-        restaurant.HandleCommands();
+        orderCount = restaurant.ExecuteCommands();
+        Logger.Log($"Orders executed: {orderCount}");
 
-        // Order >> 2
+        // 2nd Order Batch
         restaurant.EatBurger(3);
+        restaurant.DeliverPizza(2);
         restaurant.EatPizza(3);
-        restaurant.HandleCommands();
+        restaurant.DeliverBurger(4);
+        orderCount = restaurant.ExecuteCommands();
+        Logger.Log($"Orders executed: {orderCount}");
+
+        return true;
     }
 }

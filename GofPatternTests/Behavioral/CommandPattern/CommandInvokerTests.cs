@@ -29,7 +29,7 @@ internal class CommandInvokerTests
         sut.DeliverPizza(3);
         sut.DeliverBurger(5);
         sut.EatBurger(6);
-        sut.HandleCommands();
+        sut.ExecuteCommands();
 
         // assert
         props.MockLog.Verify(m => m.Log(It.IsAny<string>()), Times.Exactly(expectedResult));
@@ -42,7 +42,7 @@ internal class CommandInvokerTests
         const int expectedResult = 0;
 
         // act
-        props.Sut.HandleCommands();
+        props.Sut.ExecuteCommands();
 
         // assert
         props.MockLog.Verify(m => m.Log(It.IsAny<string>()), Times.Exactly(expectedResult));

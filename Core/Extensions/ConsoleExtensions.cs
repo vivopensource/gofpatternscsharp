@@ -25,4 +25,10 @@ internal static class ConsoleExtensions
 
         return input.ToEnum(defaultValue);
     }
+
+    public static int AcceptInputInt(this IInputReader inputReader)
+    {
+        var input = inputReader.AcceptInput();
+        return int.Parse(input);
+    }
 }

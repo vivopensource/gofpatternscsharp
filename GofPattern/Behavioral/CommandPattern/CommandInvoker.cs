@@ -1,4 +1,6 @@
 ﻿using GofPattern.Behavioral.CommandPattern.Interfaces;
+using GofPattern.Behavioral.CommandPattern.Interfaces.Commands;
+using GofPattern.Behavioral.CommandPattern.Interfaces.Invokers;
 
 namespace GofPattern.Behavioral.CommandPattern;
 
@@ -19,15 +21,17 @@ public class CommandInvoker<TCommand, TCommandRequest> : ICommandInvoker<TComman
         commands.Add(command);
     }
 
-    public void HandleCommands()
+    public int ExecuteCommands()
     {
-        if (commands.Count < 1)
-            return;
+        var count = commands.Count;
+        if (count < 1)
+            return 0;
 
         foreach (var command in commands)
             command.Execute();
 
         EmptyCommandList();
+        return count;
     }
 
     private void EmptyCommandList()

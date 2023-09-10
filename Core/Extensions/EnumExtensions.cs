@@ -6,9 +6,6 @@ internal static class EnumExtensions
     {
         try
         {
-            if (int.TryParse(value, out _))
-                return defaultValue;
-
             return (T)Enum.Parse(typeof(T), value, true);
         }
         catch (Exception)

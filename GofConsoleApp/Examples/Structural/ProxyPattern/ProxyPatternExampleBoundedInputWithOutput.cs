@@ -6,18 +6,20 @@ namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 
 internal class ProxyPatternExampleBoundedInputWithOutput : AbstractExample
 {
-    protected override void Execute()
+    protected override bool Execute()
     {
         Logger.LogOptions("user types", new[] { Admin, Standard, Guest });
 
         var proxy = CreateProxy();
 
         if (proxy is null)
-            return;
+            return false;
 
         Logger.LogOptions("operation commands", proxy.BoundedInputs.ToList());
 
         ExecuteUserInterface(proxy);
+
+        return true;
     }
 
     private IUserInterfaceProxy? CreateProxy()

@@ -4,7 +4,7 @@ namespace GofConsoleApp.Examples.Structural.DecoratorPattern;
 
 internal class DecoratorPatternExampleInput : AbstractExample
 {
-    protected override void Execute()
+    protected override bool Execute()
     {
         var emailNotifier = new EmailNotifier(Logger);
         var smsNotifier = new SmsNotifier(emailNotifier, Logger);
@@ -14,5 +14,7 @@ internal class DecoratorPatternExampleInput : AbstractExample
         var input = InputReader.AcceptInput();
 
         smsNotifier.Execute(input);
+
+        return true;
     }
 }
