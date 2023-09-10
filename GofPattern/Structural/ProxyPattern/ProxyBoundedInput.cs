@@ -1,41 +1,45 @@
-﻿namespace GofPattern.Structural.ProxyPattern;
+﻿using GofPattern.Structural.ProxyPattern.Interfaces;
 
-public class ProxyBoundedInput<TInput> : IProxyComponent<TInput> where TInput : notnull
+namespace GofPattern.Structural.ProxyPattern;
+
+public class ProxyBoundedInput<TInput> : IProxyBoundedInput<TInput> where TInput : notnull
 {
     private readonly IProxyComponent<TInput> component;
-    private readonly IEnumerable<TInput> boundedInputs;
 
     protected ProxyBoundedInput(IProxyComponent<TInput> component, IEnumerable<TInput> boundedInputs)
     {
         this.component = component;
-        this.boundedInputs = boundedInputs;
+        BoundedInputs = new HashSet<TInput>(boundedInputs);
     }
 
     public void Process(TInput input)
     {
-        if (!boundedInputs.Contains(input))
-            throw new ArgumentException($"Given input '{input}' is not bounded.");
+        if (!BoundedInputs.Contains(input))
+            throw new ArgumentException($"'{input}' is out of bounds");
 
         component.Process(input);
     }
+
+    public ISet<TInput> BoundedInputs { get; }
 }
 
-public class ProxyBoundedInput<TInput, TOutput> : IProxyComponent<TInput, TOutput> where TInput : notnull
+public class ProxyBoundedInput<TInput, TOutput> : IProxyBoundedInput<TInput, TOutput> where TInput : notnull
 {
     private readonly IProxyComponent<TInput, TOutput> component;
-    private readonly IEnumerable<TInput> boundedInputs;
 
     protected ProxyBoundedInput(IProxyComponent<TInput, TOutput> component, IEnumerable<TInput> boundedInputs)
     {
         this.component = component;
-        this.boundedInputs = boundedInputs;
+        BoundedInputs = new HashSet<TInput>(boundedInputs);
     }
 
     public TOutput Process(TInput input)
     {
-        if (!boundedInputs.Contains(input))
-            throw new ArgumentException($"Given input '{input}' is not bounded.");
+        if (!BoundedInputs.Contains(input))
+            throw new ArgumentException($"'{input}' is out of bounds");
 
         return component.Process(input);
     }
+
+    public ISet<TInput> BoundedInputs { get; }
 }

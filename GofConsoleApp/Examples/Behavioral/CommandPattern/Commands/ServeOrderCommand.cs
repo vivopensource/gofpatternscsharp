@@ -6,7 +6,7 @@ namespace GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
 
 internal class ServeOrderCommand : AbstractCommand<IFoodCommandRequest>, IOrderCommand
 {
-    public override void Handle()
+    public override void Execute()
     {
         Request!.Serve();
     }

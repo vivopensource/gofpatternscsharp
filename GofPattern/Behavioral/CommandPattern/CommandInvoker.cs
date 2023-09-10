@@ -2,6 +2,8 @@
 
 namespace GofPattern.Behavioral.CommandPattern;
 
+// ReSharper disable once MemberCanBeProtected.Global
+
 public class CommandInvoker<TCommand, TCommandRequest> : ICommandInvoker<TCommand, TCommandRequest>
     where TCommand : ICommand<TCommandRequest> where TCommandRequest : ICommandRequest
 {
@@ -23,7 +25,7 @@ public class CommandInvoker<TCommand, TCommandRequest> : ICommandInvoker<TComman
             return;
 
         foreach (var command in commands)
-            command.Handle();
+            command.Execute();
 
         EmptyCommandList();
     }

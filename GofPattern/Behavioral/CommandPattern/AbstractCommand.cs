@@ -11,5 +11,5 @@ public abstract class AbstractCommand<TRequest> : ICommand<TRequest> where TRequ
         Request = commandRequest;
     }
 
-    public abstract void Handle();
+    public abstract void Execute();
 }

@@ -1,12 +1,12 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput;
+﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputWithOutput;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 
-internal class ExampleWithInputOutput : AbstractExample
+internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExample
 {
-    protected override void Steps()
+    protected override void Execute()
     {
         var orchestrator = GetOrchestrator();
 

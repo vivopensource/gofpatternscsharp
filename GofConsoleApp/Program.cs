@@ -1,4 +1,5 @@
 ﻿using Core.Console;
+using Core.Extensions;
 
 using var logFactory = ConsoleExtensions.GetLoggerFactory();
 var logger = new ConsoleLogger(logFactory.CreateLogger(string.Empty));

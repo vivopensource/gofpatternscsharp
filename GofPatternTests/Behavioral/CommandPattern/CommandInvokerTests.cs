@@ -1,4 +1,5 @@
 ﻿using Core.Console;
+using Core.Extensions;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 using Microsoft.Extensions.Logging;
 using Moq;

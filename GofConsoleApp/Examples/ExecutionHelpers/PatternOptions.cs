@@ -1,6 +1,7 @@
 ﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
-using GofConsoleApp.Examples.Structural.DecoratorPattern.Input;
-using ExampleWithInput = GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.ExampleWithInput;
+using GofConsoleApp.Examples.Behavioral.CommandPattern;
+using GofConsoleApp.Examples.Structural.DecoratorPattern;
+using GofConsoleApp.Examples.Structural.ProxyPattern;
 
 namespace GofConsoleApp.Examples.ExecutionHelpers;
 
@@ -9,6 +10,9 @@ internal static class PatternOptions
 {
     internal const string DecoratorPatternOption = "11";
     internal const string DecoratorPatternOption2 = "11.2";
+    internal const string ProxyPatternOption = "12";
+    internal const string ProxyPatternOptionBoundedInput = "12.2";
+    internal const string ProxyPatternOptionBoundedInputOutput = "12.3";
     internal const string ChainOfResponsibilityPatternOption = "21";
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
     internal const string CommandPatternOption = "22";
@@ -18,28 +22,40 @@ internal static class PatternOptions
         // Structural Patterns
         {
             DecoratorPatternOption,
-            new PatternExampleMap("Decorator Pattern >> Input", new ExampleWithInput())
+            new PatternExampleMap("Decorator Pattern >> Input",
+                new DecoratorPatternExampleInput())
         },
         {
             DecoratorPatternOption2,
-            new PatternExampleMap("Decorator Pattern >> No Input", new Structural.DecoratorPattern.NoInput.ExampleNoInput())
+            new PatternExampleMap("Decorator Pattern >> No Input", new DecoratorPatternExampleNoInput())
+        },
+        {
+            ProxyPatternOption,
+            new PatternExampleMap("Proxy Pattern >> Cached Output", new ProxyPatternExampleCachedOutput())
+        },
+        {
+            ProxyPatternOptionBoundedInput,
+            new PatternExampleMap("Proxy Pattern >> Bounded Input", new ProxyPatternExampleBoundedInput())
+        },
+        {
+            ProxyPatternOptionBoundedInputOutput,
+            new PatternExampleMap("Proxy Pattern >> Bounded Input with Output",
+                new ProxyPatternExampleBoundedInputWithOutput())
         },
 
         // Behavioral Patterns
         {
             ChainOfResponsibilityPatternOption,
             new PatternExampleMap("Chain Of Responsibility Pattern >> Input",
-                new ExampleWithInput())
+                new ChainOfResponsibilityPatternExampleInput())
         },
-
         {
             ChainOfResponsibilityPatternOption2, new PatternExampleMap(
                 "Chain Of Responsibility Pattern >> Input & Output",
-                new ExampleWithInputOutput())
+                new ChainOfResponsibilityPatternExampleInputWithOutput())
         },
-
         {
-            CommandPatternOption, new PatternExampleMap("Command Pattern", new Behavioral.CommandPattern.Example())
+            CommandPatternOption, new PatternExampleMap("Command Pattern", new CommandPatternExample())
         }
     };
 }

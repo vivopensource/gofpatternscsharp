@@ -22,7 +22,11 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
     {
         // arrange
 
-        var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain();
+        var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), Foo + Handled);
+
+        var responsibilityBar = new Responsibility<string, string>(v => Bar.Equals(v), AppendHandled);
+
+        var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), FooBar + Handled);
 
         var chain = new ResponsibilityChainOrchestrator<string, string>()
             .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
@@ -38,7 +42,11 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
     public void Execute_IfOutputIsNull_ThrowsException()
     {
         // arrange
-        var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain();
+        var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), Foo + Handled);
+
+        var responsibilityBar = new Responsibility<string, string>(v => Bar.Equals(v), AppendHandled);
+
+        var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), FooBar + Handled);
 
         var chain = new ResponsibilityChainOrchestrator<string, string>()
             .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
@@ -46,18 +54,6 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
         // act - assert
         Assert.Throws<MissingResponsibilityException>(() => chain.Execute(string.Empty));
 
-    }
-
-    private static (Responsibility<string, string> responsibilityFoo, Responsibility<string, string> responsibilityBar,
-        Responsibility<string, string> responsibilityFooBar) GetChain()
-    {
-        var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), Foo + Handled);
-
-        var responsibilityBar = new Responsibility<string, string>(v => Bar.Equals(v), AppendHandled);
-
-        var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), FooBar + Handled);
-
-        return (responsibilityFoo, responsibilityBar, responsibilityFooBar);
     }
 
     private static string AppendHandled(string input)

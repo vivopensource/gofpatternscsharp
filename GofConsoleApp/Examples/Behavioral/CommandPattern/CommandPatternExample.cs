@@ -2,9 +2,9 @@
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern;
 
-internal class Example : AbstractExample
+internal class CommandPatternExample : AbstractExample
 {
-    protected override void Steps()
+    protected override void Execute()
     {
         var restaurant = new Restaurant(Logger);
 

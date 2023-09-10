@@ -11,7 +11,7 @@ internal class CommandPatternExampleTests : BaseTest
     public void CommandPatternExample_Execute()
     {
         // act
-        var actualResult = new Example().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new CommandPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

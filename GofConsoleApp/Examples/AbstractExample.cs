@@ -1,5 +1,6 @@
 ﻿using Core.Console;
 using Core.Console.Interfaces;
+using Core.Extensions;
 
 namespace GofConsoleApp.Examples;
 
@@ -10,12 +11,24 @@ internal abstract class AbstractExample
         Logger = logger;
         InputReader = reader;
 
-        Steps();
+        Execute();
 
         return true;
     }
 
-    protected abstract void Steps();
+    protected TEnum AcceptInputEnum<TEnum>(TEnum defaultValue, string identifier = "")
+    {
+        if (!string.IsNullOrWhiteSpace(identifier))
+            Logger.Log($"Please enter the {identifier}...");
+
+        var input = InputReader.AcceptInput();
+
+        Logger.Log($"Selected {identifier} is {input}");
+
+        return input.ToEnum(defaultValue);
+    }
+
+    protected abstract void Execute();
 
     protected IConsoleLogger Logger { get; private set; } =
         new ConsoleLogger(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));

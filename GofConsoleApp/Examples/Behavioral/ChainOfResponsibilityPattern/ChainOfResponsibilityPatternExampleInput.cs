@@ -6,9 +6,9 @@ using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrche
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 
-internal class ExampleWithInput : AbstractExample
+internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
 {
-    protected override void Steps()
+    protected override void Execute()
     {
         var orchestrator = GetOrchestrator();
 

@@ -8,13 +8,13 @@ internal class ConsoleLogger : IConsoleLogger
 {
     public ConsoleLogger(ILogger logger)
     {
-        Logger = logger;
+        BaseLogger = logger;
     }
 
     public virtual void Log(string info)
     {
-        Logger.LogInformation("Message: {Info}",info);
+        BaseLogger.LogInformation("Message: {Info}", info);
     }
 
-    public ILogger Logger { get; set; }
+    public ILogger BaseLogger { get; set; }
 }

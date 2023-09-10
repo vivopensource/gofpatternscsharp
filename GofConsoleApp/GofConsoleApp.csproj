@@ -23,8 +23,4 @@
         <InternalsVisibleTo Include="GofPatternTests" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Examples\Behavioral\ChainOfResponsibilityPattern\InputOutput\Responsibilities\" />
-    </ItemGroup>
-
 </Project>

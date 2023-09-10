@@ -5,18 +5,20 @@ using Moq;
 using NUnit.Framework;
 using static GofConsoleApp.Examples.ExecutionHelpers.PatternOptions;
 
-namespace GofPatternTests.Examples;
+namespace GofPatternTests.Examples.Structural;
 
 [TestFixture]
-internal class ExampleExecutionTests
+internal class ExampleExecutionTestsDecoratorWithInput
 {
     [Test]
-    public void Run_ExecutesExample()
+    public void Run_ExecutesExample_ProxyCachedOutput()
     {
         // arrange
         var readerValues = new Queue<string>(new[]
         {
-            ChainOfResponsibilityPatternOption2
+            DecoratorPatternOption,
+            // Message to be sent via SMS (notifier) and Email (decorator on notifier)
+            "Testing decorator pattern applied on the notification feature!!!"
         });
 
         var mockReader = new Mock<TextReader>();

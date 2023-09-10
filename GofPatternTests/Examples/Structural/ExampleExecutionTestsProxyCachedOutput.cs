@@ -1,22 +1,29 @@
 ﻿using Core.Console;
 using Core.Extensions;
 using GofConsoleApp.Examples;
+using GofConsoleApp.Examples.Structural.ProxyPattern.CachedOutput;
 using Moq;
 using NUnit.Framework;
 using static GofConsoleApp.Examples.ExecutionHelpers.PatternOptions;
 
-namespace GofPatternTests.Examples;
+namespace GofPatternTests.Examples.Structural;
 
 [TestFixture]
-internal class ExampleExecutionTests
+internal class ExampleExecutionTestsProxyCachedOutput
 {
     [Test]
-    public void Run_ExecutesExample()
+    public void Run_ExecutesExample_ProxyCachedOutput()
     {
         // arrange
         var readerValues = new Queue<string>(new[]
         {
-            ChainOfResponsibilityPatternOption2
+            ProxyPatternOption,
+            EnumConfigEnv.Dev.ToString(),
+            EnumConfigEnv.Prod.ToString(),
+            EnumConfigEnv.Prod.ToString(),
+            EnumConfigEnv.Dev.ToString(),
+            EnumConfigEnv.Test.ToString(),
+            "Quit program"
         });
 
         var mockReader = new Mock<TextReader>();

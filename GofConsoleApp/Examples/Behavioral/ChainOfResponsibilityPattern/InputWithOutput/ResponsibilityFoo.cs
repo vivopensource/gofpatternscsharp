@@ -1,4 +1,4 @@
-﻿namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputOutput;
+﻿namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.InputWithOutput;
 
 internal class ResponsibilityFoo : AbstractResponsibility
 {

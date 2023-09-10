@@ -1,4 +1,4 @@
-﻿namespace GofPattern.Structural.ProxyPattern;
+﻿namespace GofPattern.Structural.ProxyPattern.Interfaces;
 
 public interface IProxyComponent<in TInput>
 {
