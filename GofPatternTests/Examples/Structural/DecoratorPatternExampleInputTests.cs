@@ -11,7 +11,9 @@ internal class DecoratorPatternExampleInputTests : BaseTest
     public void DecoratorPatternExampleWithInput_Execute()
     {
         // arrange
-        const int expectedVerifyCount = 4;
+        const int expectedVerifyCount = 3;
+
+        MockInputReader.Setup(x => x.AcceptInput()).Returns("Test notification");
 
         // act
         var actualResult =

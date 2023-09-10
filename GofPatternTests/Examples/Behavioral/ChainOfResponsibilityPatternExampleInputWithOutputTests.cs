@@ -17,6 +17,7 @@ internal class ChainOfResponsibilityPatternExampleInputWithOutputTests : BaseTes
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(40));
+
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(10));
     }
 }
