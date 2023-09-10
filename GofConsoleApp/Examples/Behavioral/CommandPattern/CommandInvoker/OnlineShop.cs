@@ -4,4 +4,4 @@ using GofPattern.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 
-internal class OnlineShop : CommandUndoInvoker<OrderCommand, Product> { }
+internal class OnlineShop : CommandUndoInvoker<TransactionCommand, Product> {}

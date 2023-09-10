@@ -3,9 +3,9 @@ using GofPattern.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
 
-internal class OrderCommand : AbstractCommandUndo<Product>
+internal class TransactionCommand : AbstractCommandUndo<Product>
 {
-    public OrderCommand(Product product)
+    public TransactionCommand(Product product)
     {
         AddRequest(product);
     }

@@ -17,7 +17,6 @@ internal class CommandPatternUndoExample : AbstractExample
         do
         {
             var inputProduct = AcceptInputString("product name");
-            var inputCount = AcceptInputInt("product count");
             var inputOption = AcceptInputEnum(Invalid, "option (Order/Return)");
             if (inputOption == Invalid)
             {
@@ -25,9 +24,9 @@ internal class CommandPatternUndoExample : AbstractExample
                 return false;
             }
 
-            var product = new Product(Logger, inputProduct, inputCount);
+            var product = new Product(Logger, inputProduct);
 
-            onlineShop.AddCommand(new OrderCommand(product), inputOption == Return);
+            onlineShop.AddCommand(new TransactionCommand(product), inputOption == Return);
 
             shopping = AcceptInputYesNo("option to continue shopping (Yes/No)");
 
@@ -37,7 +36,7 @@ internal class CommandPatternUndoExample : AbstractExample
 
         var orderCount = onlineShop.ExecuteCommands();
 
-        Logger.Log($"Orders executed: {orderCount}");
+        Logger.Log($"Total transactions: {orderCount}");
 
         return true;
     }

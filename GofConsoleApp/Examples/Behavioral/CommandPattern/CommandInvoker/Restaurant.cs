@@ -7,7 +7,7 @@ using GofPattern.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 
-internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
+internal class Restaurant : CommandInvoker<IFoodCommand, IFoodCommandRequest>
 {
     private readonly IConsoleLogger logger;
 
@@ -20,7 +20,7 @@ internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
     {
         var pizzas = new Pizza(logger, count);
 
-        var serveOrder = new ServeOrderCommand();
+        var serveOrder = new ServeFoodCommand();
         serveOrder.AddRequest(pizzas);
 
         AddCommand(serveOrder);
@@ -30,7 +30,7 @@ internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
     {
         var pizzas = new Pizza(logger, count);
 
-        var deliverOrder = new DeliverOrderCommand();
+        var deliverOrder = new DeliverFoodCommand();
         deliverOrder.AddRequest(pizzas);
 
         AddCommand(deliverOrder);
@@ -40,7 +40,7 @@ internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
     {
         var burgers = new Burger(logger, count);
 
-        var serveOrder = new ServeOrderCommand();
+        var serveOrder = new ServeFoodCommand();
         serveOrder.AddRequest(burgers);
 
         AddCommand(serveOrder);
@@ -50,7 +50,7 @@ internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
     {
         var burgers = new Burger(logger, count);
 
-        var deliverOrder = new DeliverOrderCommand();
+        var deliverOrder = new DeliverFoodCommand();
         deliverOrder.AddRequest(burgers);
 
         AddCommand(deliverOrder);

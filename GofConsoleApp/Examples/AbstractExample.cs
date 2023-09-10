@@ -39,24 +39,6 @@ internal abstract class AbstractExample
         return input;
     }
 
-    protected int AcceptInputInt(string identifier)
-    {
-        if (!string.IsNullOrWhiteSpace(identifier))
-            Logger.Log($"Please enter the {identifier}...");
-
-        try
-        {
-            var input = InputReader.AcceptInputInt();
-            Logger.Log($"Provided {identifier} is {input}");
-            return input;
-        }
-        catch (Exception)
-        {
-            Logger.Log($"Provided {identifier} is invalid");
-            throw;
-        }
-    }
-
     protected EnumYesNo AcceptInputYesNo(string identifier = "")
     {
         if (!string.IsNullOrWhiteSpace(identifier))
@@ -75,4 +57,25 @@ internal abstract class AbstractExample
         new ConsoleLogger(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));
 
     protected IInputReader InputReader { get; private set; } = new InputReader(Console.In);
+
+
+    /*
+    protected int AcceptInputInt(string identifier)
+    {
+        if (!string.IsNullOrWhiteSpace(identifier))
+            Logger.Log($"Please enter the {identifier}...");
+
+        try
+        {
+            var input = InputReader.AcceptInputInt();
+            Logger.Log($"Provided {identifier} is {input}");
+            return input;
+        }
+        catch (Exception)
+        {
+            Logger.Log($"Provided {identifier} is invalid");
+            throw;
+        }
+    }
+    */
 }

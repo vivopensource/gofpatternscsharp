@@ -3,4 +3,4 @@ using GofPattern.Behavioral.CommandPattern.Interfaces.Commands;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.Commands.Interfaces;
 
-internal interface IOrderCommand : ICommand<IFoodCommandRequest> { }
+internal interface IFoodCommand : ICommand<IFoodCommandRequest> { }

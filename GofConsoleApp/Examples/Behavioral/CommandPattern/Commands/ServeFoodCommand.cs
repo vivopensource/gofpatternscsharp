@@ -4,10 +4,10 @@ using GofPattern.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
 
-internal class DeliverOrderCommand : AbstractCommand<IFoodCommandRequest>, IOrderCommand
+internal class ServeFoodCommand : AbstractCommand<IFoodCommandRequest>, IFoodCommand
 {
     public override void Execute()
     {
-        Request!.Pack();
+        Request!.Serve();
     }
 }
