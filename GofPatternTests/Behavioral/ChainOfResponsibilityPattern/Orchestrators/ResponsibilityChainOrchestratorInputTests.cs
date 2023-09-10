@@ -40,11 +40,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var executeFunction = new Action<string>(mockLoggerObject.Log);
 
-        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
-
-        var responsibilityBar = new Responsibility<string>(v => Bar.Contains(v), executeFunction);
-
-        var responsibilityFooBar = new Responsibility<string>(v => FooBar.Contains(v), executeFunction);
+        var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleAlways, InvokeNextAlways)
@@ -67,8 +63,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var executeFunction = new Action<string>(mockLoggerObject.Log);
 
-        bool IsResponsibleFoo(string v) => Foo.Contains(v);
-        var responsibilityFoo = new Responsibility<string>(IsResponsibleFoo, executeFunction);
+        var responsibilityFoo = GetChain(executeFunction).Item1;
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleAlways, InvokeNextNever);
@@ -115,11 +110,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var executeFunction = new Action<string>(mockLoggerObject.Log);
 
-        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
-
-        var responsibilityBar = new Responsibility<string>(v => Bar.Contains(v), executeFunction);
-
-        var responsibilityFooBar = new Responsibility<string>(v => FooBar.Contains(v), executeFunction);
+        var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextWhenNotResponsible)
@@ -142,11 +133,7 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var executeFunction = new Action<string>(mockLoggerObject.Log);
 
-        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
-
-        var responsibilityBar = new Responsibility<string>(v => Bar.Contains(v), executeFunction);
-
-        var responsibilityFooBar = new Responsibility<string>(v => FooBar.Contains(v), executeFunction);
+        var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextWhenNotResponsible)
@@ -164,13 +151,26 @@ internal class ResponsibilityChainOrchestratorInputTests
     public void Execute_IfThereIsMissingResponsibilityInChain_ThrowsMissingResponsibilityInChainException()
     {
         // arrange
-        var fooHandler = new Responsibility<string>(v => Foo.Equals(v), new Action<string>(WriteText));
+        var fooHandler = GetChain(WriteText).Item1;
 
         var sut = new ResponsibilityChainOrchestrator<string>()
             .Append(fooHandler, HandleAlways, InvokeNextAlways);
 
         // act - assert
         Assert.Throws<MissingResponsibilityException>(() => sut.Execute(string.Empty));
+    }
+
+    private static Tuple<Responsibility<string>, Responsibility<string>, Responsibility<string>> GetChain(
+        Action<string> executeFunction)
+    {
+        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
+
+        var responsibilityBar = new Responsibility<string>(v => Bar.Contains(v), executeFunction);
+
+        var responsibilityFooBar = new Responsibility<string>(v => FooBar.Contains(v), executeFunction);
+
+        return new Tuple<Responsibility<string>, Responsibility<string>, Responsibility<string>>(responsibilityFoo,
+            responsibilityBar, responsibilityFooBar);
     }
 
     private static void WriteText(string text) => _log.LogInformation(text);
