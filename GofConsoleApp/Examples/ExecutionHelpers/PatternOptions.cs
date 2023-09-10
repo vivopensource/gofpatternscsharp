@@ -16,6 +16,7 @@ internal static class PatternOptions
     internal const string ChainOfResponsibilityPatternOption = "21";
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
     internal const string CommandPatternOption = "22";
+    internal const string CommandPatternUndoOption = "22.2";
 
     internal static readonly IDictionary<string, PatternExampleMap> Patterns = new Dictionary<string, PatternExampleMap>
     {
@@ -56,6 +57,9 @@ internal static class PatternOptions
         },
         {
             CommandPatternOption, new PatternExampleMap("Command Pattern", new CommandPatternExample())
+        },
+        {
+            CommandPatternUndoOption, new PatternExampleMap("Command Pattern >> Undo", new CommandPatternUndoExample())
         }
     };
 }

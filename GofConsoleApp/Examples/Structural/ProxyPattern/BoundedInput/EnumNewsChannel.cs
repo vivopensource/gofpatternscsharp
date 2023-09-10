@@ -6,4 +6,5 @@ internal enum EnumNewsChannel
     Acy,
     Uzt,
     Mko,
+    OutOfOrder
 }

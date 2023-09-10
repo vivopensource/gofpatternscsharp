@@ -1,5 +1,4 @@
-﻿using Core.Console;
-using Core.Console.Interfaces;
+﻿using Core.Console.Interfaces;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests.Interfaces;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;

@@ -67,7 +67,8 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var executeFunction = new Action<string>(mockLoggerObject.Log);
 
-        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
+        bool IsResponsibleFoo(string v) => Foo.Contains(v);
+        var responsibilityFoo = new Responsibility<string>(IsResponsibleFoo, executeFunction);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleAlways, InvokeNextNever);

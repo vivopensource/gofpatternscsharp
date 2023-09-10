@@ -8,7 +8,46 @@ namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 
 internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
 {
-    protected override void Execute()
+    protected override bool Execute()
+    {
+        ExecuteSimpleExample();
+        ExecuteComplexExample();
+        return true;
+    }
+
+    private void ExecuteSimpleExample()
+    {
+        var orchestrator = GetOrchestrator();
+
+        // Foo - Responsibility
+        // Handle >>> WhenResponsible
+        // Invoke Next >>> WhenNotResponsible
+        orchestrator.Append(new ResponsibilityFoo(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible,
+            "FooChain");
+
+        // Bar - Responsibility
+        // Handle >>> WhenResponsible
+        // Invoke Next >>> WhenNotResponsible
+        orchestrator.Append(new ResponsibilityBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible,
+            "BarChain");
+
+
+        Logger.Log("------------- START Orchestrator -------------");
+        // Start with >>> Foo
+        // HandleAlways >>>> Foo (Executes) 
+        // !!! Stops
+        orchestrator.Execute("Foo");
+
+        Logger.Log("------------- START Orchestrator -------------");
+        // Start with >>> Foo
+        // HandleAlways >>>> Foo (Not Executes) 
+        // Invokes >> Bar
+        // IsResponsible >>>>> Bar (Executes)
+        // !!! Stops
+        orchestrator.Execute("Bar");
+    }
+
+    private void ExecuteComplexExample()
     {
         var orchestrator = GetOrchestrator();
 
@@ -29,11 +68,23 @@ internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
         orchestrator.Append(new ResponsibilityFooBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible,
             "FooBarChain");
 
-        SetBeforeHandling(orchestrator);
-        SetAfterHandling(orchestrator);
+        // Set Before-Handling
+        orchestrator.ExecuteBeforeWithInput = input => Logger.Log($"Executing before with input '{input}'.");
+        orchestrator.ExecuteBefore = () =>
+        {
+            Logger.Log("---- Start Responsibility - Handling ----");
+            Logger.Log(GetChainDetail(orchestrator));
+        };
+
+        // Set After-Handling
+        orchestrator.ExecuteAfterWithInput = input => Logger.Log($"Executing before with input '{input}'.");
+        orchestrator.ExecuteAfter = () =>
+        {
+            Logger.Log("---- End Responsibility - Handling ----");
+            Logger.Log("------------");
+        };
 
         Logger.Log("------------- START Orchestrator -------------");
-
         // Start with >>> Foo
         // HandleAlways >>>> Foo (Executes) 
         // Invokes >> Bar
@@ -42,7 +93,6 @@ internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
         orchestrator.Execute("Bar");
 
         Logger.Log("------------- START Orchestrator -------------");
-
         // Start with >>> Foo
         // HandleAlways >>>> Foo (Executes) 
         // Invokes >> Bar
@@ -51,30 +101,6 @@ internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
         // IsResponsible >>>>> FooBar (Executes)
         // !!! Stops
         orchestrator.Execute("FooBar");
-    }
-
-    private void SetBeforeHandling(IResponsibilityChainOrchestrator<string> orchestrator)
-    {
-        orchestrator.ExecuteBefore = () =>
-        {
-            Logger.Log("---- Start Responsibility - Handling ----");
-            Logger.Log(GetChainDetail(orchestrator));
-        };
-
-        orchestrator.ExecuteBeforeWithInput =
-            input => Logger.Log($"Executing before with input '{input}'.");
-    }
-
-    private void SetAfterHandling(IOrchestrationAfterHandling<string> orchestrator)
-    {
-        orchestrator.ExecuteAfterWithInput =
-            input => Logger.Log($"Executing before with input '{input}'.");
-
-        orchestrator.ExecuteAfter = () =>
-        {
-            Logger.Log("---- End Responsibility - Handling ----");
-            Logger.Log("------------");
-        };
     }
 
     private static string GetChainDetail(IResponsibilityChainOrchestrator<string> orchestrator)

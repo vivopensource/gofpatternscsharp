@@ -8,13 +8,16 @@ namespace GofPatternTests.Examples.Behavioral;
 internal class CommandPatternExampleTests : BaseTest
 {
     [Test]
-    public void CommandPatternExample_Execute()
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // act
+        const int expectedVerifyCount = 9;
+
         var actualResult = new CommandPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(5));
+
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedVerifyCount));
     }
 }

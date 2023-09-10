@@ -6,10 +6,10 @@ using NUnit.Framework;
 namespace GofPatternTests.Examples.Structural;
 
 [TestFixture]
-internal class ProxyPatternExampleTests : BaseTest
+internal class ProxyPatternExampleCachedOutputTests : BaseTest
 {
     [Test]
-    public void ProxyPatternExampleCachedOutput_Execute()
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // arrange
         var readerValues = new Queue<string>(new[]
@@ -31,6 +31,7 @@ internal class ProxyPatternExampleTests : BaseTest
 
         // assert
         Assert.That(actualResult, Is.True);
+
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedCount));
     }
 }

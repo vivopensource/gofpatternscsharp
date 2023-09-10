@@ -1,5 +1,4 @@
-﻿using GofConsoleApp.Examples.Structural.ProxyPattern.BoundedInputWithOutput;
-using GofPattern.Structural.ProxyPattern;
+﻿using GofPattern.Structural.ProxyPattern;
 using static GofConsoleApp.Examples.Structural.ProxyPattern.BoundedInputWithOutput.EnumOperationOption;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern.BoundedInputWithOutput;

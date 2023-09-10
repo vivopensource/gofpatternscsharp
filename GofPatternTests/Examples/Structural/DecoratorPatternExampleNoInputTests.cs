@@ -8,7 +8,7 @@ namespace GofPatternTests.Examples.Structural;
 internal class DecoratorPatternExampleNoInputTests : BaseTest
 {
     [Test]
-    public void DecoratorPatternExampleNoInput_Execute()
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // act
         var actualResult =
@@ -16,6 +16,7 @@ internal class DecoratorPatternExampleNoInputTests : BaseTest
 
         // assert
         Assert.That(actualResult, Is.True);
+
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(2));
     }
 }

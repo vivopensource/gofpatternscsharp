@@ -8,10 +8,12 @@ namespace GofPatternTests.Examples.Structural;
 internal class DecoratorPatternExampleInputTests : BaseTest
 {
     [Test]
-    public void DecoratorPatternExampleWithInput_Execute()
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // arrange
-        const int expectedVerifyCount = 4;
+        const int expectedVerifyCount = 3;
+
+        MockInputReader.Setup(x => x.AcceptInput()).Returns("Test notification");
 
         // act
         var actualResult =
@@ -20,7 +22,6 @@ internal class DecoratorPatternExampleInputTests : BaseTest
         // assert
         Assert.That(actualResult, Is.True);
 
-        // assert - verify
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedVerifyCount));
     }
 }

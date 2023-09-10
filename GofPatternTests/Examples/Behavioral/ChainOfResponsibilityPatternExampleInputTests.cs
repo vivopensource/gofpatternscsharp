@@ -8,7 +8,7 @@ namespace GofPatternTests.Examples.Behavioral;
 internal class ChainOfResponsibilityPatternExampleInputTests : BaseTest
 {
     [Test]
-    public void ChainOfResponsibilityExampleWithInput_Execute()
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // act
         var actualResult =
@@ -16,6 +16,7 @@ internal class ChainOfResponsibilityPatternExampleInputTests : BaseTest
 
         // assert
         Assert.That(actualResult, Is.True);
-        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(30));
+
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(34));
     }
 }
