@@ -16,5 +16,11 @@ internal class ConsoleLogger : IConsoleLogger
         BaseLogger.LogInformation("Message: {Info}", info);
     }
 
+    public bool LogAndReturn(string info, bool returnFlag)
+    {
+        BaseLogger.LogInformation("Message: {Info}", info);
+        return returnFlag;
+    }
+
     public ILogger BaseLogger { get; set; }
 }

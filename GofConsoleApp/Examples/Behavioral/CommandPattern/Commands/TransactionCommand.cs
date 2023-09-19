@@ -3,11 +3,11 @@ using GofPattern.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
 
-internal class TransactionCommand : AbstractCommandUndo<Product>
+internal class TransactionCommand : AbstractCommandUndo<ProductRequest>
 {
-    public TransactionCommand(Product product)
+    public TransactionCommand(ProductRequest productRequest)
     {
-        AddRequest(product);
+        AddRequest(productRequest);
     }
 
     public override void Execute()

@@ -4,13 +4,13 @@ using NUnit.Framework;
 namespace GofPatternTests.Examples.Behavioral.CommandPattern.CommandInvoker;
 
 [TestFixture]
-internal class OnlineShopTests
+internal class OnlineShopTests : BaseTest
 {
     [Test]
-    public void ExecuteCommands_DoesNothingIfNoCommandProvider()
+    public void ExecuteCommands_DoesNothingIfNoCommandProvided_ReturnsInt()
     {
         // act
-        var onlineShop = new OnlineShop();
+        var onlineShop = new OnlineShop(MockConsoleLogger.Object);
 
         // act
         var actualResult = onlineShop.ExecuteCommands();

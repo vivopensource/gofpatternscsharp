@@ -15,16 +15,13 @@ internal class CommandPatternUndoExampleTests : BaseTest
         // act
         var readerValues = new Queue<string>(new[]
         {
-            "Laptop", "2", Order.ToString(),
-            EnumYesNo.Yes.ToString(),
-            "Laptop", "1", Return.ToString(),
-            EnumYesNo.Yes.ToString(),
-            "Monitors", "2", Order.ToString(),
-            EnumYesNo.No.ToString()
+            "Laptop", Purchase.ToString(), EnumYesNo.Yes.ToString(),
+            "Laptop", Return.ToString(), EnumYesNo.Yes.ToString(),
+            "Monitors", Purchase.ToString(), EnumYesNo.No.ToString()
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 29;
+        const int expectedLogCount = 23;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -44,11 +41,11 @@ internal class CommandPatternUndoExampleTests : BaseTest
         // act
         var readerValues = new Queue<string>(new[]
         {
-            "Laptop", "2", Invalid.ToString()
+            "Laptop", Invalid.ToString()
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 7;
+        const int expectedLogCount = 4;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -63,12 +60,12 @@ internal class CommandPatternUndoExampleTests : BaseTest
     }
 
     [Test]
-    public void Execute_QuitsExampleIfInvalidCount_ThrowsException()
+    public void Execute_QuitsExampleIfInvalidOption_ReturnsFalse()
     {
         // act
         var readerValues = new Queue<string>(new[]
         {
-            "Laptop", "NaN"
+            "Laptop", "ThisIsInvalid"
         });
 
         var expectedReaderCount = readerValues.Count;
@@ -76,12 +73,12 @@ internal class CommandPatternUndoExampleTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
-        var example = new CommandPatternUndoExample();
-
         // act
-        Assert.Throws<FormatException>(() => example.Execute(MockConsoleLogger.Object, MockInputReader.Object));
+        var actualResult = new CommandPatternUndoExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
+        Assert.That(actualResult, Is.False);
+
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }

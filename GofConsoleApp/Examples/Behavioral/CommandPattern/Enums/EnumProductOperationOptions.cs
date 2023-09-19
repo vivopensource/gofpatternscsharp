@@ -3,6 +3,6 @@
 internal enum EnumProductOperationOptions
 {
     Invalid,
-    Order,
+    Purchase,
     Return
 }
