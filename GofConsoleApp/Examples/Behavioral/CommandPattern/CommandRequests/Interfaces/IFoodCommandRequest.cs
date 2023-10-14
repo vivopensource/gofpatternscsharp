@@ -5,5 +5,6 @@ namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests.Inter
 internal interface IFoodCommandRequest : ICommandRequest
 {
     void Serve();
+
     void Pack();
 }

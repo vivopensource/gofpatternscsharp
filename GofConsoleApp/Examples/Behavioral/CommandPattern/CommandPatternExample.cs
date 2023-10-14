@@ -8,23 +8,24 @@ internal class CommandPatternExample : AbstractExample
     {
         // ReSharper disable once JoinDeclarationAndInitializer
 
-        int orderCount;
+        int count;
+
         var restaurant = new Restaurant(Logger);
 
         // 1st Order Batch
         restaurant.DeliverPizza(2);
         restaurant.DeliverBurger(5);
-        restaurant.EatBurger(6);
-        orderCount = restaurant.ExecuteCommands();
-        Logger.Log($"Orders executed: {orderCount}");
+        restaurant.ServeBurger(6);
+        count = restaurant.Prepare();
+        Logger.Log($"Orders executed: {count}");
 
         // 2nd Order Batch
-        restaurant.EatBurger(3);
+        restaurant.ServeBurger(3);
         restaurant.DeliverPizza(2);
-        restaurant.EatPizza(3);
+        restaurant.ServePizza(3);
         restaurant.DeliverBurger(4);
-        orderCount = restaurant.ExecuteCommands();
-        Logger.Log($"Orders executed: {orderCount}");
+        count = restaurant.Prepare();
+        Logger.Log($"Orders executed: {count}");
 
         return true;
     }

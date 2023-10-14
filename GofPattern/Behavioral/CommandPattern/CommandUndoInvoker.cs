@@ -9,12 +9,7 @@ namespace GofPattern.Behavioral.CommandPattern;
 public class CommandUndoInvoker<TCommandUndo, TCommandRequest> : ICommandUndoInvoker<TCommandUndo, TCommandRequest>
     where TCommandUndo : ICommandUndo<TCommandRequest> where TCommandRequest : ICommandRequest
 {
-    private IList<CommandWrapper> commandWrappers;
-
-    public CommandUndoInvoker()
-    {
-        commandWrappers = new List<CommandWrapper>();
-    }
+    private IList<CommandWrapper> commandWrappers = new List<CommandWrapper>();
 
     public void AddCommand(TCommandUndo command, bool undoFlag)
     {
