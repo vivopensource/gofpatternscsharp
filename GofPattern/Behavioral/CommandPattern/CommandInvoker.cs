@@ -9,12 +9,7 @@ namespace GofPattern.Behavioral.CommandPattern;
 public class CommandInvoker<TCommand, TCommandRequest> : ICommandInvoker<TCommand, TCommandRequest>
     where TCommand : ICommand<TCommandRequest> where TCommandRequest : ICommandRequest
 {
-    private IList<TCommand> commands;
-
-    public CommandInvoker()
-    {
-        commands = new List<TCommand>();
-    }
+    private IList<TCommand> commands = new List<TCommand>();
 
     public void AddCommand(TCommand command)
     {

@@ -4,26 +4,29 @@ using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests.Interface
 using GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.Commands.Interfaces;
 using GofPattern.Behavioral.CommandPattern;
+using GofPattern.Behavioral.CommandPattern.Interfaces.Invokers;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 
-internal class Restaurant : CommandInvoker<IFoodCommand, IFoodCommandRequest>
+internal class Restaurant
 {
     private readonly IConsoleLogger logger;
+    private readonly ICommandInvoker<IFoodCommand, IFoodCommandRequest> commandInvoker;
 
     public Restaurant(IConsoleLogger logger)
     {
         this.logger = logger;
+        commandInvoker = new CommandInvoker<IFoodCommand, IFoodCommandRequest>();
     }
 
-    public void EatPizza(int count = 1)
+    public void ServePizza(int count = 1)
     {
         var pizzas = new Pizza(logger, count);
 
         var serveOrder = new ServeFoodCommand();
         serveOrder.AddRequest(pizzas);
 
-        AddCommand(serveOrder);
+        commandInvoker.AddCommand(serveOrder);
     }
 
     public void DeliverPizza(int count = 1)
@@ -33,17 +36,17 @@ internal class Restaurant : CommandInvoker<IFoodCommand, IFoodCommandRequest>
         var deliverOrder = new DeliverFoodCommand();
         deliverOrder.AddRequest(pizzas);
 
-        AddCommand(deliverOrder);
+        commandInvoker.AddCommand(deliverOrder);
     }
 
-    public void EatBurger(int count = 1)
+    public void ServeBurger(int count = 1)
     {
         var burgers = new Burger(logger, count);
 
         var serveOrder = new ServeFoodCommand();
         serveOrder.AddRequest(burgers);
 
-        AddCommand(serveOrder);
+        commandInvoker.AddCommand(serveOrder);
     }
 
     public void DeliverBurger(int count = 1)
@@ -53,6 +56,8 @@ internal class Restaurant : CommandInvoker<IFoodCommand, IFoodCommandRequest>
         var deliverOrder = new DeliverFoodCommand();
         deliverOrder.AddRequest(burgers);
 
-        AddCommand(deliverOrder);
+        commandInvoker.AddCommand(deliverOrder);
     }
+
+    public int Prepare() => commandInvoker.ExecuteCommands();
 }

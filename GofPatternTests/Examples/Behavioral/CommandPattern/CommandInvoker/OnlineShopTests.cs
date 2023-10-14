@@ -13,7 +13,7 @@ internal class OnlineShopTests : BaseTest
         var onlineShop = new OnlineShop(MockConsoleLogger.Object);
 
         // act
-        var actualResult = onlineShop.ExecuteCommands();
+        var actualResult = onlineShop.CheckOut();
 
         // assert
         Assert.That(actualResult, Is.Zero);

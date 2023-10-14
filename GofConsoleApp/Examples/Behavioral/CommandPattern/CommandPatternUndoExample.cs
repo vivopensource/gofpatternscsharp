@@ -31,7 +31,7 @@ internal class CommandPatternUndoExample : AbstractExample
 
         Logger.Log("---- SUMMARY ----");
 
-        var orderCount = onlineShop.ExecuteCommands();
+        var orderCount = onlineShop.CheckOut();
 
         Logger.Log($"Total transactions: {orderCount}");
 
