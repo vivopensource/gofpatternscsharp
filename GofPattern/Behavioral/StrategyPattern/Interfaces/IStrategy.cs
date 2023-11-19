@@ -1,4 +1,4 @@
-namespace GofPattern.Behavioral.Strategy.Interfaces;
+namespace GofPattern.Behavioral.StrategyPattern.Interfaces;
 
 public interface IStrategy<in TInput>
 {

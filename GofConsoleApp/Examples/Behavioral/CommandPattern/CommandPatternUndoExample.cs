@@ -14,22 +14,21 @@ internal class CommandPatternUndoExample : AbstractExample
 
         do
         {
-            var inputProduct = AcceptInputString("product name");
-            var inputOption = AcceptInputEnum(Invalid, "option (Order/Return)");
-
+            var inputOption = AcceptInputEnum(Invalid, "order process", Invalid);
             if (inputOption == Invalid)
                 return Logger.LogAndReturn($"Quitting program due to input: {inputOption}.", false);
 
+            var inputProduct = AcceptInputString("product name");
             if (inputOption == Purchase)
                 onlineShop.PurchaseProduct(inputProduct);
             else
                 onlineShop.ReturnProduct(inputProduct);
 
-            shopping = AcceptInputYesNo("option to continue shopping (Yes/No)");
+            shopping = AcceptInputYesNo("input to continue shopping");
 
         } while (shopping == EnumYesNo.Yes);
 
-        Logger.Log("---- SUMMARY ----");
+        Logger.Log("---- ORDER SUMMARY ----");
 
         var orderCount = onlineShop.CheckOut();
 

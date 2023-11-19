@@ -1,8 +1,6 @@
-using GofPattern.Behavioral.Strategy.Interfaces;
+namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Output;
 
-namespace GofPatternTests.Behavioral.Strategy.TestConcretes.Output;
-
-internal class CreditCardPaymentStrategy : IStrategy<decimal, bool>
+internal class CreditCardPaymentStrategy : IPaymentStrategy
 {
     private readonly decimal limit;
 

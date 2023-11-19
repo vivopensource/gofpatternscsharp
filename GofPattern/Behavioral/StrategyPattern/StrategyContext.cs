@@ -1,7 +1,7 @@
-using GofPattern.Behavioral.Strategy.Exception;
-using GofPattern.Behavioral.Strategy.Interfaces;
+using GofPattern.Behavioral.StrategyPattern.Exception;
+using GofPattern.Behavioral.StrategyPattern.Interfaces;
 
-namespace GofPattern.Behavioral.Strategy;
+namespace GofPattern.Behavioral.StrategyPattern;
 
 public class StrategyContext<TInput> : IStrategyContext<TInput>
 {

@@ -1,13 +1,12 @@
-﻿using GofConsoleApp.Examples.Behavioral.CommandPattern;
-using GofConsoleApp.Examples.ExecutionHelpers;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.Behavioral.CommandPattern.Enums.EnumProductOperationOptions;
+using static GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums.EnumSendingOptions;
 
-namespace GofPatternTests.Examples.Behavioral;
+namespace GofPatternTests.Examples.Behavioral.StrategyPattern;
 
 [TestFixture]
-internal class CommandPatternUndoExampleTests : BaseTest
+internal class StrategyPatternExampleTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -15,18 +14,16 @@ internal class CommandPatternUndoExampleTests : BaseTest
         // act
         var readerValues = new Queue<string>(new[]
         {
-            Purchase.ToString(), "Laptop", EnumYesNo.Yes.ToString(),
-            Return.ToString(), "Laptop", EnumYesNo.Yes.ToString(),
-            Purchase.ToString(), "Monitors", EnumYesNo.No.ToString()
+            Email.ToString(), "Test message"
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 20;
+        const int expectedLogCount = 5;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new CommandPatternUndoExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new StrategyPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -34,14 +31,13 @@ internal class CommandPatternUndoExampleTests : BaseTest
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
-
     [Test]
     public void Execute_QuitsExampleIfInvalidOption_ReturnsFalse()
     {
         // act
         var readerValues = new Queue<string>(new[]
         {
-            "ThisIsInvalid"
+            Invalid.ToString()
         });
 
         var expectedReaderCount = readerValues.Count;
@@ -50,7 +46,7 @@ internal class CommandPatternUndoExampleTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new CommandPatternUndoExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new StrategyPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);
@@ -58,4 +54,5 @@ internal class CommandPatternUndoExampleTests : BaseTest
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
+    
 }

@@ -1,9 +1,8 @@
 using Core.Console.Interfaces;
-using GofPattern.Behavioral.Strategy.Interfaces;
 
-namespace GofPatternTests.Behavioral.Strategy.TestConcretes.Input;
+namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Input;
 
-internal class EmailStrategy : IStrategy<string>
+internal class EmailStrategy : ISenderStrategy
 {
     private readonly IConsoleLogger logger;
 

@@ -1,10 +1,10 @@
-using GofPattern.Behavioral.Strategy;
-using GofPattern.Behavioral.Strategy.Exception;
-using GofPattern.Behavioral.Strategy.Interfaces;
-using GofPatternTests.Behavioral.Strategy.TestConcretes.Output;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Output;
+using GofPattern.Behavioral.StrategyPattern;
+using GofPattern.Behavioral.StrategyPattern.Exception;
+using GofPattern.Behavioral.StrategyPattern.Interfaces;
 using NUnit.Framework;
 
-namespace GofPatternTests.Behavioral.Strategy;
+namespace GofPatternTests.Behavioral.StrategyPattern;
 
 [TestFixture]
 internal class StrategyContextWithOutputTests

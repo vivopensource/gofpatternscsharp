@@ -1,12 +1,12 @@
 using Core.Console.Interfaces;
-using GofPattern.Behavioral.Strategy;
-using GofPattern.Behavioral.Strategy.Exception;
-using GofPattern.Behavioral.Strategy.Interfaces;
-using GofPatternTests.Behavioral.Strategy.TestConcretes.Input;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Input;
+using GofPattern.Behavioral.StrategyPattern;
+using GofPattern.Behavioral.StrategyPattern.Exception;
+using GofPattern.Behavioral.StrategyPattern.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace GofPatternTests.Behavioral.Strategy;
+namespace GofPatternTests.Behavioral.StrategyPattern;
 
 [TestFixture]
 internal class StrategyContextTests
@@ -68,7 +68,7 @@ internal class StrategyContextTests
         sut.SetStrategy(emailStrategy);
 
         var mockLoggerLetter = new Mock<IConsoleLogger>();
-        var letterStrategy = new EmailStrategy(mockLoggerLetter.Object);
+        var letterStrategy = new LetterStrategy(mockLoggerLetter.Object);
         sut.SetStrategy(letterStrategy);
 
         // act
