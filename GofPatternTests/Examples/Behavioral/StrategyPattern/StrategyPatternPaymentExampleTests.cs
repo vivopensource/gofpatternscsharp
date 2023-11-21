@@ -1,35 +1,37 @@
-﻿using GofConsoleApp.Examples.Behavioral.CommandPattern;
-using GofConsoleApp.Examples.ExecutionHelpers;
+﻿using GofConsoleApp.Examples.Behavioral.StrategyPattern;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.Behavioral.CommandPattern.Enums.EnumProductOperationOptions;
+using static System.Globalization.CultureInfo;
+using static GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.EnumPaymentOptions;
 
-namespace GofPatternTests.Examples.Behavioral;
+namespace GofPatternTests.Examples.Behavioral.StrategyPattern;
 
 [TestFixture]
-internal class CommandPatternUndoExampleTests : BaseTest
+internal class StrategyPatternPaymentExampleTests : BaseTest
 {
-    [Test]
-    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
+    [TestCase(Debit, 12.2, true)]
+    [TestCase(Credit, 13.3, true)]
+    [TestCase(Credit, 1100.10, false)]
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue(EnumPaymentOptions option, decimal amount,
+        bool expectedResult)
     {
         // act
         var readerValues = new Queue<string>(new[]
         {
-            Purchase.ToString(), "Laptop", EnumYesNo.Yes.ToString(),
-            Return.ToString(), "Laptop", EnumYesNo.Yes.ToString(),
-            Purchase.ToString(), "Monitors", EnumYesNo.No.ToString()
+            option.ToString(), amount.ToString(InvariantCulture)
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 20;
+        const int expectedLogCount = 5;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new CommandPatternUndoExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
-        Assert.That(actualResult, Is.True);
+        Assert.That(actualResult, Is.EqualTo(expectedResult));
 
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
@@ -41,7 +43,7 @@ internal class CommandPatternUndoExampleTests : BaseTest
         // act
         var readerValues = new Queue<string>(new[]
         {
-            "ThisIsInvalid"
+            Invalid.ToString()
         });
 
         var expectedReaderCount = readerValues.Count;
@@ -50,7 +52,7 @@ internal class CommandPatternUndoExampleTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new CommandPatternUndoExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);
@@ -58,4 +60,6 @@ internal class CommandPatternUndoExampleTests : BaseTest
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
+
+    private readonly StrategyPatternPaymentExample sut = new();
 }
