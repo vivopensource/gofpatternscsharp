@@ -1,4 +1,5 @@
 ﻿using Core.Console;
+using Core.Extensions;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -27,11 +28,11 @@ internal class CommandInvokerTests
         // act
         sut.DeliverPizza(3);
         sut.DeliverBurger(5);
-        sut.EatBurger(6);
-        sut.HandleCommands();
+        sut.ServeBurger(6);
+        sut.Prepare();
 
         // assert
-        props.MockLog.Verify(m => m.LogInformation(It.IsAny<string>()), Times.Exactly(expectedResult));
+        props.MockLog.Verify(m => m.Log(It.IsAny<string>()), Times.Exactly(expectedResult));
     }
 
     [Test]
@@ -41,10 +42,10 @@ internal class CommandInvokerTests
         const int expectedResult = 0;
 
         // act
-        props.Sut.HandleCommands();
+        props.Sut.Prepare();
 
         // assert
-        props.MockLog.Verify(m => m.LogInformation(It.IsAny<string>()), Times.Exactly(expectedResult));
+        props.MockLog.Verify(m => m.Log(It.IsAny<string>()), Times.Exactly(expectedResult));
     }
 
     private TestProps props;

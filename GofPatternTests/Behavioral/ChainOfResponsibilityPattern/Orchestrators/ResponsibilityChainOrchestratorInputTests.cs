@@ -1,4 +1,5 @@
 ﻿using Core.Console;
+using Core.Extensions;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Exceptions;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
@@ -37,7 +38,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
@@ -50,7 +51,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(2));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Test]
@@ -60,9 +61,9 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
-        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
+        var responsibilityFoo = GetChain(executeFunction).Item1;
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
             .Append(responsibilityFoo, HandleAlways, InvokeNextNever);
@@ -71,7 +72,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(1));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(1));
     }
 
     [Test]
@@ -81,7 +82,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         bool IsResponsibleFoo(string v) => Foo.Contains(v);
         var responsibilityFoo = new Responsibility<string>(IsResponsibleFoo, executeFunction);
@@ -93,7 +94,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(0));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(0));
     }
 
     [TestCase(Foo)]
@@ -107,7 +108,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
@@ -120,7 +121,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute(givenValue);
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(1));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(1));
     }
 
     [Test]
@@ -130,7 +131,7 @@ internal class ResponsibilityChainOrchestratorInputTests
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
-        var executeFunction = new Action<string>(mockLoggerObject.LogInformation);
+        var executeFunction = new Action<string>(mockLoggerObject.Log);
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
@@ -143,14 +144,14 @@ internal class ResponsibilityChainOrchestratorInputTests
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.LogInformation(It.IsAny<string>()), Times.Exactly(2));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Test]
     public void Execute_IfThereIsMissingResponsibilityInChain_ThrowsMissingResponsibilityInChainException()
     {
         // arrange
-        var fooHandler = new Responsibility<string>(v => Foo.Equals(v), new Action<string>(WriteText));
+        var fooHandler = GetChain(WriteText).Item1;
 
         var sut = new ResponsibilityChainOrchestrator<string>()
             .Append(fooHandler, HandleAlways, InvokeNextAlways);
@@ -159,16 +160,17 @@ internal class ResponsibilityChainOrchestratorInputTests
         Assert.Throws<MissingResponsibilityException>(() => sut.Execute(string.Empty));
     }
 
-    private static (Responsibility<string> responsibilityFoo, Responsibility<string> responsibilityBar,
-        Responsibility<string> responsibilityFooBar) GetChain(Action<string> function)
+    private static Tuple<Responsibility<string>, Responsibility<string>, Responsibility<string>> GetChain(
+        Action<string> executeFunction)
     {
-        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), function);
+        var responsibilityFoo = new Responsibility<string>(v => Foo.Contains(v), executeFunction);
 
-        var responsibilityBar = new Responsibility<string>(v => Bar.Contains(v), function);
+        var responsibilityBar = new Responsibility<string>(v => Bar.Contains(v), executeFunction);
 
-        var responsibilityFooBar = new Responsibility<string>(v => FooBar.Contains(v), function);
+        var responsibilityFooBar = new Responsibility<string>(v => FooBar.Contains(v), executeFunction);
 
-        return (responsibilityFoo, responsibilityBar, responsibilityFooBar);
+        return new Tuple<Responsibility<string>, Responsibility<string>, Responsibility<string>>(responsibilityFoo,
+            responsibilityBar, responsibilityFooBar);
     }
 
     private static void WriteText(string text) => _log.LogInformation(text);

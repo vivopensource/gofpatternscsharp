@@ -1,4 +1,5 @@
 ﻿using GofPattern.Behavioral.CommandPattern.Interfaces;
+using GofPattern.Behavioral.CommandPattern.Interfaces.Commands;
 
 namespace GofPattern.Behavioral.CommandPattern;
 
@@ -11,5 +12,5 @@ public abstract class AbstractCommand<TRequest> : ICommand<TRequest> where TRequ
         Request = commandRequest;
     }
 
-    public abstract void Handle();
+    public abstract void Execute();
 }

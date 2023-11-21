@@ -1,24 +1,85 @@
 ﻿using Core.Console;
+using Core.Console.Interfaces;
+using Core.Extensions;
+using GofConsoleApp.Examples.ExecutionHelpers;
 
 namespace GofConsoleApp.Examples;
 
 internal abstract class AbstractExample
 {
-    public bool Execute()
+    protected IConsoleLogger Logger { get; private set; } =
+        new ConsoleLogger(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));
+
+    protected IInputReader InputReader { get; private set; } = new InputReader(Console.In);
+
+    public bool Execute(IConsoleLogger logger, IInputReader reader)
     {
-        using var logFactory = ConsoleExtensions.GetLoggerFactory();
+        Logger = logger;
+        InputReader = reader;
 
-        Logger = new ConsoleLogger(logFactory.CreateLogger(string.Empty));
-
-        Steps();
-
-        Thread.Sleep(100);
-
-        return true;
+        return Execute();
     }
 
-    protected abstract void Steps();
+    protected TEnum AcceptInputEnum<TEnum>(TEnum defaultValue, string identifier)
+    {
+        Logger.Log($"Please provide the {identifier}...");
 
-    protected ConsoleLogger Logger { get; private set; } =
-        new(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));
+        var input = InputReader.AcceptInputEnum(defaultValue);
+
+        Logger.Log($"Selected {identifier} is {input}");
+
+        return input;
+    }
+
+    protected TEnum AcceptInputEnum<TEnum>(TEnum defaultValue, string identifier, TEnum skipOptionFromPrinting)
+    {
+        var enums = Enum.GetValues(typeof(TEnum)).Cast<TEnum>().ToHashSet();
+        enums.Remove(skipOptionFromPrinting);
+
+        var message = $"{identifier} from options ({string.Join( ",", enums)})";
+
+        return AcceptInputEnum(defaultValue, message);
+    }
+
+    protected string AcceptInputString(string identifier)
+    {
+        if (!string.IsNullOrWhiteSpace(identifier))
+            Logger.Log($"Please enter the {identifier}...");
+
+        var input = InputReader.AcceptInput();
+
+        Logger.Log($"Provided {identifier} is {input}");
+
+        return input;
+    }
+
+    protected EnumYesNo AcceptInputYesNo(string identifier = "")
+    {
+        if (!string.IsNullOrWhiteSpace(identifier))
+            Logger.Log($"Please enter the {identifier} (Yes/No)...");
+
+        var input = InputReader.AcceptInput();
+
+        return input.ToEnum(EnumYesNo.No);
+    }
+
+    protected decimal AcceptInputDecimal(string identifier)
+    {
+        if (!string.IsNullOrWhiteSpace(identifier))
+            Logger.Log($"Please enter the {identifier}...");
+
+        try
+        {
+            var input = InputReader.AcceptInputDecimal();
+            Logger.Log($"Provided {identifier} is {input}");
+            return input;
+        }
+        catch (Exception)
+        {
+            Logger.Log($"Provided {identifier} is invalid");
+            throw;
+        }
+    }
+
+    protected abstract bool Execute();
 }

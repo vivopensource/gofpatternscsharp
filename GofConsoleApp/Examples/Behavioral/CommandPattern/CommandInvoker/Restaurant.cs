@@ -1,59 +1,63 @@
-﻿using Core.Console;
-using Core.Console.Interfaces;
+﻿using Core.Console.Interfaces;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests.Interfaces;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.Commands.Interfaces;
 using GofPattern.Behavioral.CommandPattern;
+using GofPattern.Behavioral.CommandPattern.Interfaces.Invokers;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 
-internal class Restaurant : CommandInvoker<IOrderCommand, IFoodCommandRequest>
+internal class Restaurant
 {
-    private readonly IConsoleLogger log;
+    private readonly IConsoleLogger logger;
+    private readonly ICommandInvoker<IFoodCommand, IFoodCommandRequest> commandInvoker;
 
-    public Restaurant(IConsoleLogger log)
+    public Restaurant(IConsoleLogger logger)
     {
-        this.log = log;
+        this.logger = logger;
+        commandInvoker = new CommandInvoker<IFoodCommand, IFoodCommandRequest>();
     }
 
-    public void EatPizza(int count = 1)
+    public void ServePizza(int count = 1)
     {
-        var pizzas = new Pizza(log, count);
+        var pizzas = new Pizza(logger, count);
 
-        var serveOrder = new ServeOrderCommand();
+        var serveOrder = new ServeFoodCommand();
         serveOrder.AddRequest(pizzas);
 
-        AddCommand(serveOrder);
+        commandInvoker.AddCommand(serveOrder);
     }
 
     public void DeliverPizza(int count = 1)
     {
-        var pizzas = new Pizza(log, count);
+        var pizzas = new Pizza(logger, count);
 
-        var deliverOrder = new DeliverOrderCommand();
+        var deliverOrder = new DeliverFoodCommand();
         deliverOrder.AddRequest(pizzas);
 
-        AddCommand(deliverOrder);
+        commandInvoker.AddCommand(deliverOrder);
     }
 
-    public void EatBurger(int count = 1)
+    public void ServeBurger(int count = 1)
     {
-        var burgers = new Burger(log, count);
+        var burgers = new Burger(logger, count);
 
-        var serveOrder = new ServeOrderCommand();
+        var serveOrder = new ServeFoodCommand();
         serveOrder.AddRequest(burgers);
 
-        AddCommand(serveOrder);
+        commandInvoker.AddCommand(serveOrder);
     }
 
     public void DeliverBurger(int count = 1)
     {
-        var burgers = new Burger(log, count);
+        var burgers = new Burger(logger, count);
 
-        var deliverOrder = new DeliverOrderCommand();
+        var deliverOrder = new DeliverFoodCommand();
         deliverOrder.AddRequest(burgers);
 
-        AddCommand(deliverOrder);
+        commandInvoker.AddCommand(deliverOrder);
     }
+
+    public int Prepare() => commandInvoker.ExecuteCommands();
 }
