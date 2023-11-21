@@ -1,5 +1,3 @@
 namespace GofPattern.Behavioral.StrategyPattern.Exception;
 
-public class MissingStrategyException : NullReferenceException
-{
-}
+public class MissingStrategyException : ArgumentException { }

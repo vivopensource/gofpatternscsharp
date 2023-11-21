@@ -26,9 +26,9 @@ internal static class ConsoleExtensions
         return input.ToEnum(defaultValue);
     }
 
-    public static int AcceptInputInt(this IInputReader inputReader)
+    public static decimal AcceptInputDecimal(this IInputReader inputReader)
     {
         var input = inputReader.AcceptInput();
-        return int.Parse(input);
+        return decimal.Parse(input);
     }
 }

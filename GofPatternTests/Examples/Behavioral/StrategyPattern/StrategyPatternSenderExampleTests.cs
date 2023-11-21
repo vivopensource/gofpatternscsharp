@@ -1,4 +1,5 @@
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums;
 using Moq;
 using NUnit.Framework;
 using static GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums.EnumSendingOptions;
@@ -6,15 +7,16 @@ using static GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums.EnumSending
 namespace GofPatternTests.Examples.Behavioral.StrategyPattern;
 
 [TestFixture]
-internal class StrategyPatternExampleTests : BaseTest
+internal class StrategyPatternSenderExampleTests : BaseTest
 {
-    [Test]
-    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
+    [TestCase(Letter)]
+    [TestCase(Email)]
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue(EnumSendingOptions option)
     {
         // act
         var readerValues = new Queue<string>(new[]
         {
-            Email.ToString(), "Test message"
+            option.ToString(), "Test message"
         });
 
         var expectedReaderCount = readerValues.Count;
@@ -23,7 +25,7 @@ internal class StrategyPatternExampleTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new StrategyPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -31,6 +33,7 @@ internal class StrategyPatternExampleTests : BaseTest
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
+
     [Test]
     public void Execute_QuitsExampleIfInvalidOption_ReturnsFalse()
     {
@@ -41,12 +44,12 @@ internal class StrategyPatternExampleTests : BaseTest
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 2;
+        const int expectedLogCount = 3;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new StrategyPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);
@@ -54,5 +57,6 @@ internal class StrategyPatternExampleTests : BaseTest
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
-    
+
+    private readonly StrategyPatternSenderExample sut = new();
 }

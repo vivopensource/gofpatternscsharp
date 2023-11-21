@@ -16,7 +16,7 @@ internal class CommandPatternUndoExample : AbstractExample
         {
             var inputOption = AcceptInputEnum(Invalid, "order process", Invalid);
             if (inputOption == Invalid)
-                return Logger.LogAndReturn($"Quitting program due to input: {inputOption}.", false);
+                return Logger.LogAndReturnFalse($"Quitting program due to input: {inputOption}.");
 
             var inputProduct = AcceptInputString("product name");
             if (inputOption == Purchase)

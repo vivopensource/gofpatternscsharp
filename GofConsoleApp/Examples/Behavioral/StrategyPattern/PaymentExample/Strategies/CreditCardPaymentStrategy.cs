@@ -11,6 +11,6 @@ internal class CreditCardPaymentStrategy : IPaymentStrategy
 
     public bool Execute(decimal input)
     {
-        return limit - input >= 0;
+        return input > 0 && limit - input >= 0;
     }
 }

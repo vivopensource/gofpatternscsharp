@@ -11,6 +11,6 @@ internal class DebitCardPaymentStrategy : IPaymentStrategy
 
     public bool Execute(decimal input)
     {
-        return balance - input >= 0;
+        return input > 0 && balance - input >= 0;
     }
 }

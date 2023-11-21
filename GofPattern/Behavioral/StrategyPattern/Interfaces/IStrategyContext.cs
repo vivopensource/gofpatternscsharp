@@ -7,10 +7,11 @@ namespace GofPattern.Behavioral.StrategyPattern.Interfaces;
 /// <typeparam name="TInput"></typeparam>
 public interface IStrategyContext<TInput>
 {
-    IStrategy<TInput>? Strategy { get; }
     void SetStrategy(IStrategy<TInput> strategy);
 
     void ExecuteStrategy(TInput input);
+
+    IStrategy<TInput>? Strategy { get; }
 }
 
 /// <summary>
@@ -21,8 +22,9 @@ public interface IStrategyContext<TInput>
 /// <typeparam name="TOutput"></typeparam>
 public interface IStrategyContext<TInput, TOutput>
 {
-    IStrategy<TInput, TOutput>? Strategy { get; }
     void SetStrategy(IStrategy<TInput, TOutput> strategy);
 
     TOutput ExecuteStrategy(TInput input);
+
+    IStrategy<TInput, TOutput>? Strategy { get; }
 }

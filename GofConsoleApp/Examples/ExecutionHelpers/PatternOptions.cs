@@ -18,7 +18,8 @@ internal static class PatternOptions
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
     internal const string CommandPatternOption = "22";
     internal const string CommandPatternUndoOption = "22.2";
-    internal const string StrategyPatternOption = "23";
+    internal const string StrategyPatternOptionSender = "23";
+    internal const string StrategyPatternOptionPayment = "23.2";
 
     internal static readonly IDictionary<string, PatternExampleMap> Patterns = new Dictionary<string, PatternExampleMap>
     {
@@ -66,8 +67,12 @@ internal static class PatternOptions
             new PatternExampleMap("Command Pattern >> Undo", new CommandPatternUndoExample())
         },
         {
-            StrategyPatternOption,
-            new PatternExampleMap("Strategy Pattern", new StrategyPatternExample())
+            StrategyPatternOptionSender,
+            new PatternExampleMap("Strategy Pattern >> Sender", new StrategyPatternSenderExample())
+        },
+        {
+            StrategyPatternOptionPayment,
+            new PatternExampleMap("Strategy Pattern >> Payment", new StrategyPatternPaymentExample())
         }
     };
 }

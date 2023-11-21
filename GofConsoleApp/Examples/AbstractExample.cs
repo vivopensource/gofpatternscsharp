@@ -60,23 +60,17 @@ internal abstract class AbstractExample
 
         var input = InputReader.AcceptInput();
 
-        // Logger.Log($"Provided {identifier} is {input}");
-
         return input.ToEnum(EnumYesNo.No);
     }
 
-    protected abstract bool Execute();
-
-
-    /*
-    protected int AcceptInputInt(string identifier)
+    protected decimal AcceptInputDecimal(string identifier)
     {
         if (!string.IsNullOrWhiteSpace(identifier))
             Logger.Log($"Please enter the {identifier}...");
 
         try
         {
-            var input = InputReader.AcceptInputInt();
+            var input = InputReader.AcceptInputDecimal();
             Logger.Log($"Provided {identifier} is {input}");
             return input;
         }
@@ -86,5 +80,6 @@ internal abstract class AbstractExample
             throw;
         }
     }
-    */
+
+    protected abstract bool Execute();
 }
