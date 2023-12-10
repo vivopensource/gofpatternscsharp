@@ -36,7 +36,7 @@ internal abstract class AbstractExample
         var enums = Enum.GetValues(typeof(TEnum)).Cast<TEnum>().ToHashSet();
         enums.Remove(skipOptionFromPrinting);
 
-        var message = $"{identifier} from options ({string.Join( ",", enums)})";
+        var message = $"{identifier} from options ({string.Join(",", enums)})";
 
         return AcceptInputEnum(defaultValue, message);
     }
@@ -79,6 +79,23 @@ internal abstract class AbstractExample
             Logger.Log($"Provided {identifier} is invalid");
             throw;
         }
+    }
+
+    protected bool IsInvalidOrQuit<TEnum>(TEnum input, TEnum invalid, TEnum quit, out bool output)
+    {
+
+        if (input!.Equals(invalid))
+        {
+            output = false;
+            return Logger.LogAndReturnTrue($"Quitting program due to input: {input}.");
+        }
+
+        output = true;
+
+        if (input.Equals(quit))
+            return Logger.LogAndReturnTrue("Quitting program.");
+
+        return false;
     }
 
     protected abstract bool Execute();
