@@ -1,12 +1,12 @@
 ﻿using GofConsoleApp.Examples.Structural.ProxyPattern;
-using GofConsoleApp.Examples.Structural.ProxyPattern.BoundedInput;
+using GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;
 using Moq;
 using NUnit.Framework;
 
 namespace GofPatternTests.Examples.Structural;
 
 [TestFixture]
-internal class ProxyPatternExampleBoundedInputTests : BaseTest
+internal class ProxyPatternNewsChannelExampleBoundedInputTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -20,7 +20,7 @@ internal class ProxyPatternExampleBoundedInputTests : BaseTest
 
         // act
         var actualResult =
-            new ProxyPatternExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+            new ProxyPatternNewsChannelExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -40,7 +40,7 @@ internal class ProxyPatternExampleBoundedInputTests : BaseTest
 
         // act
         var actualResult =
-            new ProxyPatternExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+            new ProxyPatternNewsChannelExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);
@@ -52,14 +52,14 @@ internal class ProxyPatternExampleBoundedInputTests : BaseTest
     public void Execute_QuitsExampleIfUnBoundedInput_ThrowsException()
     {
         // arrange
-        var readerValues = new Queue<string>(new[] { EnumNewsChannel.OutOfOrder.ToString() });
+        var readerValues = new Queue<string>(new[] { EnumNewsChannel.NotSet.ToString() });
 
         var expectedReaderCount = readerValues.Count;
         const int expectedLogCount = 3;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
-        var example = new ProxyPatternExampleBoundedInput();
+        var example = new ProxyPatternNewsChannelExampleBoundedInput();
 
         // act
         Assert.Throws<ArgumentException>(() => example.Execute(MockConsoleLogger.Object, MockInputReader.Object));

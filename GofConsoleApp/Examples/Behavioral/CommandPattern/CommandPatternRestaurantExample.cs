@@ -2,7 +2,7 @@
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern;
 
-internal class CommandPatternExample : AbstractExample
+internal class CommandPatternRestaurantExample : AbstractExample
 {
     protected override bool Execute()
     {

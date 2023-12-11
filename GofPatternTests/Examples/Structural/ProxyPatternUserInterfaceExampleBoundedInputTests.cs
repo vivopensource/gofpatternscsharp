@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace GofPatternTests.Examples.Structural;
 
 [TestFixture]
-internal class ProxyPatternExampleBoundedInputWithOutputTests : BaseTest
+internal class ProxyPatternUserInterfaceExampleBoundedInputTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -27,7 +27,7 @@ internal class ProxyPatternExampleBoundedInputWithOutputTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new ProxyPatternExampleBoundedInputWithOutput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new ProxyPatternUserInterfaceExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -53,7 +53,7 @@ internal class ProxyPatternExampleBoundedInputWithOutputTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
-        var example = new ProxyPatternExampleBoundedInputWithOutput();
+        var example = new ProxyPatternUserInterfaceExampleBoundedInput();
 
         // act
         Assert.Throws<ArgumentException>(() => example.Execute(MockConsoleLogger.Object, MockInputReader.Object));
@@ -79,7 +79,7 @@ internal class ProxyPatternExampleBoundedInputWithOutputTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
-        var example = new ProxyPatternExampleBoundedInputWithOutput();
+        var example = new ProxyPatternUserInterfaceExampleBoundedInput();
 
         // act
         Assert.Throws<ArgumentException>(() => example.Execute(MockConsoleLogger.Object, MockInputReader.Object));
@@ -101,7 +101,7 @@ internal class ProxyPatternExampleBoundedInputWithOutputTests : BaseTest
 
         // act
         var actualResult =
-            new ProxyPatternExampleBoundedInputWithOutput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+            new ProxyPatternUserInterfaceExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);

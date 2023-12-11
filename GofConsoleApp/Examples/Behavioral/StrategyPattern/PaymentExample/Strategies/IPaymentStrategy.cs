@@ -1,7 +1,5 @@
 using GofPattern.Behavioral.StrategyPattern.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Output;
+namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.Strategies;
 
-internal interface IPaymentStrategy : IStrategy<decimal, bool>
-{
-}
+internal interface IPaymentStrategy : IStrategy<decimal, bool> { }

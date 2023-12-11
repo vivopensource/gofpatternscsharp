@@ -4,10 +4,10 @@ using Moq;
 using NUnit.Framework;
 using static GofConsoleApp.Examples.Behavioral.CommandPattern.Enums.EnumProductOperationOptions;
 
-namespace GofPatternTests.Examples.Behavioral;
+namespace GofPatternTests.Examples.Behavioral.CommandPattern;
 
 [TestFixture]
-internal class CommandPatternUndoExampleTests : BaseTest
+internal class CommandPatternUndoOnlineShopExampleTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -26,7 +26,7 @@ internal class CommandPatternUndoExampleTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new CommandPatternUndoExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new CommandPatternUndoOnlineShopExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -50,7 +50,7 @@ internal class CommandPatternUndoExampleTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new CommandPatternUndoExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new CommandPatternUndoOnlineShopExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);

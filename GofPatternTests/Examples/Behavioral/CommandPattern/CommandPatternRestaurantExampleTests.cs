@@ -2,10 +2,10 @@
 using Moq;
 using NUnit.Framework;
 
-namespace GofPatternTests.Examples.Behavioral;
+namespace GofPatternTests.Examples.Behavioral.CommandPattern;
 
 [TestFixture]
-internal class CommandPatternExampleTests : BaseTest
+internal class CommandPatternRestaurantExampleTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -13,7 +13,7 @@ internal class CommandPatternExampleTests : BaseTest
         // act
         const int expectedVerifyCount = 9;
 
-        var actualResult = new CommandPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new CommandPatternRestaurantExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

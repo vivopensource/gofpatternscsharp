@@ -4,7 +4,7 @@ using static GofConsoleApp.Examples.Behavioral.CommandPattern.Enums.EnumProductO
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern;
 
-internal class CommandPatternUndoExample : AbstractExample
+internal class CommandPatternUndoOnlineShopExample : AbstractExample
 {
     protected override bool Execute()
     {

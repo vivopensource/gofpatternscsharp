@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 
-namespace GofPatternTests.Examples.Behavioral;
+namespace GofPatternTests.Examples.Behavioral.ChainOfResponsibilityPattern;
 
 [TestFixture]
 internal class ChainOfResponsibilityPatternExampleInputTests : BaseTest

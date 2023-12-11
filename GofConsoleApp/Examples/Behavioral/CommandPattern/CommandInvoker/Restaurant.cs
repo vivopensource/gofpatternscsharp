@@ -22,41 +22,36 @@ internal class Restaurant
     public void ServePizza(int count = 1)
     {
         var pizzas = new Pizza(logger, count);
-
         var serveOrder = new ServeFoodCommand();
-        serveOrder.AddRequest(pizzas);
-
-        commandInvoker.AddCommand(serveOrder);
+        AddCommand(serveOrder, pizzas);
     }
 
     public void DeliverPizza(int count = 1)
     {
         var pizzas = new Pizza(logger, count);
-
         var deliverOrder = new DeliverFoodCommand();
-        deliverOrder.AddRequest(pizzas);
-
-        commandInvoker.AddCommand(deliverOrder);
+        AddCommand(deliverOrder, pizzas);
     }
 
     public void ServeBurger(int count = 1)
     {
         var burgers = new Burger(logger, count);
-
         var serveOrder = new ServeFoodCommand();
-        serveOrder.AddRequest(burgers);
-
-        commandInvoker.AddCommand(serveOrder);
+        AddCommand(serveOrder, burgers);
     }
 
     public void DeliverBurger(int count = 1)
     {
         var burgers = new Burger(logger, count);
-
         var deliverOrder = new DeliverFoodCommand();
-        deliverOrder.AddRequest(burgers);
+        AddCommand(deliverOrder, burgers);
+    }
 
-        commandInvoker.AddCommand(deliverOrder);
+    private void AddCommand(IFoodCommand command, IFoodCommandRequest request)
+    {
+        command.AddRequest(request);
+        commandInvoker.AddCommand(command);
+        
     }
 
     public int Prepare() => commandInvoker.ExecuteCommands();

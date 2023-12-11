@@ -37,16 +37,16 @@ internal static class PatternOptions
         },
         {
             ProxyPatternOption,
-            new PatternExampleMap("Proxy Pattern >> Cached Output", new ProxyPatternExampleCachedOutput())
+            new PatternExampleMap("Proxy Pattern >> Cached Output", new ProxyPatternConfigProviderExampleCachedOutput())
         },
         {
             ProxyPatternOptionBoundedInput,
-            new PatternExampleMap("Proxy Pattern >> Bounded Input", new ProxyPatternExampleBoundedInput())
+            new PatternExampleMap("Proxy Pattern >> Bounded Input", new ProxyPatternNewsChannelExampleBoundedInput())
         },
         {
             ProxyPatternOptionBoundedInputOutput,
             new PatternExampleMap("Proxy Pattern >> Bounded Input with Output",
-                new ProxyPatternExampleBoundedInputWithOutput())
+                new ProxyPatternUserInterfaceExampleBoundedInput())
         },
 
         // Behavioral Patterns
@@ -62,11 +62,11 @@ internal static class PatternOptions
         },
         {
             CommandPatternOption,
-            new PatternExampleMap("Command Pattern", new CommandPatternExample())
+            new PatternExampleMap("Command Pattern", new CommandPatternRestaurantExample())
         },
         {
             CommandPatternUndoOption,
-            new PatternExampleMap("Command Pattern >> Undo Example", new CommandPatternUndoExample())
+            new PatternExampleMap("Command Pattern >> Undo Example", new CommandPatternUndoOnlineShopExample())
         },
         {
             LightPatternOptionBulbExample,

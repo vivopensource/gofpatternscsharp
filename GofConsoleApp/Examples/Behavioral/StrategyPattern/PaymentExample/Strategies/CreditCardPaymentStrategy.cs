@@ -1,4 +1,4 @@
-namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Output;
+namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.Strategies;
 
 internal class CreditCardPaymentStrategy : IPaymentStrategy
 {

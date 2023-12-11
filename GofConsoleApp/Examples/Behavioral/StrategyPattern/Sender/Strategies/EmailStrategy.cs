@@ -1,6 +1,6 @@
 using Core.Console.Interfaces;
 
-namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Input;
+namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.Sender.Strategies;
 
 internal class EmailStrategy : ISenderStrategy
 {
