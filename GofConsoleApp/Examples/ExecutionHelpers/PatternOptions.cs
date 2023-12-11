@@ -1,5 +1,6 @@
 ﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 using GofConsoleApp.Examples.Behavioral.CommandPattern;
+using GofConsoleApp.Examples.Behavioral.StatePattern;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
 using GofConsoleApp.Examples.Structural.ProxyPattern;
@@ -18,8 +19,9 @@ internal static class PatternOptions
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
     internal const string CommandPatternOption = "22";
     internal const string CommandPatternUndoOption = "22.2";
-    internal const string StrategyPatternOptionSender = "23";
-    internal const string StrategyPatternOptionPayment = "23.2";
+    internal const string LightPatternOptionBulbExample = "23";
+    internal const string StrategyPatternOptionSender = "24";
+    internal const string StrategyPatternOptionPayment = "24.2";
 
     internal static readonly IDictionary<string, PatternExampleMap> Patterns = new Dictionary<string, PatternExampleMap>
     {
@@ -35,16 +37,16 @@ internal static class PatternOptions
         },
         {
             ProxyPatternOption,
-            new PatternExampleMap("Proxy Pattern >> Cached Output", new ProxyPatternExampleCachedOutput())
+            new PatternExampleMap("Proxy Pattern >> Cached Output", new ProxyPatternConfigProviderExampleCachedOutput())
         },
         {
             ProxyPatternOptionBoundedInput,
-            new PatternExampleMap("Proxy Pattern >> Bounded Input", new ProxyPatternExampleBoundedInput())
+            new PatternExampleMap("Proxy Pattern >> Bounded Input", new ProxyPatternNewsChannelExampleBoundedInput())
         },
         {
             ProxyPatternOptionBoundedInputOutput,
             new PatternExampleMap("Proxy Pattern >> Bounded Input with Output",
-                new ProxyPatternExampleBoundedInputWithOutput())
+                new ProxyPatternUserInterfaceExampleBoundedInput())
         },
 
         // Behavioral Patterns
@@ -60,19 +62,23 @@ internal static class PatternOptions
         },
         {
             CommandPatternOption,
-            new PatternExampleMap("Command Pattern", new CommandPatternExample())
+            new PatternExampleMap("Command Pattern", new CommandPatternRestaurantExample())
         },
         {
             CommandPatternUndoOption,
-            new PatternExampleMap("Command Pattern >> Undo", new CommandPatternUndoExample())
+            new PatternExampleMap("Command Pattern >> Undo Example", new CommandPatternUndoOnlineShopExample())
+        },
+        {
+            LightPatternOptionBulbExample,
+            new PatternExampleMap("State Pattern >> Light Example", new StatePatternBulbExample())
         },
         {
             StrategyPatternOptionSender,
-            new PatternExampleMap("Strategy Pattern >> Sender", new StrategyPatternSenderExample())
+            new PatternExampleMap("Strategy Pattern >> Sender Example", new StrategyPatternSenderExample())
         },
         {
             StrategyPatternOptionPayment,
-            new PatternExampleMap("Strategy Pattern >> Payment", new StrategyPatternPaymentExample())
+            new PatternExampleMap("Strategy Pattern >> Payment Example", new StrategyPatternPaymentExample())
         }
     };
 }

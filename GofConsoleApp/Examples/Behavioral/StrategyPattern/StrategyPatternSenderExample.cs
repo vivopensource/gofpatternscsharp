@@ -1,4 +1,4 @@
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Input;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.Sender.Strategies;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern.StrategyContexts;
 using GofPattern.Behavioral.StrategyPattern.Interfaces;
 using static GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums.EnumSendingOptions;

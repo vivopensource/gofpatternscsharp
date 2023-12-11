@@ -1,4 +1,4 @@
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Output;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.Strategies;
 using GofPattern.Behavioral.StrategyPattern;
 using GofPattern.Behavioral.StrategyPattern.Exception;
 using GofPattern.Behavioral.StrategyPattern.Interfaces;
@@ -66,17 +66,18 @@ internal class StrategyContextWithOutputTests
         var creditCardPayment = new CreditCardPaymentStrategy(givenLimit);
         sut.SetStrategy(creditCardPayment);
 
-        const int givenBalance = 10;
+        const int givenBalance = 20;
         var debitCardPayment = new DebitCardPaymentStrategy(givenBalance);
         sut.SetStrategy(debitCardPayment);
 
-        const int paymentInput = 2;
+        const int paymentInput = 12;
 
         // act
         var actualResult = sut.ExecuteStrategy(paymentInput);
 
         // assert
         Assert.That(actualResult, Is.True);
+        Assert.That(sut.Strategy, Is.TypeOf<DebitCardPaymentStrategy>());
     }
 
     private readonly IStrategyContext<decimal, bool> sut = new StrategyContext<decimal, bool>();

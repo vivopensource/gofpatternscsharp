@@ -1,8 +1,8 @@
 ﻿using Core.Extensions;
-using GofConsoleApp.Examples.Structural.ProxyPattern.CachedOutput;
+using GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using static GofConsoleApp.Examples.Structural.ProxyPattern.CachedOutput.EnumConfigEnv;
+using static GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput.EnumConfigEnv;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 
@@ -11,7 +11,7 @@ namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 /// It loads the configuration of the respective env and it caches
 /// the output for the next time.
 /// </summary>
-internal class ProxyPatternExampleCachedOutput : AbstractExample
+internal class ProxyPatternConfigProviderExampleCachedOutput : AbstractExample
 {
     protected override bool Execute()
     {

@@ -1,12 +1,12 @@
 ﻿using GofConsoleApp.Examples.Structural.ProxyPattern;
-using GofConsoleApp.Examples.Structural.ProxyPattern.CachedOutput;
+using GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput;
 using Moq;
 using NUnit.Framework;
 
 namespace GofPatternTests.Examples.Structural;
 
 [TestFixture]
-internal class ProxyPatternExampleCachedOutputTests : BaseTest
+internal class ProxyPatternConfigProviderExampleCachedOutputTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -27,7 +27,7 @@ internal class ProxyPatternExampleCachedOutputTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new ProxyPatternExampleCachedOutput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new ProxyPatternConfigProviderExampleCachedOutput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

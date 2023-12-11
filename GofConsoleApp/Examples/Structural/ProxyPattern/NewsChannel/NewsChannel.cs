@@ -1,12 +1,12 @@
 ﻿using Core.Console.Interfaces;
 
-namespace GofConsoleApp.Examples.Structural.ProxyPattern.BoundedInput;
+namespace GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;
 
-internal class NewsTelevision : INewsTelevision
+internal class NewsChannel : INewsChannel
 {
     private readonly IConsoleLogger logger;
 
-    public NewsTelevision(IConsoleLogger logger)
+    public NewsChannel(IConsoleLogger logger)
     {
         this.logger = logger;
     }
