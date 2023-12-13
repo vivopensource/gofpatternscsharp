@@ -1,5 +1,4 @@
-﻿using Core.Console;
-using Core.Console.Interfaces;
+﻿using Core.Console.Interfaces;
 using GofConsoleApp.Examples.ExecutionHelpers;
 
 namespace GofConsoleApp.Examples;

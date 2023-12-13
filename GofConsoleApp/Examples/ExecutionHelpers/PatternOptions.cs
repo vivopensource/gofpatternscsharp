@@ -19,7 +19,8 @@ internal static class PatternOptions
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
     internal const string CommandPatternOption = "22";
     internal const string CommandPatternUndoOption = "22.2";
-    internal const string LightPatternOptionBulbExample = "23";
+    internal const string StatePatternOptionBulbExample = "23";
+    internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
 
@@ -69,8 +70,12 @@ internal static class PatternOptions
             new PatternExampleMap("Command Pattern >> Undo Example", new CommandPatternUndoOnlineShopExample())
         },
         {
-            LightPatternOptionBulbExample,
-            new PatternExampleMap("State Pattern >> Light Example", new StatePatternBulbExample())
+            StatePatternOptionBulbExample,
+            new PatternExampleMap("State Pattern >> Bulb Example", new StatePatternBulbExample())
+        },
+        {
+            StatePatternOptionDriveExample,
+            new PatternExampleMap("State Pattern >> Drive Example", new StatePatternDriveExample())
         },
         {
             StrategyPatternOptionSender,

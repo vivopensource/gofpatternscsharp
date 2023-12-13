@@ -1,5 +1,5 @@
 ﻿using GofPattern.Behavioral.StatePattern.Interfaces;
-using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.Enums.EnumStatePatternBulbExample;
+using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.EnumStatePatternBulbExample;
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.States;
 
