@@ -1,5 +1,5 @@
 using Core.Console.Interfaces;
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.Strategies.Input;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.Sender.Strategies;
 using GofPattern.Behavioral.StrategyPattern;
 using GofPattern.Behavioral.StrategyPattern.Exception;
 using GofPattern.Behavioral.StrategyPattern.Interfaces;
@@ -75,6 +75,7 @@ internal class StrategyContextTests
         sut.ExecuteStrategy(string.Empty);
 
         // assert
+        Assert.That(sut.Strategy, Is.TypeOf<LetterStrategy>());
         mockLoggerEmail.Verify(x => x.Log(It.IsAny<string>()), Times.Never);
         mockLoggerLetter.Verify(x => x.Log(It.IsAny<string>()), Times.Once);
     }
