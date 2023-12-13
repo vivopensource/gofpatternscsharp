@@ -12,3 +12,15 @@ public interface IState<in TContext> where TContext : IStateContext<TContext>
 
     string Name { get; }
 }
+
+/// <summary>
+/// <inheritdoc cref="IState{TContext}" />
+/// </summary>
+/// <typeparam name="TContext">IStateContext</typeparam>
+/// <typeparam name="TOut">Output</typeparam>
+public interface IState<in TContext, out TOut> where TContext : IStateContext<TContext, TOut>
+{
+    TOut Execute(TContext context);
+
+    string Name { get; }
+}

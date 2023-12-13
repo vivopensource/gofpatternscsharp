@@ -1,15 +1,14 @@
 ﻿using GofConsoleApp.Examples;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
-using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample;
-using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.States;
+using GofConsoleApp.Examples.Behavioral.StatePattern.Drive;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.EnumStatePatternBulbExample;
+using static GofConsoleApp.Examples.Behavioral.StatePattern.Drive.EnumStatePatternDriveExample;
 
 namespace GofPatternTests.Examples.Behavioral.StatePattern;
 
 [TestFixture]
-internal class StatePatternBulbExampleTests : BaseTest
+internal class StatePatternDriveExampleTests : BaseTest
 {
     private const int LogCountForInput = 3;
 
@@ -23,7 +22,7 @@ internal class StatePatternBulbExampleTests : BaseTest
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 1 + LogCountForInput;
+        const int expectedLogCount = 2 + LogCountForInput;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -43,11 +42,11 @@ internal class StatePatternBulbExampleTests : BaseTest
         // act
         var readerValues = new Queue<string>(new[]
         {
-            Quit.ToString()
+            Stop.ToString()
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 1 + LogCountForInput;
+        const int expectedLogCount = 2 + LogCountForInput;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -61,18 +60,18 @@ internal class StatePatternBulbExampleTests : BaseTest
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
 
-    [TestCase(On)]
-    [TestCase(Off)]
-    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue(EnumStatePatternBulbExample option)
+    [TestCase(Sport)]
+    [TestCase(SportPlus)]
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue(EnumStatePatternDriveExample option)
     {
         // act
         var readerValues = new Queue<string>(new[]
         {
-            option.ToString(), Quit.ToString()
+            option.ToString(), Stop.ToString()
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 1 + LogCountForInput * 2;
+        const int expectedLogCount = 2 + LogCountForInput * 2;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -86,16 +85,16 @@ internal class StatePatternBulbExampleTests : BaseTest
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
 
-    [TestCase(On, Off)]
-    [TestCase(Off, On, On, Off)]
-    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue(params EnumStatePatternBulbExample[] option)
+    [TestCase(Sport, Eco)]
+    [TestCase(Eco, Sport, SportPlus, Sport)]
+    public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue(params EnumStatePatternDriveExample[] option)
     {
         // act
         var readerValues = new Queue<string>(option.Select(x => x.ToString()));
-        readerValues.Enqueue(Quit.ToString());
+        readerValues.Enqueue(Stop.ToString());
 
         var expectedReaderCount = readerValues.Count;
-        var expectedLogCount = 1 + LogCountForInput * (option.Length + 1);
+        var expectedLogCount = 2 + LogCountForInput * (option.Length + 1);
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -109,5 +108,5 @@ internal class StatePatternBulbExampleTests : BaseTest
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
 
-    private readonly AbstractExample sut = new StatePatternBulbExample();
+    private readonly AbstractExample sut = new StatePatternDriveExample();
 }

@@ -1,4 +1,4 @@
-﻿namespace GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.Enums;
+﻿namespace GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample;
 
 internal enum EnumStatePatternBulbExample
 {

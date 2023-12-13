@@ -20,7 +20,7 @@ public class StateContext<TContext> : IStateContext<TContext> where TContext : I
         State = state;
     }
 
-    public void Execute()
+    public virtual void Execute()
     {
         object thisObject = this;
         var context = (TContext) thisObject;
@@ -28,4 +28,31 @@ public class StateContext<TContext> : IStateContext<TContext> where TContext : I
     }
 
     public IState<TContext> State { get; private set; }
+}
+
+/// <summary>
+/// <inheritdoc cref="StateContext{TContext}" />
+/// </summary>
+/// <typeparam name="TContext">IStateContext</typeparam>
+/// <typeparam name="TOut">Output</typeparam>
+public class StateContext<TContext, TOut> : IStateContext<TContext, TOut> where TContext : IStateContext<TContext, TOut>
+{
+    public StateContext(IState<TContext, TOut> defaultState)
+    {
+        State = defaultState;
+    }
+
+    public void SetState(IState<TContext, TOut> state)
+    {
+        State = state;
+    }
+
+    public virtual TOut Execute()
+    {
+        object thisObject = this;
+        var context = (TContext) thisObject;
+        return State.Execute(context);
+    }
+
+    public IState<TContext, TOut> State { get; private set; }
 }

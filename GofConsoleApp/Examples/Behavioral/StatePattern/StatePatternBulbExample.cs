@@ -1,7 +1,7 @@
 ﻿using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample;
 using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.States;
 using GofPattern.Behavioral.StatePattern.Interfaces;
-using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.Enums.EnumStatePatternBulbExample;
+using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.EnumStatePatternBulbExample;
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern;
 
@@ -18,7 +18,7 @@ internal class StatePatternBulbExample : AbstractExample
 
         do
         {
-            var inputOption = AcceptInputEnum(Invalid, "instruction", Invalid);
+            var inputOption = AcceptInputEnum(Invalid, "state", Invalid);
 
             if (IsInvalidOrQuit(inputOption, Invalid, Quit, out var output))
                 return output;
