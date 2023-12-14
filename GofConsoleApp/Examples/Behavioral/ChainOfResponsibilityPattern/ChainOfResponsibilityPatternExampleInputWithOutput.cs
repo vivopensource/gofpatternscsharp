@@ -8,7 +8,7 @@ internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExam
 {
     protected override bool Execute()
     {
-        var orchestrator = GetOrchestrator();
+        var orchestrator = new ResponsibilityChainOrchestrator<string, string>();
 
         orchestrator.Append(new ResponsibilityFoo(), "FooChain");
         orchestrator.Append(new ResponsibilityBar(), "BarChain");
@@ -54,7 +54,4 @@ internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExam
             Logger.Log($"Executing before with input '{input}'.");
         };
     }
-
-    private static IResponsibilityChainOrchestrator<string, string> GetOrchestrator() =>
-        new ResponsibilityChainOrchestrator<string, string>();
 }

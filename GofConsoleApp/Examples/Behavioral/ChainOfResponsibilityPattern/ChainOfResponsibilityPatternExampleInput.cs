@@ -1,6 +1,7 @@
 ﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
+using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
 using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorInvokeNextOptions;
 
@@ -17,19 +18,17 @@ internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
 
     private void ExecuteSimpleExample()
     {
-        var orchestrator = GetOrchestrator();
+        var orchestrator = new ResponsibilityChainOrchestrator<string>();
 
-        // Foo - Responsibility
-        // Handle >>> WhenResponsible
-        // Invoke Next >>> WhenNotResponsible
-        orchestrator.Append(new ResponsibilityFoo(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible,
-            "FooChain");
+        // Responsibility - Foo, Handle - WhenResponsible, Invoke Next >>> WhenNotResponsible
+        var executeFoo = new Action<string>(x => Logger.Log($"Handling '{x}' by 'Foo Handler'"));
+        var fooHandler = new Responsibility<string>(i => "Foo".Equals(i), executeFoo);
+        orchestrator.Append(fooHandler, HandleWhenResponsible, InvokeNextWhenNotResponsible, "FooResponsibility");
 
-        // Bar - Responsibility
-        // Handle >>> WhenResponsible
-        // Invoke Next >>> WhenNotResponsible
-        orchestrator.Append(new ResponsibilityBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible,
-            "BarChain");
+        // Responsibility - Bar, Handle - WhenResponsible, Invoke Next - WhenNotResponsible
+        var barExecute = new Action<string>(x => Logger.Log($"Handling '{x}' by 'Bar Handler'"));
+        var barHandler = new Responsibility<string>(i => "Bar".Equals(i), barExecute);
+        orchestrator.Append(barHandler, HandleWhenResponsible, InvokeNextWhenNotResponsible, "BarResponsibility");
 
 
         Logger.Log("------------- START Orchestrator -------------");
@@ -49,26 +48,20 @@ internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
 
     private void ExecuteComplexExample()
     {
-        var orchestrator = GetOrchestrator();
+        var orchestrator = new ResponsibilityChainOrchestrator<string>();
 
-        // Foo - Responsibility
-        // Handle >>> Always
-        // Invoke Next >>> Always
+        // Responsibility - Foo, Handle - Always, Invoke Next - Always
         orchestrator.Append(new ResponsibilityFoo(Logger), HandleAlways, InvokeNextAlways, "FooChain");
 
-        // Bar - Responsibility
-        // Handle >>> WhenResponsible
-        // Invoke Next >>> WhenNotResponsible
+        // Responsibility - Bar, Handle - WhenResponsible, Invoke Next - WhenNotResponsible
         orchestrator.Append(new ResponsibilityBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible,
             "BarChain");
 
-        // FooBar - Responsibility
-        // Handle >>> WhenResponsible
-        // Invoke Next >>> WhenNotResponsible
+        // Responsibility - FooBar, Handle - WhenResponsible, Invoke Next - WhenNotResponsible
         orchestrator.Append(new ResponsibilityFooBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible,
             "FooBarChain");
 
-        // Set Before-Handling
+        // SET Before-Handling
         orchestrator.ExecuteBeforeWithInput = input => Logger.Log($"Executing before with input '{input}'.");
         orchestrator.ExecuteBefore = () =>
         {
@@ -76,7 +69,7 @@ internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
             Logger.Log(GetChainDetail(orchestrator));
         };
 
-        // Set After-Handling
+        // SET After-Handling
         orchestrator.ExecuteAfterWithInput = input => Logger.Log($"Executing before with input '{input}'.");
         orchestrator.ExecuteAfter = () =>
         {
@@ -108,7 +101,4 @@ internal class ChainOfResponsibilityPatternExampleInput : AbstractExample
         var c = orchestrator.CurrentChain!;
         return $"Name({c.Name}), HandleOption({c.HandleOption}), InvokeNextHandlerOption({c.InvokeNextHandlerOption}).";
     }
-
-    private static IResponsibilityChainOrchestrator<string> GetOrchestrator() =>
-        new ResponsibilityChainOrchestrator<string>();
 }
