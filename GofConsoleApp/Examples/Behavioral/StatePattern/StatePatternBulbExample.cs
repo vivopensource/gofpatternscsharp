@@ -1,6 +1,6 @@
 ﻿using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample;
 using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.States;
-using GofPattern.Behavioral.StatePattern.Interfaces;
+using GofPatterns.Behavioral.StatePattern.Interfaces;
 using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.EnumStatePatternBulbExample;
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern;

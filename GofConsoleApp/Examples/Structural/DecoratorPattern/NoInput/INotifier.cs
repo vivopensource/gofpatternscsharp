@@ -1,4 +1,4 @@
-﻿using GofPattern.Structural.DecoratorPattern;
+﻿using GofPatterns.Structural.DecoratorPattern;
 
 namespace GofConsoleApp.Examples.Structural.DecoratorPattern.NoInput;
 

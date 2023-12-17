@@ -1,9 +1,9 @@
 ﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
-using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
-using GofPattern.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
-using GofPattern.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
-using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
-using static GofPattern.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorInvokeNextOptions;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
+using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
+using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorInvokeNextOptions;
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 

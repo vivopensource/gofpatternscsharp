@@ -42,7 +42,7 @@ on:
   push:
     branches: '**'
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "dev", "main" ]
 
 jobs:
 
@@ -50,14 +50,14 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: GofPattern.sln                                      # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path: GofPatternTests\GofPatternTests.csproj          # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+      Solution_Name: GofPatterns.sln                                      # Replace with your solution name, i.e. MyWpfApp.sln.
+      Test_Project_Path: GofPatternsTests\GofPatternsTests.csproj          # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
 
 
     steps:

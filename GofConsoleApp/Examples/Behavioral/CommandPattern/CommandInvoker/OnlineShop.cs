@@ -1,8 +1,8 @@
 ﻿using Core.Console.Interfaces;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests;
 using GofConsoleApp.Examples.Behavioral.CommandPattern.Commands;
-using GofPattern.Behavioral.CommandPattern;
-using GofPattern.Behavioral.CommandPattern.Interfaces.Invokers;
+using GofPatterns.Behavioral.CommandPattern;
+using GofPatterns.Behavioral.CommandPattern.Interfaces.Invokers;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
 

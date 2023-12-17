@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Core\Core.csproj" />
-        <ProjectReference Include="..\GofPattern\GofPattern.csproj" />
+        <ProjectReference Include="..\GofPatterns\GofPatterns.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="GofPatternTests" />
+        <InternalsVisibleTo Include="GofPatternsTests" />
     </ItemGroup>
 
 </Project>

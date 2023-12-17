@@ -1,4 +1,4 @@
-# Desgin Pattern (Gang of Four) for C#
+Desgin Patterns for C# (Gang of Four)
 
 ## Introduction
 
@@ -14,7 +14,7 @@ There are examples that shows how to use the design patterns.
 Nuget package is available at: [gofpatterncsharp](https://www.nuget.org/packages/gofpatterncsharp/)
 
 ```bash
-TODO...
+dotnet add package GofPatterns
 ```
 
 ## Available Patterns

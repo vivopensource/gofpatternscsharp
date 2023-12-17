@@ -1,4 +1,4 @@
-using GofPattern.Behavioral.StrategyPattern.Interfaces;
+using GofPatterns.Behavioral.StrategyPattern.Interfaces;
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.Sender.Strategies;
 

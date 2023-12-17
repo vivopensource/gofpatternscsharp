@@ -1,4 +1,4 @@
-﻿using GofPattern.Behavioral.CommandPattern.Interfaces;
+﻿using GofPatterns.Behavioral.CommandPattern.Interfaces;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.CommandRequests.Interfaces;
 

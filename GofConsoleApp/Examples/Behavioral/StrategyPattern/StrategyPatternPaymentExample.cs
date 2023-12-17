@@ -1,6 +1,6 @@
 using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.Strategies;
-using GofPattern.Behavioral.StrategyPattern.Interfaces;
+using GofPatterns.Behavioral.StrategyPattern.Interfaces;
 using static GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.EnumPaymentOptions;
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern;

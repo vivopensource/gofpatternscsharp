@@ -1,4 +1,4 @@
-using GofPattern.Behavioral.StrategyPattern;
+using GofPatterns.Behavioral.StrategyPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample;
 

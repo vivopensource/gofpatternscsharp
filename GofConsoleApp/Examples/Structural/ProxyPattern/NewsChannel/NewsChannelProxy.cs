@@ -1,5 +1,5 @@
 ﻿using Core.Console.Interfaces;
-using GofPattern.Structural.ProxyPattern;
+using GofPatterns.Structural.ProxyPattern;
 using static GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel.EnumNewsChannel;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;

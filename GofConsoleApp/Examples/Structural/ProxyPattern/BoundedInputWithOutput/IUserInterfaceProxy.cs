@@ -1,4 +1,4 @@
-﻿using GofPattern.Structural.ProxyPattern.Interfaces;
+﻿using GofPatterns.Structural.ProxyPattern.Interfaces;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern.BoundedInputWithOutput;
 
