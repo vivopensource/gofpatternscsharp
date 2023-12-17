@@ -11,7 +11,7 @@ There are examples that shows how to use the design patterns.
 
 ### Install
 
-Nuget package is available at: [gofpatterncsharp](https://www.nuget.org/packages/gofpatterncsharp/)
+Nuget package is available at: [GofPatterns](https://www.nuget.org/packages/GofPatterns/)
 
 ```bash
 dotnet add package GofPatterns
@@ -21,7 +21,7 @@ dotnet add package GofPatterns
 
 ### Behavioral Patterns
 
-- [Chain of Responsibility](README/Behavioral/CoR.md)
+- [Chain of Responsibility (CoR)](README/Behavioral/CoR.md)
 - [Command](README/Behavioral/Command.md)
 - State
 - Strategy
