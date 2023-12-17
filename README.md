@@ -11,7 +11,11 @@ There are examples that shows how to use the design patterns.
 
 ### Install
 
+Nuget package is available at: [gofpatterncsharp](https://www.nuget.org/packages/gofpatterncsharp/)
+
+```bash
 TODO...
+```
 
 ## Available Patterns
 
