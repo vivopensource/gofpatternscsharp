@@ -1,4 +1,4 @@
-Desgin Patterns for C# (Gang of Four)
+# Design Patterns for C# (Gang of Four)
 
 ## Introduction
 
