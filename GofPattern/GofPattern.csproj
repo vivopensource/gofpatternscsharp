@@ -6,10 +6,37 @@
         <Nullable>enable</Nullable>
         <Optimize>true</Optimize>
         <IsPackable>true</IsPackable>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <PackageId>GofPattern</PackageId>
+        <Title>Gof Pattern</Title>
+        <Version>$(VersionPrefix)</Version>
+        <Authors>Vivek Yadav</Authors>
+        <Company>vivopensource</Company>
+        <Description>Desgin Pattern (Gang of Four) for C#</Description>
+        <PackageTags>Patterns; DesignPatterns; Gof; GangOfFour; BehavioralPatterns; StructuralPatterns; CoR; ChainOfResponsibility; CommandPattern; StatePattern; StrategyPattern; DecoratorPattern; ProxyPattern;</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+        <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+        <PackageProjectUrl>https://github.com/vivopensource/gofpatternscsharp</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
         <InternalsVisibleTo Include="$(AssemblyName)Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="LICENSE">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>
