@@ -9,14 +9,14 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <PackageId>GofPatterns</PackageId>
         <Title>Gof Patterns</Title>
-        <Version>$(VersionPrefix)</Version>
+        <Version>1.1.1</Version>
         <Authors>Vivek Yadav</Authors>
         <Company>vivopensource</Company>
-        <Description>Desgin Patterns (Gang of Four) for C#</Description>
+        <Description>Desgin Patterns for C# (Gang of Four)</Description>
         <PackageTags>Patterns; DesignPatterns; Gof; GangOfFour; BehavioralPatterns; StructuralPatterns; CoR; ChainOfResponsibility; CommandPattern; StatePattern; StrategyPattern; DecoratorPattern; ProxyPattern;</PackageTags>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
-        <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+        <PackageReleaseNotes>Tested release</PackageReleaseNotes>
         <PackageProjectUrl>https://github.com/vivopensource/gofpatternscsharp</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
