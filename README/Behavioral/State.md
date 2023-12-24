@@ -18,27 +18,29 @@
 
 ```csharp
 // Create Context
-class ExampleStateContext : StateContext<ExampleStateContext>
+class BulbStateContext : StateContext<BulbStateContext>
 {
-    public ExampleStateContext(IState<ExampleStateContext> defaultState) : base(defaultState) { }
+    public BulbStateContext(IState<BulbStateContext> defaultState) : base(defaultState) { }
 }
 
 // Create States
-class OnState : IState<ExampleStateContext>
+class OnState : IState<BulbStateContext>
 {
-    public void Execute(ExampleStateContext context) => Console.WriteLine("Turning " + Name);
-    public string Name => nameof(OnState);
-}
-class OffState : IState<ExampleStateContext>
-{
-    public void Execute(ExampleStateContext context) => Console.WriteLine("Turning " + Name);
-    public string Name => nameof(OffState);
+    public void Execute(BulbStateContext context) => Console.WriteLine("Turning " + Name);
+    public string Name => "On";
 }
 
-// Execute States
+class OffState : IState<BulbStateContext>
+{
+    public void Execute(BulbStateContext context) => Console.WriteLine("Turning " + Name);
+    public string Name => "Off";
+}
+
+// Pattern execution
 var on = new OnState();
 var off = new OffState();
-IStateContext<ExampleStateContext> bulbContext = new ExampleStateContext(off);
+IStateContext<BulbStateContext> bulbContext = new BulbStateContext(off);
+
 bulbContext.Execute();
 bulbContext.SetState(on);
 bulbContext.Execute();
@@ -47,9 +49,9 @@ bulbContext.Execute();
 ```
 ```
 // Output
-Turning OffState
-Turning OnState
-Turning OffState
+Turning Off
+Turning On
+Turning Off
 ```
 
 #### Full example
@@ -63,7 +65,55 @@ Turning OffState
     
 ```csharp
 // Create Context
+
+class DriveStateContext : StateContext<DriveStateContext, string>
+{
+    public DriveStateContext(IState<DriveStateContext, string> defaultState) : base(defaultState) { }
+}
+
+// Create States
+class EcoState : IState<DriveStateContext, string>
+{
+    public string Execute(DriveStateContext context) => "Driving mode: " + Name;
+    public string Name => "Eco";
+}
+class SportsState : IState<DriveStateContext, string>
+{
+    public string Execute(DriveStateContext context) => "Driving mode: " + Name;
+    public string Name => "Sports";
+}
+class SportsPlusState : IState<DriveStateContext, string>
+{
+    public string Execute(DriveStateContext context) => "Driving mode: " + Name;
+    public string Name => "SportsPlus";
+}
+
+// Pattern execution
+var eco = new EcoState();
+var sport = new SportsState();
+var sportsPlus = new SportsPlusState();
+IStateContext<DriveStateContext, string> drivingContext = new DriveStateContext(eco);
+
+Console.WriteLine(drivingContext.Execute());
+Console.WriteLine("Switching driving mode.");
+drivingContext.SetState(sport);
+Console.WriteLine(drivingContext.Execute());
+Console.WriteLine("Switching driving mode.");
+drivingContext.SetState(sportsPlus);
+Console.WriteLine(drivingContext.Execute());
 ```
+```
+// Output
+Driving mode: Eco
+Switching driving mode.
+Driving mode: Sports
+Switching driving mode.
+Driving mode: SportsPlus
+```
+
+#### Full example
+
+[StatePatternDriveExample](./../../GofConsoleApp/Examples/Behavioral/StatePattern/StatePatternDriveExample.cs)
 
 
 ## Benefits
