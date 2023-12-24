@@ -23,7 +23,7 @@ dotnet add package GofPatterns
 
 - [Chain of Responsibility (CoR)](README/Behavioral/CoR.md)
 - [Command](README/Behavioral/Command.md)
-- State
+- [State](README/Behavioral/State.md)
 - Strategy
 
 ### Structural Patterns
