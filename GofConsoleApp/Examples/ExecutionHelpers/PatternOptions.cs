@@ -54,12 +54,12 @@ internal static class PatternOptions
         {
             ChainOfResponsibilityPatternOption,
             new PatternExampleMap("Chain Of Responsibility Pattern >> Input",
-                new ChainOfResponsibilityPatternExampleInput())
+                new CorPatternExample())
         },
         {
             ChainOfResponsibilityPatternOption2,
             new PatternExampleMap("Chain Of Responsibility Pattern >> Input & Output",
-                new ChainOfResponsibilityPatternExampleInputWithOutput())
+                new CorPatternExampleWithOutput())
         },
         {
             CommandPatternOption,

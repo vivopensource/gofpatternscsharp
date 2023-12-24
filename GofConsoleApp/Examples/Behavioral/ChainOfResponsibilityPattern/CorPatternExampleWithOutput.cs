@@ -4,7 +4,7 @@ using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfac
 
 namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
 
-internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExample
+internal class CorPatternExampleWithOutput : AbstractExample
 {
     protected override bool Execute()
     {
@@ -16,7 +16,7 @@ internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExam
 
         SetBeforeHandling(orchestrator);
 
-        Logger.Log("------------- START Orchestrator -------------");
+        Logger.Log("------------- START Orchestrator 1 -------------");
 
         // Start with >>> Foo
         // IsNotResponsible >> Foo (Not Executes)
@@ -26,7 +26,7 @@ internal class ChainOfResponsibilityPatternExampleInputWithOutput : AbstractExam
         Logger.Log(outputBar);
 
 
-        Logger.Log("------------- START Orchestrator -------------");
+        Logger.Log("------------- START Orchestrator 2 -------------");
 
         // Start with >>> Foo
         // IsNotResponsible >> Foo (Not Executes)

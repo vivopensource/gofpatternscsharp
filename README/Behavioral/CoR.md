@@ -7,12 +7,13 @@
 
 ## Structure
 - It consists of handler and orchestrator.
-- Handler: A handler class that checks if handle is responsible to handle responsibility and then and execute it.
-- Orchestrator: The orchestrator class that configures the responsibility chain and call handlers iteratively.
+- Orchestrator: The orchestrator class that configures the responsibility chain or the handlers, and calls the handlers iteratively.
+- Handler: A handler class that (1) checks if it is responsible to handle the responsibility, and then it executes the responsibility.
+     - Exception: if the `ChainOrchestratorHandleOptions` is `HandleAlways` then the handler always executes the responsibility.
 
 ## Examples
 
-### Input
+### Type 1: Execute pattern without return value
 
 #### Code
 
@@ -28,9 +29,9 @@ orchestrator.Execute(input);
 
 #### Full example
 
-[ChainOfResponsibilityPatternExampleInput](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/ChainOfResponsibilityPatternExampleInput.cs)
+[CorPatternExample](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/CorPatternExample.cs)
 
-### Input and Output
+### Type 2: Execute pattern and expect return value
 
 #### Code
 
@@ -44,7 +45,7 @@ TOut output = orchestrator.Execute(input);
 ```
 
 #### Full example
-[ChainOfResponsibilityPatternExampleInputWithOutput](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/ChainOfResponsibilityPatternExampleInputWithOutput.cs)
+[CorPatternExampleWithOutput](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/CorPatternExampleWithOutput.cs)
 
 ## Benefits
 - An object-oriented linked list with recursive traversal.

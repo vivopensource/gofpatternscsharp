@@ -4,7 +4,7 @@ namespace GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern.Input;
 
 internal class ResponsibilityFoo : AbstractResponsibility
 {
-    public ResponsibilityFoo(IConsoleLogger logger) : base(logger, nameof(ResponsibilityFoo)) { }
+    public ResponsibilityFoo(IConsoleLogger logger) : base(logger, "FooCoR") { }
 
     public override bool IsResponsible(string input)
     {

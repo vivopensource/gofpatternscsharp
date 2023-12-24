@@ -74,7 +74,7 @@ internal abstract class AbstractExample
             Logger.Log($"Provided {identifier} is {input}");
             return input;
         }
-        catch (Exception)
+        catch (FormatException)
         {
             Logger.Log($"Provided {identifier} is invalid");
             throw;

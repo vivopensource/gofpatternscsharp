@@ -9,7 +9,7 @@
 - Observer
 - Template Method
 - Visitor
--
+
 #### Structural TODO...
 - Adapter
 - Bridge

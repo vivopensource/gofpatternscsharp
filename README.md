@@ -3,9 +3,9 @@
 ## Introduction
 
 Contains the implementation of design patterns that are used to solve common problems in software design.
-Takes away the burden of writing the underlying code for designing and executing the design patterns, and focus on the problem at hand.
-There are templates that has to be implemented in the correct situation.
-There are examples that shows how to use the design patterns.
+Takes away the burden of writing the underlying code for writing and executing the design patterns, and focus on the problem at hand,
+i.e. using them for writing a well designed and implemented software solution.
+The solution offered in the package has to be implemented in the correct way, but does not worry there are examples that shows how to do that.
 
 ## Usage
 

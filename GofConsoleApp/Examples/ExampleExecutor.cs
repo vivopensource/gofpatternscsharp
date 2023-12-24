@@ -3,7 +3,7 @@ using GofConsoleApp.Examples.ExecutionHelpers;
 
 namespace GofConsoleApp.Examples;
 
-internal static class Execution
+internal static class ExampleExecutor
 {
     public static bool Run(IConsoleLogger logger, IInputReader reader)
     {

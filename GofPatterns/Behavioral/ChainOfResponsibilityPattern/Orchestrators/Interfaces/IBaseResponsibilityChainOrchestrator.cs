@@ -3,5 +3,8 @@
 public interface IBaseResponsibilityChainOrchestrator<out TResponsibilityChain>
 {
     TResponsibilityChain? Chain { get; }
+
     TResponsibilityChain? CurrentChain { get; }
+
+    string Name { get; }
 }

@@ -13,7 +13,7 @@
 
 ## Examples
 
-### Execute
+### Type 1: Execute pattern without return value
 
 #### Code
 
@@ -28,7 +28,7 @@ commandInvoker.ExecuteCommands();
 [CommandPatternRestaurantExample](./../../GofConsoleApp/Examples/Behavioral/CommandPattern/CommandPatternRestaurantExample.cs)
 
 
-### Execute with undo
+### Type 2: Execute pattern and expect return value
 
 #### Code
 

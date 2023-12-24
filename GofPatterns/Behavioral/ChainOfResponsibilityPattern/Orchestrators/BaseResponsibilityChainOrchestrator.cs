@@ -36,4 +36,7 @@ public abstract class BaseResponsibilityChainOrchestrator<TResponsibilityChain, 
     public TResponsibilityChain? Chain { get; private set; }
 
     public TResponsibilityChain? CurrentChain { get; private set; }
+
+    public virtual string Name { get; set; } =
+        nameof(BaseResponsibilityChainOrchestrator<TResponsibilityChain, TResponsibility>);
 }

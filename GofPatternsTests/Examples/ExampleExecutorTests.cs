@@ -1,14 +1,14 @@
 ﻿using Core.Console;
 using Core.Extensions;
 using GofConsoleApp.Examples;
+using GofConsoleApp.Examples.ExecutionHelpers;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.ExecutionHelpers.PatternOptions;
 
 namespace GofPatternsTests.Examples;
 
 [TestFixture]
-internal class ExampleExecutionTests
+internal class ExampleExecutorTests
 {
     [Test]
     public void Run_ExecutesExample_ReturnsTrue()
@@ -16,7 +16,7 @@ internal class ExampleExecutionTests
         // arrange
         var readerValues = new Queue<string>(new[]
         {
-            ChainOfResponsibilityPatternOption2
+            PatternOptions.ChainOfResponsibilityPatternOption2
         });
 
         var mockReader = new Mock<TextReader>();
@@ -28,7 +28,7 @@ internal class ExampleExecutionTests
         var logger = new ConsoleLogger(logFactory.CreateLogger(string.Empty));
 
         // act
-        var actualResult = Execution.Run(logger, reader);
+        var actualResult = ExampleExecutor.Run(logger, reader);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -41,7 +41,7 @@ internal class ExampleExecutionTests
         var readerValues = new Queue<string>(new[]
         {
             "InvalidOptions",
-            ChainOfResponsibilityPatternOption2
+            PatternOptions.ChainOfResponsibilityPatternOption2
         });
 
         var mockReader = new Mock<TextReader>();
@@ -53,7 +53,7 @@ internal class ExampleExecutionTests
         var logger = new ConsoleLogger(logFactory.CreateLogger(string.Empty));
 
         // act
-        var actualResult = Execution.Run(logger, reader);
+        var actualResult = ExampleExecutor.Run(logger, reader);
 
         // assert
         Assert.That(actualResult, Is.True);

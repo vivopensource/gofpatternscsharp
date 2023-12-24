@@ -5,14 +5,14 @@ using NUnit.Framework;
 namespace GofPatternsTests.Examples.Behavioral.ChainOfResponsibilityPattern;
 
 [TestFixture]
-internal class ChainOfResponsibilityPatternExampleInputWithOutputTests : BaseTest
+internal class CorPatternExampleWithOutputTests : BaseTest
 {
     [Test]
     public void ChainOfResponsibilityExampleWithInputOutput_Execute()
     {
         // act
         var actualResult =
-            new ChainOfResponsibilityPatternExampleInputWithOutput().Execute(MockConsoleLogger.Object,
+            new CorPatternExampleWithOutput().Execute(MockConsoleLogger.Object,
                 MockInputReader.Object);
 
         // assert
