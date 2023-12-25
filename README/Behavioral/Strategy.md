@@ -30,11 +30,15 @@ class SenderStrategyContext : IStrategyContext<string>
 // Create Strategies
 internal class EmailStrategy : IStrategy<string>
 {
-    public void Execute(string input) => Console.WriteLine($"Sending Emailing: {input}");
+    public void Execute(string input) => Console.WriteLine($"Sending {Name}: {input}");
+
+    public string Name => "Email";
 }
 internal class LetterStrategy : IStrategy<string>
 {
-    public void Execute(string input) => Console.WriteLine($"Sending Letter: {input}");
+    public void Execute(string input) => Console.WriteLine($"Sending {Name}: {input}");
+
+    public string Name => "Letter";
 }
 
 // Pattern execution
@@ -50,7 +54,7 @@ senderContext.ExecuteStrategy("Hello World!");
 ```
 ```
 // Output
-Sending Emailing: Hello World!
+Sending Email: Hello World!
 Sending Letter: Hello World!
 ```
 
