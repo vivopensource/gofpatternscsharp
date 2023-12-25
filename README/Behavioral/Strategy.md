@@ -28,13 +28,13 @@ class SenderStrategyContext : IStrategyContext<string>
 }
 
 // Create Strategies
-internal class EmailStrategy : IStrategy<string>
+class EmailStrategy : IStrategy<string>
 {
     public void Execute(string input) => Console.WriteLine($"Sending {Name}: {input}");
 
     public string Name => "Email";
 }
-internal class LetterStrategy : IStrategy<string>
+class LetterStrategy : IStrategy<string>
 {
     public void Execute(string input) => Console.WriteLine($"Sending {Name}: {input}");
 
