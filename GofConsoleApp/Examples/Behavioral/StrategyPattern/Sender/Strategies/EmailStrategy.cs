@@ -6,13 +6,9 @@ internal class EmailStrategy : ISenderStrategy
 {
     private readonly IConsoleLogger logger;
 
-    public EmailStrategy(IConsoleLogger logger)
-    {
-        this.logger = logger;
-    }
+    public EmailStrategy(IConsoleLogger logger) => this.logger = logger;
 
-    public void Execute(string input)
-    {
-        logger.Log($"Sending Emailing: {input}");
-    }
+    public void Execute(string input) => logger.Log($"Sending {Name}: {input}");
+
+    public string Name => "Email";
 }

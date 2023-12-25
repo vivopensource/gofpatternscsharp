@@ -2,7 +2,6 @@
 # State Pattern
 
 - The state pattern is a behavioral design pattern in which an object can alter its behavior when its internal state changes. This pattern is close to the concept of finite-state machines.
-- Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
 - The state pattern is used in computer programming to encapsulate varying behavior for the same object based on its internal state. This can be a cleaner way for an object to change its behavior at runtime without resorting to conditional statements and thus improve maintainability.
 
 ## Structure
@@ -65,7 +64,6 @@ Turning Off
     
 ```csharp
 // Create Context
-
 class DriveStateContext : StateContext<DriveStateContext, string>
 {
     public DriveStateContext(IState<DriveStateContext, string> defaultState) : base(defaultState) { }

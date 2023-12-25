@@ -36,6 +36,7 @@ internal class StrategyPatternPaymentExampleTests : BaseTest
     }
 
     [TestCase(Debit, 12.2, true)]
+    [TestCase(Debit, 2800.6, false)]
     [TestCase(Credit, 13.3, true)]
     [TestCase(Credit, 1100.10, false)]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue(EnumPaymentOptions option, decimal amount,
@@ -48,7 +49,7 @@ internal class StrategyPatternPaymentExampleTests : BaseTest
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 5;
+        const int expectedLogCount = 6;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 

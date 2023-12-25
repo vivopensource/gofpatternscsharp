@@ -2,15 +2,18 @@ namespace GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.Strat
 
 internal class DebitCardPaymentStrategy : IPaymentStrategy
 {
-    private readonly decimal balance;
+    private decimal balance;
 
-    public DebitCardPaymentStrategy(decimal balance)
-    {
-        this.balance = balance;
-    }
+    public DebitCardPaymentStrategy(decimal balance) => this.balance = balance;
 
     public bool Execute(decimal input)
     {
-        return input > 0 && balance - input >= 0;
+        if (balance - input < 0)
+            return false;
+
+        balance -= input;
+        return true;
     }
+
+    public string Name => "Debit Card";
 }
