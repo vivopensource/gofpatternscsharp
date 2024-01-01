@@ -1,5 +1,5 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
-using GofConsoleApp.Examples.Behavioral.CommandPattern;
+﻿using GofConsoleApp.Examples.Behavioral.CommandPattern;
+using GofConsoleApp.Examples.Behavioral.CorPattern;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
@@ -47,7 +47,7 @@ internal static class PatternOptions
         {
             ProxyPatternOptionBoundedInputOutput,
             new PatternExampleMap("Proxy Pattern >> Bounded Input with Output",
-                new ProxyPatternUserInterfaceExampleBoundedInput())
+                new UserInterfaceExampleBoundedInput())
         },
 
         // Behavioral Patterns

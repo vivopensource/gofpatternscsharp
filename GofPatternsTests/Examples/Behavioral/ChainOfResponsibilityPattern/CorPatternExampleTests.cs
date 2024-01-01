@@ -1,4 +1,4 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
+﻿using GofConsoleApp.Examples.Behavioral.CorPattern;
 using Moq;
 using NUnit.Framework;
 
@@ -11,7 +11,7 @@ internal class CorPatternExampleTests : BaseTest
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // act
-        const int expectedNumberOfLogs = 27;
+        const int expectedNumberOfLogs = 9;
 
         var actualResult =
             new CorPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);

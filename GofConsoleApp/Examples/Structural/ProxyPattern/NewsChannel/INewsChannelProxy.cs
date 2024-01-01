@@ -2,4 +2,4 @@
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;
 
-internal interface INewsChannelProxy : INewsChannel, IProxyBoundedInput<EnumNewsChannel> { }
+internal interface INewsChannelProxy : INewsChannel, IProxyBoundedAccess<EnumNewsChannel> { }

@@ -21,12 +21,11 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
             string givenValue)
     {
         // arrange
-
-        var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), Foo + Handled);
+        var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), input => input + Handled);
 
         var responsibilityBar = new Responsibility<string, string>(v => Bar.Equals(v), AppendHandled);
 
-        var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), FooBar + Handled);
+        var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), input => input + Handled);
 
         var chain = new ResponsibilityChainOrchestrator<string, string>()
             .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
@@ -42,18 +41,16 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
     public void Execute_IfOutputIsNull_ThrowsException()
     {
         // arrange
-        var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), Foo + Handled);
-
+        Func<string, string> notExecuted = null!;
+        var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), notExecuted);
         var responsibilityBar = new Responsibility<string, string>(v => Bar.Equals(v), AppendHandled);
-
-        var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), FooBar + Handled);
+        var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), notExecuted);
 
         var chain = new ResponsibilityChainOrchestrator<string, string>()
             .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
 
         // act - assert
         Assert.Throws<MissingResponsibilityException>(() => chain.Execute(string.Empty));
-
     }
 
     private static string AppendHandled(string input)

@@ -1,4 +1,4 @@
-﻿using GofConsoleApp.Examples.Structural.DecoratorPattern.Input;
+﻿using GofConsoleApp.Examples.Structural.DecoratorPattern.InputExampleComponents;
 
 namespace GofConsoleApp.Examples.Structural.DecoratorPattern;
 

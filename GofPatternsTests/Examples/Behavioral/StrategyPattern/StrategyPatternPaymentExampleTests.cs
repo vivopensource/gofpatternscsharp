@@ -1,10 +1,10 @@
 ﻿using GofConsoleApp.Examples;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents;
 using Moq;
 using NUnit.Framework;
 using static System.Globalization.CultureInfo;
-using static GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.EnumPaymentOptions;
+using static GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents.EnumPaymentOptions;
 
 namespace GofPatternsTests.Examples.Behavioral.StrategyPattern;
 

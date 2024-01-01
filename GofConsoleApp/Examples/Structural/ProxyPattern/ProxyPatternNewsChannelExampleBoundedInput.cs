@@ -14,13 +14,6 @@ internal class ProxyPatternNewsChannelExampleBoundedInput : AbstractExample
     {
         Logger.LogOptions("new channels", new[] { Acy, Uzt, Mko });
 
-        var proxy = new NewsChannelProxy(Logger);
-
-        return ExecuteNewsBroadcast(proxy);
-    }
-
-    private bool ExecuteNewsBroadcast(INewsChannel proxy)
-    {
         var input = AcceptInputEnum(Invalid, "new channels");
 
         if (input == Invalid)
@@ -29,7 +22,8 @@ internal class ProxyPatternNewsChannelExampleBoundedInput : AbstractExample
             return false;
         }
 
-        proxy.Process(input);
+        new NewsChannelProxy(Logger).Process(input);
+
         return true;
     }
 }

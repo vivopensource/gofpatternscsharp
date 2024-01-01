@@ -1,4 +1,4 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
+﻿using GofConsoleApp.Examples.Behavioral.CorPattern;
 using Moq;
 using NUnit.Framework;
 
@@ -11,6 +11,8 @@ internal class CorPatternExampleWithOutputTests : BaseTest
     public void ChainOfResponsibilityExampleWithInputOutput_Execute()
     {
         // act
+        const int expectedNumberOfLogs = 4;
+
         var actualResult =
             new CorPatternExampleWithOutput().Execute(MockConsoleLogger.Object,
                 MockInputReader.Object);
@@ -18,6 +20,6 @@ internal class CorPatternExampleWithOutputTests : BaseTest
         // assert
         Assert.That(actualResult, Is.True);
 
-        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(10));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedNumberOfLogs));
     }
 }
