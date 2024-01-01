@@ -1,12 +1,13 @@
 ﻿using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Chains;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
+using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
 
 namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
-public abstract class BaseResponsibilityChainOrchestrator<TResponsibilityChain, TResponsibility> :
+public abstract class BaseResponsibilityChainOrchestratorComplex<TResponsibilityChain, TResponsibility> :
     IBaseResponsibilityChainOrchestrator<TResponsibilityChain>
-    where TResponsibilityChain : AbstractResponsibilityChain<TResponsibilityChain, TResponsibility>
+    where TResponsibilityChain : AbstractResponsibilityChainComplex<TResponsibilityChain, TResponsibility>
 {
     protected void AssembleChain(TResponsibilityChain responsibilityChain, string? name = null)
     {
@@ -23,9 +24,11 @@ public abstract class BaseResponsibilityChainOrchestrator<TResponsibilityChain, 
     {
         CurrentChain = responsibilityChain;
 
+        var handleWhenResponsible = HandleWhenResponsible == responsibilityChain.HandleOption;
+
         var responsibility = (responsibilityChain.Responsibility as IBaseResponsibility<TInput>)!;
 
-        var isResponsible = responsibility.IsResponsible(input);
+        var isResponsible = handleWhenResponsible && responsibility.IsResponsible(input);
 
         return isResponsible;
     }
@@ -35,5 +38,5 @@ public abstract class BaseResponsibilityChainOrchestrator<TResponsibilityChain, 
     public TResponsibilityChain? CurrentChain { get; private set; }
 
     public virtual string Name { get; set; } =
-        nameof(BaseResponsibilityChainOrchestrator<TResponsibilityChain, TResponsibility>);
+        nameof(BaseResponsibilityChainOrchestratorComplex<TResponsibilityChain, TResponsibility>);
 }

@@ -4,7 +4,7 @@ using static GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 
-internal class UserInterfaceExampleBoundedInput : AbstractExample
+internal class UserInterfaceExampleBoundedAccess : AbstractExample
 {
     protected override bool Execute()
     {

@@ -8,7 +8,7 @@ namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 /// This example uses the Bounded Input approach of Proxy Pattern.
 /// It loads from the list of bounded (limited) news channels to start news broadcasting on the television.
 /// </summary>
-internal class ProxyPatternNewsChannelExampleBoundedInput : AbstractExample
+internal class NewsChannelExampleBoundedAccess : AbstractExample
 {
     protected override bool Execute()
     {

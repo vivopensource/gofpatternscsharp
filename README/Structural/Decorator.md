@@ -11,7 +11,40 @@
 - Concrete Component: A class that will contain the actual implementation of the method.
 - Decorator: A class that will contain the reference to the component and will implement the same interface implemented by the component so that it can be used by the client.
 
+
 ## Examples
+
+### Type 1: Execute pattern without input
+
+#### Code
+
+```csharp
+// TODO: Code
+```
+```
+// TODO: Output
+```
+
+#### Full example
+
+[DecoratorPatternExampleNoInput](./../../GofConsoleApp/Examples/Structural/DecoratorPattern/DecoratorPatternExampleNoInput.cs)
+
+
+### Type 2: Execute pattern with input
+
+#### Code
+
+```csharp
+// TODO: Code
+```
+```
+// TODO: Output
+```
+
+#### Full example
+
+[DecoratorPatternExampleInput](./../../GofConsoleApp/Examples/Structural/DecoratorPattern/DecoratorPatternExampleInput.cs)
+
 
 ## Benefits
 

@@ -19,17 +19,15 @@
 
 ```csharp
 // TIn is Input
-// ChainOrchestratorHandleOptions >> HandleAlways, HandleWhenResponsible
-// ChainOrchestratorInvokeNextOptions >> InvokeNextAlways, InvokeNextWhenResponsible, InvokeNextWhenNotResponsible, InvokeNextNever
 IResponsibilityChainOrchestrator<TIn> orchestrator = new ResponsibilityChainOrchestrator<TIn>();
-orchestrator.Append(IResponsibility<TIn>, ChainOrchestratorHandleOptions, ChainOrchestratorInvokeNextOptions, "Name>R1");
-orchestrator.Append(IResponsibility<TIn>, ChainOrchestratorHandleOptions, ChainOrchestratorInvokeNextOptions, "Name>R2");
+orchestrator.Append(IResponsibility<TIn>, "Name>R1");
+orchestrator.Append(IResponsibility<TIn>, "Name>R2");
 orchestrator.Execute(input);
 ```
 
 #### Full example
 
-[CorPatternExample](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/CorPatternExample.cs)
+[CorPatternExample](./../../GofConsoleApp/Examples/Behavioral/CorPattern/CorPatternExample.cs)
 
 ### Type 2: Execute pattern and expect return value
 
@@ -45,7 +43,27 @@ TOut output = orchestrator.Execute(input);
 ```
 
 #### Full example
-[CorPatternExampleWithOutput](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/CorPatternExampleWithOutput.cs)
+[CorPatternExampleWithOutput](./../../GofConsoleApp/Examples/Behavioral/CorPattern/CorPatternExampleWithOutput.cs)
+
+
+### Type3: Execute pattern using complex orchestrator options
+
+#### Code
+
+```csharp
+// TIn is Input
+// ChainOrchestratorHandleOptions >> HandleAlways, HandleWhenResponsible
+// ChainOrchestratorInvokeNextOptions >> InvokeNextAlways, InvokeNextWhenResponsible, InvokeNextWhenNotResponsible, InvokeNextNever
+IResponsibilityChainOrchestrator<TIn> orchestrator = new ResponsibilityChainOrchestrator<TIn>();
+orchestrator.Append(IResponsibility<TIn>, ChainOrchestratorHandleOptions, ChainOrchestratorInvokeNextOptions, "Name>R1");
+orchestrator.Append(IResponsibility<TIn>, ChainOrchestratorHandleOptions, ChainOrchestratorInvokeNextOptions, "Name>R2");
+orchestrator.Execute(input);
+```
+
+#### Full example
+
+[CorPatternComplexExample](./../../GofConsoleApp/Examples/Behavioral/CorPattern/CorPatternComplexExample.cs)
+
 
 ## Benefits
 - An object-oriented linked list with recursive traversal.

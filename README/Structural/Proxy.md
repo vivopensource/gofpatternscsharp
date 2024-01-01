@@ -18,14 +18,47 @@
 #### Code
 
 ```csharp
+// TODO: Code
 ```
 ```
-// Output
+// TODO: Output
 ```
 
 #### Full example
 
-[NewsChannelExampleBoundedInput](./../../GofConsoleApp/Examples/Structural/ProxyPattern/NewsChannelExampleBoundedInput.cs)
+[NewsChannelExampleBoundedInput](./../../GofConsoleApp/Examples/Structural/ProxyPattern/NewsChannelExampleBoundedAccess.cs)
+
+
+### Type 2: Proxy with bounded access and output
+
+#### Code
+
+```csharp
+// TODO: Code
+```
+```
+// TODO: Output
+```
+
+#### Full example
+
+[UserInterfaceExampleBoundedAccess](./../../GofConsoleApp/Examples/Structural/ProxyPattern/UserInterfaceExampleBoundedAccess.cs)
+
+
+### Type 3: Proxy with cached output
+
+#### Code
+
+```csharp
+// TODO: Code
+```
+```
+// TODO: Output
+```
+
+#### Full example
+
+[ConfigProviderExampleCachedOutput](./../../GofConsoleApp/Examples/Structural/ProxyPattern/ConfigProviderExampleCachedOutput.cs)
 
 
 ## Benefits

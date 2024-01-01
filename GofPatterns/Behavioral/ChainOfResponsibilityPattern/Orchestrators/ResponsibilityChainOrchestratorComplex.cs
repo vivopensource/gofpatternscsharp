@@ -8,15 +8,22 @@ using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrch
 
 namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
-public class ResponsibilityChainOrchestrator<TInput> :
-    BaseResponsibilityChainOrchestrator<ResponsibilityChain<TInput>, IResponsibility<TInput>>,
-    IResponsibilityChainOrchestrator<TInput>
+public sealed class ResponsibilityChainOrchestratorComplex<TInput> :
+    BaseResponsibilityChainOrchestratorComplex<ResponsibilityChainComplex<TInput>, IResponsibility<TInput>>,
+    IResponsibilityChainOrchestratorComplex<TInput>
 {
-    public IResponsibilityChainOrchestrator<TInput> Append(IResponsibility<TInput> responsibility,
+    public ResponsibilityChainOrchestratorComplex() {}
+
+    public ResponsibilityChainOrchestratorComplex(string name)
+    {
+        Name = name;
+    }
+
+    public IResponsibilityChainOrchestratorComplex<TInput> Append(IResponsibility<TInput> responsibility,
         ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption,
         string? name = null)
     {
-        AssembleChain(new ResponsibilityChain<TInput>(responsibility, handleOption, invokeNextHandlerOption), name);
+        AssembleChain(new ResponsibilityChainComplex<TInput>(responsibility, handleOption, invokeNextHandlerOption), name);
 
         return this;
     }
@@ -26,7 +33,7 @@ public class ResponsibilityChainOrchestrator<TInput> :
         Execute(input, Chain!);
     }
 
-    private void Execute(TInput input, ResponsibilityChain<TInput> responsibilityChain)
+    private void Execute(TInput input, ResponsibilityChainComplex<TInput> responsibilityChain)
     {
         var responsibilitySatisfied = IsResponsible(responsibilityChain, input);
 
@@ -36,32 +43,23 @@ public class ResponsibilityChainOrchestrator<TInput> :
     }
 
     private void ExecuteHandle(TInput input, bool responsibilitySatisfied,
-        ResponsibilityChain<TInput> responsibilityChain)
+        ResponsibilityChainComplex<TInput> responsibilityChain)
     {
         switch (responsibilityChain.HandleOption)
         {
             case HandleWhenResponsible:
                 if (responsibilitySatisfied)
-                    HandleResponsibility(input, responsibilityChain);
+                    responsibilityChain.Responsibility.Handle(input);
                 break;
 
             case HandleAlways:
-                HandleResponsibility(input, responsibilityChain);
+                responsibilityChain.Responsibility.Handle(input);
                 break;
         }
     }
 
-    private void HandleResponsibility(TInput input, ResponsibilityChain<TInput> responsibilityChain)
-    {
-        ExecuteBeforeHandling(input);
-
-        responsibilityChain.Responsibility.Handle(input);
-
-        ExecuteAfterHandling(input);
-    }
-
     private void InvokeNext(TInput input, bool responsibilitySatisfied,
-        ResponsibilityChain<TInput> responsibilityChain)
+        ResponsibilityChainComplex<TInput> responsibilityChain)
     {
         switch (responsibilityChain.InvokeNextHandlerOption)
         {
@@ -84,31 +82,11 @@ public class ResponsibilityChainOrchestrator<TInput> :
         }
     }
 
-    private void InvokeNext(TInput input, ResponsibilityChain<TInput> responsibilityChain)
+    private void InvokeNext(TInput input, ResponsibilityChainComplex<TInput> responsibilityChain)
     {
         if (responsibilityChain.Next is null)
             throw new MissingResponsibilityException();
 
         Execute(input, responsibilityChain.Next);
     }
-
-    private void ExecuteBeforeHandling(TInput input)
-    {
-        ExecuteBefore?.Invoke();
-        ExecuteBeforeWithInput?.Invoke(input);
-    }
-
-    private void ExecuteAfterHandling(TInput input)
-    {
-        ExecuteAfterWithInput?.Invoke(input);
-        ExecuteAfter?.Invoke();
-    }
-
-    public Action? ExecuteBefore { get; set; }
-
-    public Action<TInput>? ExecuteBeforeWithInput { get; set; }
-
-    public Action? ExecuteAfter { get; set; }
-
-    public Action<TInput>? ExecuteAfterWithInput { get; set; }
 }

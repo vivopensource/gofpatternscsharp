@@ -1,13 +1,10 @@
 ﻿using Core.Console;
 using Core.Extensions;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Exceptions;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
-using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
-using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorInvokeNextOptions;
 
 namespace GofPatternsTests.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
 
@@ -31,80 +28,14 @@ internal class ResponsibilityChainOrchestratorInputTests
         _loggerFactory.Dispose();
     }
 
-    [Test]
-    public void Execute_AlwaysHandleResponsibility_WithHandleAlways()
-    {
-        // arrange
-        var mockLogger = new Mock<ConsoleLogger>(_log);
-        var mockLoggerObject = mockLogger.Object;
-
-        var executeFunction = new Action<string>(mockLoggerObject.Log);
-
-        var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
-
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
-            .Append(responsibilityFoo, HandleAlways, InvokeNextAlways)
-            .Append(responsibilityBar, HandleWhenResponsible, InvokeNextWhenNotResponsible)
-            .Append(responsibilityFooBar, HandleWhenResponsible, InvokeNextWhenNotResponsible);
-
-        // act
-        chainOrchestrator.Execute("bar");
-
-        // assert
-        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(2));
-    }
-
-    [Test]
-    public void Execute_NeverInvokesNextResponsibility_WithNothingToInvoke()
-    {
-        // arrange
-        var mockLogger = new Mock<ConsoleLogger>(_log);
-        var mockLoggerObject = mockLogger.Object;
-
-        var executeFunction = new Action<string>(mockLoggerObject.Log);
-
-        var responsibilityFoo = GetChain(executeFunction).Item1;
-
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
-            .Append(responsibilityFoo, HandleAlways, InvokeNextNever);
-
-        // act
-        chainOrchestrator.Execute("bar");
-
-        // assert
-        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(1));
-    }
-
-    [Test]
-    public void Execute_HandlesResponsibilityIfResponsible_WithHandleWhenResponsible()
-    {
-        // arrange
-        var mockLogger = new Mock<ConsoleLogger>(_log);
-        var mockLoggerObject = mockLogger.Object;
-
-        var executeFunction = new Action<string>(mockLoggerObject.Log);
-
-        bool IsResponsibleFoo(string v) => Foo.Contains(v);
-        var responsibilityFoo = new Responsibility<string>(IsResponsibleFoo, executeFunction);
-
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
-            .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextNever);
-
-        // act
-        chainOrchestrator.Execute("bar");
-
-        // assert
-        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(0));
-    }
-
     [TestCase(Foo)]
     [TestCase(Bar)]
     [TestCase(FooBar)]
-    public void
-        Execute_InvokesNextResponsibilityIfNotResponsible_WithHandleWhenResponsibleAndInvokeNextWhenNotResponsible(
-            string givenValue)
+    public void Execute_InvokesNextResponsibilityIfNotResponsible(string givenValue)
     {
         // arrange
+        const string expectedName = "FooBarCoR";
+
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
@@ -112,22 +43,22 @@ internal class ResponsibilityChainOrchestratorInputTests
 
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
-        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
-            .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextWhenNotResponsible)
-            .Append(responsibilityBar, HandleWhenResponsible, InvokeNextWhenNotResponsible)
-            .Append(responsibilityFooBar, HandleWhenResponsible, InvokeNextNever);
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string>(expectedName)
+            .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
 
         // act
         chainOrchestrator.Execute(givenValue);
 
         // assert
+        Assert.That(chainOrchestrator.Name, Is.EqualTo(expectedName));
         mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(1));
     }
 
     [Test]
-    public void Execute_InvokesNextResponsibilityIfResponsible_WithHandleWhenResponsibleAndInvokeNextWhenResponsible()
+    public void Execute_InvokesNextResponsibilityIfResponsible()
     {
         // arrange
+        const int expectedNumberOfLogs = 1;
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
@@ -136,28 +67,13 @@ internal class ResponsibilityChainOrchestratorInputTests
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
-            .Append(responsibilityFoo, HandleWhenResponsible, InvokeNextWhenNotResponsible)
-            .Append(responsibilityBar, HandleWhenResponsible, InvokeNextWhenResponsible)
-            .Append(responsibilityFooBar, HandleWhenResponsible, InvokeNextNever);
+            .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
 
         // act
         chainOrchestrator.Execute("bar");
 
         // assert
-        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(2));
-    }
-
-    [Test]
-    public void Execute_IfThereIsMissingResponsibilityInChain_ThrowsMissingResponsibilityInChainException()
-    {
-        // arrange
-        var fooHandler = GetChain(WriteText).Item1;
-
-        var sut = new ResponsibilityChainOrchestrator<string>()
-            .Append(fooHandler, HandleAlways, InvokeNextAlways);
-
-        // act - assert
-        Assert.Throws<MissingResponsibilityException>(() => sut.Execute(string.Empty));
+        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(expectedNumberOfLogs));
     }
 
     private static Tuple<Responsibility<string>, Responsibility<string>, Responsibility<string>> GetChain(
@@ -172,8 +88,6 @@ internal class ResponsibilityChainOrchestratorInputTests
         return new Tuple<Responsibility<string>, Responsibility<string>, Responsibility<string>>(responsibilityFoo,
             responsibilityBar, responsibilityFooBar);
     }
-
-    private static void WriteText(string text) => _log.LogInformation(text);
 
     private static ILoggerFactory _loggerFactory = ConsoleExtensions.GetLoggerFactory();
     private static ILogger _log = _loggerFactory.CreateLogger<ResponsibilityChainOrchestratorInputTests>();

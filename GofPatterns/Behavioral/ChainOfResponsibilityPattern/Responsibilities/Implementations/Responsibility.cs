@@ -19,24 +19,15 @@ public class Responsibility<TInput> : BaseResponsibility<TInput>, IResponsibilit
 
 public class Responsibility<TInput, TOutput> : BaseResponsibility<TInput>, IResponsibility<TInput, TOutput>
 {
-    private readonly Func<TInput, TOutput>? function;
-    private readonly TOutput? output;
+    private readonly Func<TInput, TOutput> function;
 
-    public Responsibility(Predicate<TInput> predicate,  Func<TInput, TOutput> function) : base(predicate)
+    public Responsibility(Predicate<TInput> predicate, Func<TInput, TOutput> function) : base(predicate)
     {
         this.function = function;
     }
 
-    public Responsibility(Predicate<TInput> predicate, TOutput output) : base(predicate)
-    {
-        this.output = output;
-    }
-
     public TOutput Handle(TInput input)
     {
-        if (function != null)
-            return function.Invoke(input);
-
-        return output!;
+        return function.Invoke(input);
     }
 }

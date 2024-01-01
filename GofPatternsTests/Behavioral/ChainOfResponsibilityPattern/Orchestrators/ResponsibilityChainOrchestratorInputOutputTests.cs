@@ -21,19 +21,22 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
             string givenValue)
     {
         // arrange
+        const string expectedName = "FooBarCoR";
+
         var responsibilityFoo = new Responsibility<string, string>(v => Foo.Equals(v), input => input + Handled);
 
         var responsibilityBar = new Responsibility<string, string>(v => Bar.Equals(v), AppendHandled);
 
         var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), input => input + Handled);
 
-        var chain = new ResponsibilityChainOrchestrator<string, string>()
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string, string>(expectedName)
             .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
 
         // act
-        var actualResult = chain.Execute(givenValue);
+        var actualResult = chainOrchestrator.Execute(givenValue);
 
         // assert
+        Assert.That(chainOrchestrator.Name, Is.EqualTo(expectedName));
         Assert.That(actualResult, Is.EqualTo(givenValue + Handled));
     }
 

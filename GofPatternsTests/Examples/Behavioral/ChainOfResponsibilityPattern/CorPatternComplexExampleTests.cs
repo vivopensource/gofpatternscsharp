@@ -5,16 +5,16 @@ using NUnit.Framework;
 namespace GofPatternsTests.Examples.Behavioral.ChainOfResponsibilityPattern;
 
 [TestFixture]
-internal class CorPatternExampleTests : BaseTest
+internal class CorPatternComplexExampleTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // act
-        const int expectedNumberOfLogs = 4;
+        const int expectedNumberOfLogs = 9;
 
         var actualResult =
-            new CorPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+            new CorPatternComplexExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

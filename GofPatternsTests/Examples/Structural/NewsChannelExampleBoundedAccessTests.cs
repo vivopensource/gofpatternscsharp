@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace GofPatternsTests.Examples.Structural;
 
 [TestFixture]
-internal class ProxyPatternNewsChannelExampleBoundedInputTests : BaseTest
+internal class NewsChannelExampleBoundedAccessTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -20,7 +20,7 @@ internal class ProxyPatternNewsChannelExampleBoundedInputTests : BaseTest
 
         // act
         var actualResult =
-            new ProxyPatternNewsChannelExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+            new NewsChannelExampleBoundedAccess().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -40,7 +40,7 @@ internal class ProxyPatternNewsChannelExampleBoundedInputTests : BaseTest
 
         // act
         var actualResult =
-            new ProxyPatternNewsChannelExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+            new NewsChannelExampleBoundedAccess().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);
@@ -59,7 +59,7 @@ internal class ProxyPatternNewsChannelExampleBoundedInputTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
-        var example = new ProxyPatternNewsChannelExampleBoundedInput();
+        var example = new NewsChannelExampleBoundedAccess();
 
         // act
         Assert.Throws<ArgumentException>(() => example.Execute(MockConsoleLogger.Object, MockInputReader.Object));

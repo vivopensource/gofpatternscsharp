@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace GofPatternsTests.Examples.Structural;
 
 [TestFixture]
-internal class UserInterfaceExampleBoundedInputTests : BaseTest
+internal class UserInterfaceExampleBoundedAccessTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -28,7 +28,7 @@ internal class UserInterfaceExampleBoundedInputTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new UserInterfaceExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new UserInterfaceExampleBoundedAccess().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
@@ -54,7 +54,7 @@ internal class UserInterfaceExampleBoundedInputTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
-        var example = new UserInterfaceExampleBoundedInput();
+        var example = new UserInterfaceExampleBoundedAccess();
 
         // act
         Assert.Throws<ArgumentException>(() => example.Execute(MockConsoleLogger.Object, MockInputReader.Object));
@@ -80,7 +80,7 @@ internal class UserInterfaceExampleBoundedInputTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
-        var example = new UserInterfaceExampleBoundedInput();
+        var example = new UserInterfaceExampleBoundedAccess();
 
         // act
         Assert.Throws<ArgumentException>(() => example.Execute(MockConsoleLogger.Object, MockInputReader.Object));
@@ -102,7 +102,7 @@ internal class UserInterfaceExampleBoundedInputTests : BaseTest
 
         // act
         var actualResult =
-            new UserInterfaceExampleBoundedInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+            new UserInterfaceExampleBoundedAccess().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.False);

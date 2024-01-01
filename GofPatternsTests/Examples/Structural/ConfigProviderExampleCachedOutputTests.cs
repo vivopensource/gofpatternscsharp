@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace GofPatternsTests.Examples.Structural;
 
 [TestFixture]
-internal class ProxyPatternConfigProviderExampleCachedOutputTests : BaseTest
+internal class ConfigProviderExampleCachedOutputTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
@@ -27,7 +27,7 @@ internal class ProxyPatternConfigProviderExampleCachedOutputTests : BaseTest
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
         // act
-        var actualResult = new ProxyPatternConfigProviderExampleCachedOutput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = new ConfigProviderExampleCachedOutput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);
