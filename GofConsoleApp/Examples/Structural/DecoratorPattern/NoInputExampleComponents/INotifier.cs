@@ -2,4 +2,4 @@
 
 namespace GofConsoleApp.Examples.Structural.DecoratorPattern.NoInputExampleComponents;
 
-internal interface INotifier : IDecoratorComponent<INotifier> { }
+internal interface INotifier : IDecorator<INotifier> { }

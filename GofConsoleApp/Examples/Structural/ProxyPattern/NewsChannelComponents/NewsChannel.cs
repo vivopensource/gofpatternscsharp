@@ -1,6 +1,6 @@
 ﻿using Core.Console.Interfaces;
 
-namespace GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;
+namespace GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannelComponents;
 
 internal class NewsChannel : INewsChannel
 {

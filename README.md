@@ -28,6 +28,5 @@ dotnet add package GofPatterns
 
 ### Structural Patterns
 
-- Proxy
-- Decorator
-
+- [Proxy](README/Structural/Proxy.md)
+- [Decorator](README/Structural/Decorator.md)

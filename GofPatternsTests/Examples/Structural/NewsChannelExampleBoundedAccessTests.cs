@@ -1,5 +1,5 @@
 ﻿using GofConsoleApp.Examples.Structural.ProxyPattern;
-using GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;
+using GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannelComponents;
 using Moq;
 using NUnit.Framework;
 

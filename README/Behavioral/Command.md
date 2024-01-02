@@ -33,7 +33,6 @@ commandInvoker.ExecuteCommands();
 #### Code
 
 ```csharp
-
 class Draw : ICommandRequest {
     Paint() { Write("Painting..."); }
     Erase() { Write("Erasing..."); }

@@ -1,4 +1,4 @@
-namespace GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput;
+namespace GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 #pragma warning disable CS8618

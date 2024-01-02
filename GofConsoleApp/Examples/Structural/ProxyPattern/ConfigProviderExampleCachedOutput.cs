@@ -1,8 +1,8 @@
 ﻿using Core.Extensions;
-using GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput;
+using GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using static GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput.EnumConfigEnv;
+using static GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents.EnumConfigEnv;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 

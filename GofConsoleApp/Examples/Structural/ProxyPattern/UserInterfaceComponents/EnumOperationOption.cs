@@ -1,4 +1,4 @@
-﻿namespace GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface;
+﻿namespace GofConsoleApp.Examples.Structural.ProxyPattern.UserInterfaceComponents;
 
 internal enum EnumOperationOption
 {

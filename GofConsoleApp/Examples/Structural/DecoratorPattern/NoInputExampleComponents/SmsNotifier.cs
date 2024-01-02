@@ -3,7 +3,7 @@ using GofPatterns.Structural.DecoratorPattern;
 
 namespace GofConsoleApp.Examples.Structural.DecoratorPattern.NoInputExampleComponents;
 
-internal class SmsNotifier : BaseDecorator<INotifier>
+internal class SmsNotifier : Decorator<INotifier>, INotifier
 {
     private readonly IConsoleLogger logger;
 

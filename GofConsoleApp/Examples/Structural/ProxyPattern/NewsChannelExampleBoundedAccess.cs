@@ -1,6 +1,6 @@
 ﻿using Core.Extensions;
-using GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;
-using static GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel.EnumNewsChannel;
+using GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannelComponents;
+using static GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannelComponents.EnumNewsChannel;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 

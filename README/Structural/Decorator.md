@@ -19,10 +19,50 @@
 #### Code
 
 ```csharp
-// TODO: Code
+interface INotifier : IDecorator<INotifier> { }
+
+class EmailNotifier : INotifier
+{
+    public void Execute() => Console.WriteLine("Email-Notifier executed.");
+}
+
+// Decotator using Interface
+class SmsNotifier : INotifier
+{
+    private readonly INotifier notifier;
+
+    public SmsNotifier(INotifier notifier)
+    {
+        this.notifier = notifier;
+    }
+
+    public void Execute()
+    {
+        notifier.Execute();
+        Console.WriteLine("Sms-Notifier executed.");
+    }
+}
+
+// Decotator using Concrete Class
+class LetterNotifier : Decorator<INotifier>, INotifier
+{
+    public LetterNotifier(INotifier notifier) : base(notifier) { }
+
+    public override void Execute()
+    {
+        base.Execute();
+        Console.WriteLine("Letter-Notifier executed.");
+    }
+}
+
+// Pattern execution
+new LetterNotifier(new SmsNotifier(new EmailNotifier())).Execute()
 ```
 ```
-// TODO: Output
+// Output
+Email-Notifier executed.
+Sms-Notifier executed.
+Letter-Notifier executed.
 ```
 
 #### Full example
@@ -35,10 +75,50 @@
 #### Code
 
 ```csharp
-// TODO: Code
+interface INotifier : IDecorator<INotifier, string> { }
+
+class EmailNotifier : INotifier
+{
+    public void Execute(string input) => Console.WriteLine($"Email sent: {input}");
+}
+
+// Decotator using Interface
+class SmsNotifier : INotifier
+{
+    private readonly INotifier notifier;
+
+    public SmsNotifier(INotifier notifier)
+    {
+        this.notifier = notifier;
+    }
+
+    public void Execute(string input)
+    {
+        notifier.Execute(input);
+        Console.WriteLine($"Sms sent: {input}");
+    }
+}
+
+// Decotator using Concrete Class
+class LetterNotifier : Decorator<INotifier, string>, INotifier
+{
+    public LetterNotifier(INotifier notifier) : base(notifier) { }
+
+    public void Execute(string input)
+    {
+        base.Execute(input);
+        Console.WriteLine($"Letter sent: {input}");
+    }
+}
+
+// Pattern execution
+new LetterNotifier(new SmsNotifier(new EmailNotifier())).Execute("Hello World!")
 ```
 ```
-// TODO: Output
+// Output
+Email sent: Hello World!
+Sms sent: Hello World!
+Letter sent: Hello World!
 ```
 
 #### Full example

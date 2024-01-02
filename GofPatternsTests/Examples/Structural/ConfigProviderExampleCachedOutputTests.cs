@@ -1,5 +1,5 @@
 ﻿using GofConsoleApp.Examples.Structural.ProxyPattern;
-using GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput;
+using GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents;
 using Moq;
 using NUnit.Framework;
 

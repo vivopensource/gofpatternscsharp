@@ -1,4 +1,4 @@
-﻿namespace GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannel;
+﻿namespace GofConsoleApp.Examples.Structural.ProxyPattern.NewsChannelComponents;
 
 internal enum EnumNewsChannel
 {

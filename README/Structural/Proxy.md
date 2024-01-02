@@ -18,10 +18,39 @@
 #### Code
 
 ```csharp
-// TODO: Code
+// Create Inputs
+enum EnumNewsChannel { Acy, Uzt, Mko }
+
+// Create Component
+interface INewsChannel : IProxyComponent<EnumNewsChannel> { }
+
+class NewsChannel : INewsChannel
+{
+    public void Process(EnumNewsChannel input) =>
+        Console.WriteLine($"Broadcasting news from '{input}' channel");
+}
+
+// Create Proxy - with Bounded Access
+interface INewsChannelProxy : INewsChannel, IProxyBoundedAccess<EnumNewsChannel> { }
+
+class NewsChannelProxy : ProxyBoundedAccess<EnumNewsChannel>, INewsChannelProxy
+{
+    public NewsChannelProxy() :
+        base(new NewsChannel(), new[] { Acy, Uzt }) { }
+}
+
+// Pattern execution
+var newsChannel = new NewsChannelProxy();
+newsChannel.Process(EnumNewsChannel.Acy);
+newsChannel.Process(EnumNewsChannel.Mko); // throws exception, 'Mko' is out of bounds
 ```
 ```
-// TODO: Output
+// Output
+Broadcasting news from 'Acy' channel
+Unhandled exception. System.ArgumentException: 'Mko' is out of bounds
+   at GofPatterns.Structural.ProxyPattern.ProxyBoundedAccess`1.Process(TInput input) in ProxyBoundedAccess.cs
+   at GofConsoleApp.Program.Main(String[] args) in Program.cs
+
 ```
 
 #### Full example
@@ -34,10 +63,66 @@
 #### Code
 
 ```csharp
-// TODO: Code
+// Create Inputs
+enum EnumUserType { Admin, Standard, Guest }
+
+enum EnumOperationOption { Read, Create, Mkdir, Remove, Rmdir }
+
+// Create Component
+interface IUserInterface : IProxyComponent<EnumOperationOption, string> { }
+
+class UserInterface : IUserInterface
+{
+    public string Process(EnumOperationOption input)
+    {
+        return $"'{input}' executed successfully.";
+    }
+}
+
+// Create Proxy - with Bounded Access
+interface IUserInterfaceProxy : IUserInterface, IProxyBoundedAccess<EnumOperationOption, string> { }
+
+class UserInterfaceProxyAdmin : ProxyBoundedAccess<EnumOperationOption, string>, IUserInterfaceProxy
+{
+    public UserInterfaceProxyAdmin(IUserInterface userInterface) :
+        base(userInterface, new[] { Read, Create, Mkdir, Remove, Rmdir }) { }
+}
+
+class UserInterfaceProxyStandard : ProxyBoundedAccess<EnumOperationOption, string>, IUserInterfaceProxy
+{
+    public UserInterfaceProxyStandard(IUserInterface userInterface) : 
+        base(userInterface, new[] { Read, Create, Mkdir }) { }
+}
+
+class UserInterfaceProxyGuest : ProxyBoundedAccess<EnumOperationOption, string>, IUserInterfaceProxy
+{
+    public UserInterfaceProxyGuest(IUserInterface userInterface) :
+        base(userInterface, new[] { Read }) { }
+}
+
+// Pattern execution
+EnumUserType userType = EnumUserType.Standard;
+IUserInterface userInterface = new UserInterface();
+
+IUserInterfaceProxy proxyInterface = userType switch
+{
+    Admin => new UserInterfaceProxyAdmin(userInterface),
+    Standard => new UserInterfaceProxyStandard(userInterface),
+    _ => new UserInterfaceProxyGuest(userInterface)
+};
+
+Console.WriteLine(proxyInterface.Process(EnumOperationOption.Create));
+Console.WriteLine(proxyInterface.Process(EnumOperationOption.Mkdir));
+Console.WriteLine(proxyInterface.Process(EnumOperationOption.Remove));
 ```
 ```
-// TODO: Output
+// Output
+'Create' executed successfully.
+'Mkdir' executed successfully.
+Unhandled exception. System.ArgumentException: 'Remove' is out of bounds
+   at GofPatterns.Structural.ProxyPattern.ProxyBoundedAccess`2.Process(TInput input) in ProxyBoundedAccess.cs
+   at GofConsoleApp.Program.Main(String[] args) in Program.cs
+
 ```
 
 #### Full example
@@ -76,5 +161,4 @@
 - Decorator and Proxy have different purposes but similar structures. Both describe how to provide a level of indirection to another object, and the implementations keep a reference to the object to which they forward requests.
 - Decorator supports recursive composition, which isn't possible when you use Proxy or Adapter.
 - Decorator and Proxy are similar in structure, but they solve different problems.
-- A Proxy provides a surrogate or placeholder for another object to control access to it.
 

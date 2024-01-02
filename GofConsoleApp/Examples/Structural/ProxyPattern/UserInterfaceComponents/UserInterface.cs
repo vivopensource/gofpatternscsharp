@@ -1,6 +1,4 @@
-﻿using GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface;
-
-namespace GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface;
+﻿namespace GofConsoleApp.Examples.Structural.ProxyPattern.UserInterfaceComponents;
 
 internal class UserInterface : IUserInterface
 {

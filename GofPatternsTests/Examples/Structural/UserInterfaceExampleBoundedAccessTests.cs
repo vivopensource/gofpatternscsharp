@@ -1,6 +1,5 @@
 ﻿using GofConsoleApp.Examples.Structural.ProxyPattern;
-using GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface;
-using GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface;
+using GofConsoleApp.Examples.Structural.ProxyPattern.UserInterfaceComponents;
 using Moq;
 using NUnit.Framework;
 

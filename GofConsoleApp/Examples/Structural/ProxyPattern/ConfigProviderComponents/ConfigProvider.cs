@@ -1,7 +1,7 @@
 ﻿using Core.Console.Interfaces;
 using GofPatterns.Structural.ProxyPattern.Interfaces;
 
-namespace GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderCachedOutput;
+namespace GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents;
 
 internal class ConfigProvider : IProxyComponent<EnumConfigEnv, Config>
 {

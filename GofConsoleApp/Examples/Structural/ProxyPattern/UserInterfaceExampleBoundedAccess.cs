@@ -1,6 +1,6 @@
 ﻿using Core.Extensions;
-using GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface;
-using static GofConsoleApp.Examples.Structural.ProxyPattern.ExampleUserInterface.EnumUserType;
+using GofConsoleApp.Examples.Structural.ProxyPattern.UserInterfaceComponents;
+using static GofConsoleApp.Examples.Structural.ProxyPattern.UserInterfaceComponents.EnumUserType;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 
