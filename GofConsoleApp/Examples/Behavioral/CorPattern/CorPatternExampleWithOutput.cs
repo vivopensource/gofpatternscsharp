@@ -1,6 +1,6 @@
 ﻿using GofConsoleApp.Examples.Behavioral.CorPattern.InputWithOutputComponents;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple;
 
 namespace GofConsoleApp.Examples.Behavioral.CorPattern;
 

@@ -1,12 +1,13 @@
 ﻿using Core.Console;
 using Core.Extensions;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Exceptions;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace GofPatternsTests.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
+namespace GofPatternsTests.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple;
 
 [TestFixture]
 internal class ResponsibilityChainOrchestratorInputTests
@@ -31,7 +32,7 @@ internal class ResponsibilityChainOrchestratorInputTests
     [TestCase(Foo)]
     [TestCase(Bar)]
     [TestCase(FooBar)]
-    public void Execute_InvokesNextResponsibilityIfNotResponsible(string givenValue)
+    public void Execute_IdentifiesAppropriateResponsibilityAndInvokesResponsibility(string givenValue)
     {
         // arrange
         const string expectedName = "FooBarCoR";
@@ -44,21 +45,23 @@ internal class ResponsibilityChainOrchestratorInputTests
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>(expectedName)
-            .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
+            .Append(responsibilityFoo, $"{Foo} Chain")
+            .Append(responsibilityBar, $"{Bar} Chain")
+            .Append(responsibilityFooBar, $"{FooBar} Chain");
 
         // act
         chainOrchestrator.Execute(givenValue);
 
         // assert
-        Assert.That(chainOrchestrator.Name, Is.EqualTo(expectedName));
         mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(1));
+        Assert.That(chainOrchestrator.Name, Is.EqualTo(expectedName));
+        Assert.That(chainOrchestrator.CurrentChain!.Name, Is.EqualTo($"{givenValue} Chain"));
     }
 
     [Test]
-    public void Execute_InvokesNextResponsibilityIfResponsible()
+    public void Execute_IfNoAppropriateResponsibility_ThrowsException()
     {
         // arrange
-        const int expectedNumberOfLogs = 1;
         var mockLogger = new Mock<ConsoleLogger>(_log);
         var mockLoggerObject = mockLogger.Object;
 
@@ -67,14 +70,14 @@ internal class ResponsibilityChainOrchestratorInputTests
         var (responsibilityFoo, responsibilityBar, responsibilityFooBar) = GetChain(executeFunction);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string>()
-            .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
+            .Append(responsibilityFoo, $"{Foo} Chain")
+            .Append(responsibilityBar, $"{Bar} Chain")
+            .Append(responsibilityFooBar, $"{FooBar} Chain");
 
-        // act
-        chainOrchestrator.Execute("bar");
-
-        // assert
-        mockLogger.Verify(ms => ms.Log(It.IsAny<string>()), Times.Exactly(expectedNumberOfLogs));
+        // act - assert
+        Assert.Throws<MissingResponsibilityException>(() => chainOrchestrator.Execute("Not Foo, Bar or FooBar"));
     }
+
 
     private static Tuple<Responsibility<string>, Responsibility<string>, Responsibility<string>> GetChain(
         Action<string> executeFunction)

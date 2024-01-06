@@ -1,10 +1,11 @@
-﻿using GofConsoleApp.Examples.Behavioral.CorPattern.InputExampleComponents;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Interfaces;
+﻿using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Complex;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
-using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorHandleOptions;
-using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums.ChainOrchestratorInvokeNextOptions;
+using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Complex.Enums.ChainOrchestratorHandleOptions;
+using static GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Complex.Enums.ChainOrchestratorInvokeNextOptions;
+using ResponsibilityBar = GofConsoleApp.Examples.Behavioral.CorPattern.InputExampleComponents.ResponsibilityBar;
+using ResponsibilityFoo = GofConsoleApp.Examples.Behavioral.CorPattern.InputExampleComponents.ResponsibilityFoo;
+using ResponsibilityFooBar = GofConsoleApp.Examples.Behavioral.CorPattern.InputExampleComponents.ResponsibilityFooBar;
 
 namespace GofConsoleApp.Examples.Behavioral.CorPattern;
 
@@ -12,17 +13,14 @@ internal class CorPatternComplexExample : AbstractExample
 {
     protected override bool Execute()
     {
-        ExecuteSimpleExample();
-
-        ExecuteComplexExample(GetOrchestrator("Orchestrator 1", GetOptions1()), "Bar");
-        ExecuteComplexExample(GetOrchestrator("Orchestrator 2", GetOptions2()), "FooBar");
-
+        Example1();
+        Example2();
         return true;
     }
 
-    private void ExecuteSimpleExample()
+    private void Example1()
     {
-        var orchestrator = new ResponsibilityChainOrchestratorComplex<string>();
+        var orchestrator = new ResponsibilityChainOrchestrator<string>();
 
         // Responsibility - Foo, Handle - WhenResponsible, Invoke Next >>> WhenNotResponsible
         var executeFoo = new Action<string>(x => Logger.Log($"Handling '{x}' by 'Foo Handler'"));
@@ -36,76 +34,47 @@ internal class CorPatternComplexExample : AbstractExample
 
 
         Logger.Log("------------- START Orchestrator with input Foo -------------");
-        // Start with >>> Foo
-        // HandleAlways >>>> Foo (Executes) 
-        // !!! Stops
+        // - Start with >>> Foo
+        // - Input >> Foo
+        // ### HandleWhenResponsible >>>> Foo (Executes)
         orchestrator.Execute("Foo");
 
         Logger.Log("------------- START Orchestrator with input Bar -------------");
-        // Start with >>> Foo
-        // HandleAlways >>>> Foo (Not Executes) 
-        // Invokes >> Bar
-        // IsResponsible >>>>> Bar (Executes)
-        // !!! Stops
+        // - Start with >>> Foo
+        // - Input >> Bar
+        // ### HandleWhenResponsible >>>> Foo (Not Executes) 
+        // *** Invokes >> Bar (InvokeNextWhenNotResponsible)
+        // ### HandleWhenResponsible >>>>> Bar (Executes)
         orchestrator.Execute("Bar");
     }
 
-
-    private void ExecuteComplexExample(IResponsibilityChainOrchestratorComplex<string> orchestrator, string inputCoR)
+    private void Example2()
     {
-        Logger.Log($"------------- START {orchestrator.Name} -------------");
-        orchestrator.Execute(inputCoR);
-    }
+        var orchestrator1 = new ResponsibilityChainOrchestrator<string> { Name = "Orchestrator 1" };
+        orchestrator1.Append(new ResponsibilityFoo(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible);
+        orchestrator1.Append(new ResponsibilityBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible);
 
-    private ChainOrchestratorOption[] GetOptions1() =>
-        new[]
-        {
-            // (Responsibility - Foo) , (Handle - WhenResponsible) , (Invoke Next - WhenNotResponsible)
-            new ChainOrchestratorOption(new ResponsibilityFoo(Logger), HandleWhenResponsible,
-                InvokeNextWhenNotResponsible),
-            // (Responsibility - Bar) , (Handle - WhenResponsible) , (Invoke Next - WhenNotResponsible)
-            new ChainOrchestratorOption(new ResponsibilityBar(Logger), HandleWhenResponsible,
-                InvokeNextWhenNotResponsible)
-        };
+        Logger.Log($"------------- START {orchestrator1.Name} -------------");
+        // - Start with >>> Foo
+        // - Input >> Foo
+        // ### HandleWhenResponsible >>>> Foo (Not Executes)
+        // *** Invokes >> Bar (InvokeNextWhenNotResponsible)
+        // ### HandleWhenResponsible >>>>> Bar (Executes)
+        orchestrator1.Execute("Bar");
 
-    private ChainOrchestratorOption[] GetOptions2() =>
-        new[]
-        {
-            // (Responsibility - Foo) , (Handle - Always) , (Invoke Next - Always)
-            new ChainOrchestratorOption(new ResponsibilityFoo(Logger), HandleAlways, InvokeNextAlways),
-            // (Responsibility - Bar) , (Handle - WhenResponsible) , (Invoke Next - WhenNotResponsible)
-            new ChainOrchestratorOption(new ResponsibilityBar(Logger), HandleWhenResponsible,
-                InvokeNextWhenNotResponsible),
-            // (Responsibility - FooBar) , (Handle - WhenResponsible) , (Invoke Next - WhenNotResponsible)
-            new ChainOrchestratorOption(new ResponsibilityFooBar(Logger), HandleWhenResponsible,
-                InvokeNextWhenNotResponsible)
-        };
+        var orchestrator2 = new ResponsibilityChainOrchestrator<string> { Name = "Orchestrator 2" };
+        orchestrator2.Append(new ResponsibilityFoo(Logger), HandleAlways, InvokeNextAlways);
+        orchestrator2.Append(new ResponsibilityBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible);
+        orchestrator2.Append(new ResponsibilityFooBar(Logger), HandleWhenResponsible, InvokeNextWhenNotResponsible);
 
-    private IResponsibilityChainOrchestratorComplex<string> GetOrchestrator(string name,
-        ChainOrchestratorOption[] options)
-    {
-        var orchestrator = new ResponsibilityChainOrchestratorComplex<string>() { Name = name };
-
-        options.ToList().ForEach(x =>
-        {
-            orchestrator.Append(x.Responsibility, x.HandleOption, x.InvokeNextHandlerOption, x.Responsibility.Name);
-        });
-
-        return orchestrator;
-    }
-
-    private class ChainOrchestratorOption
-    {
-        public ChainOrchestratorOption(AbstractResponsibility responsibility,
-            ChainOrchestratorHandleOptions handleOption, ChainOrchestratorInvokeNextOptions invokeNextHandlerOption)
-        {
-            Responsibility = responsibility;
-            HandleOption = handleOption;
-            InvokeNextHandlerOption = invokeNextHandlerOption;
-        }
-
-        public AbstractResponsibility Responsibility { get; }
-        public ChainOrchestratorHandleOptions HandleOption { get; init; }
-        public ChainOrchestratorInvokeNextOptions InvokeNextHandlerOption { get; init; }
+        Logger.Log($"------------- START {orchestrator2.Name} -------------");
+        // - Start with >>> Foo
+        // - Input >> FooBar
+        // ### HandleAlways >>>> Foo (Executes) 
+        // *** Invokes >> Bar (InvokeNextAlways)
+        // ### HandleWhenResponsible >>>>> Bar (Not Executes)
+        // *** Invokes >> FooBar (InvokeNextWhenNotResponsible)
+        // ### HandleWhenResponsible >>>>> FooBar (Executes)
+        orchestrator2.Execute("FooBar");
     }
 }

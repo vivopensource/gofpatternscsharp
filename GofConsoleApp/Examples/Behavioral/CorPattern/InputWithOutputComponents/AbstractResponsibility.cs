@@ -1,4 +1,4 @@
-﻿using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
+﻿using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities;
 
 namespace GofConsoleApp.Examples.Behavioral.CorPattern.InputWithOutputComponents;
 

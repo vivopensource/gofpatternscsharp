@@ -1,4 +1,4 @@
-﻿namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Enums;
+﻿namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Complex.Enums;
 
 public enum ChainOrchestratorInvokeNextOptions
 {

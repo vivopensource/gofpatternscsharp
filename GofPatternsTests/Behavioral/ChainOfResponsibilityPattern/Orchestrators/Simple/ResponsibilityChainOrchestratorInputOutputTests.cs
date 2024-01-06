@@ -1,9 +1,9 @@
 ﻿using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Exceptions;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 using NUnit.Framework;
 
-namespace GofPatternsTests.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
+namespace GofPatternsTests.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple;
 
 [TestFixture]
 internal class ResponsibilityChainOrchestratorInputOutputTests
@@ -16,9 +16,7 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
     [TestCase(Foo)]
     [TestCase(Bar)]
     [TestCase(FooBar)]
-    public void
-        Execute_InvokesNextResponsibilityIfNotResponsible_WithHandleWhenResponsibleAndInvokeNextWhenNotResponsible(
-            string givenValue)
+    public void Execute_IdentifiesAppropriateResponsibilityAndInvokesResponsibility(string givenValue)
     {
         // arrange
         const string expectedName = "FooBarCoR";
@@ -30,18 +28,21 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
         var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), input => input + Handled);
 
         var chainOrchestrator = new ResponsibilityChainOrchestrator<string, string>(expectedName)
-            .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
+            .Append(responsibilityFoo, $"{Foo} Chain")
+            .Append(responsibilityBar, $"{Bar} Chain")
+            .Append(responsibilityFooBar, $"{FooBar} Chain");
 
         // act
         var actualResult = chainOrchestrator.Execute(givenValue);
 
         // assert
-        Assert.That(chainOrchestrator.Name, Is.EqualTo(expectedName));
         Assert.That(actualResult, Is.EqualTo(givenValue + Handled));
+        Assert.That(chainOrchestrator.Name, Is.EqualTo(expectedName));
+        Assert.That(chainOrchestrator.CurrentChain!.Name, Is.EqualTo($"{givenValue} Chain"));
     }
 
     [Test]
-    public void Execute_IfOutputIsNull_ThrowsException()
+    public void Execute_IfNoAppropriateResponsibility_ThrowsException()
     {
         // arrange
         Func<string, string> notExecuted = null!;
@@ -49,11 +50,13 @@ internal class ResponsibilityChainOrchestratorInputOutputTests
         var responsibilityBar = new Responsibility<string, string>(v => Bar.Equals(v), AppendHandled);
         var responsibilityFooBar = new Responsibility<string, string>(v => FooBar.Equals(v), notExecuted);
 
-        var chain = new ResponsibilityChainOrchestrator<string, string>()
-            .Append(responsibilityFoo).Append(responsibilityBar).Append(responsibilityFooBar);
+        var chainOrchestrator = new ResponsibilityChainOrchestrator<string, string>()
+            .Append(responsibilityFoo)
+            .Append(responsibilityBar)
+            .Append(responsibilityFooBar);
 
         // act - assert
-        Assert.Throws<MissingResponsibilityException>(() => chain.Execute(string.Empty));
+        Assert.Throws<MissingResponsibilityException>(() => chainOrchestrator.Execute("Not Foo, Bar or FooBar"));
     }
 
     private static string AppendHandled(string input)

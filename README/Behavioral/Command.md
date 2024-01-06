@@ -103,7 +103,7 @@ class Restaurant : CommandInvoker<IFoodCommand, IFoodRequest>
 var restaurant = new Restaurant();
 
 // 1st Batch
-Console.WriteLine($"Processing 1st order.");
+Console.WriteLine($"Processing 1st order batch.");
 restaurant.DeliverPizza(2);
 restaurant.DeliverBurger(5);
 restaurant.ServeBurger(6);
@@ -112,7 +112,7 @@ Console.WriteLine($"Prepared {prepared} orders.");
 
 Console.WriteLine("----------------------");
 
-Console.WriteLine($"Processing 2nd order.");
+Console.WriteLine($"Processing 2nd order batch.");
 restaurant.ServeBurger(3);
 restaurant.DeliverPizza(2);
 restaurant.ServePizza(3);
@@ -122,13 +122,13 @@ Console.WriteLine($"Prepared {prepared} orders.");
 ```
 ```
 // Output
-Processing 1st order.
+Processing 1st order batch.
 -> Packing 2 pizza.
 -> Packing 5 burger.
 -> Serving 6 burger.
 Prepared 3 orders.
 ----------------------
-Processing 2nd order.
+Processing 2nd order batch.
 -> Serving 3 burger.
 -> Packing 2 pizza.
 -> Serving 3 pizza.

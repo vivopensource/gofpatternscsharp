@@ -2,7 +2,6 @@
 using Core.Extensions;
 using GofConsoleApp.Examples;
 using Moq;
-using static System.Console;
 
 namespace GofConsoleApp;
 
@@ -10,7 +9,7 @@ internal static class Program
 {
     public static void Main(string[] args)
     {
-        ExecuteExample(BuildReaderFromArgument(args, In));
+        ExecuteExample(BuildReaderFromArgument(args, Console.In));
     }
 
     private static void ExecuteExample(TextReader reader)

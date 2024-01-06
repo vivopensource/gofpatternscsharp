@@ -11,7 +11,7 @@ internal class CorPatternExampleTests : BaseTest
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // act
-        const int expectedNumberOfLogs = 4;
+        const int expectedNumberOfLogs = 8;
 
         var actualResult =
             new CorPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);

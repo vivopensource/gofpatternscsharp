@@ -1,13 +1,23 @@
 ﻿using Core.Console.Interfaces;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities;
 
 namespace GofConsoleApp.Examples.Behavioral.CorPattern.InputExampleComponents;
 
-internal class ResponsibilityFooBar : AbstractResponsibility
+internal class ResponsibilityFooBar : IResponsibility<string>
 {
-    public ResponsibilityFooBar(IConsoleLogger logger) : base(logger, "FooBarCoR") { }
+    private readonly IConsoleLogger logger;
+    public ResponsibilityFooBar(IConsoleLogger logger)
+    {
+        this.logger = logger;
+    }
 
-    public override bool IsResponsible(string input)
+    public bool IsResponsible(string input)
     {
         return "FooBar".Equals(input);
+    }
+
+    public void Handle(string input)
+    {
+        logger.Log($"Handled '{input}' by 'FooBarCoR'");
     }
 }

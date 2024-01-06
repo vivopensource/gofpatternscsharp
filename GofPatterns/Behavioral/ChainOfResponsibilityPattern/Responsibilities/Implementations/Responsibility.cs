@@ -1,8 +1,6 @@
-﻿using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
+﻿namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 
-namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
-
-public class Responsibility<TInput> : BaseResponsibility<TInput>, IResponsibility<TInput>
+public class Responsibility<TInput> : ResponsibilityCheck<TInput>, IResponsibility<TInput>
 {
     private readonly Delegate function;
 
@@ -17,7 +15,7 @@ public class Responsibility<TInput> : BaseResponsibility<TInput>, IResponsibilit
     }
 }
 
-public class Responsibility<TInput, TOutput> : BaseResponsibility<TInput>, IResponsibility<TInput, TOutput>
+public class Responsibility<TInput, TOutput> : ResponsibilityCheck<TInput>, IResponsibility<TInput, TOutput>
 {
     private readonly Func<TInput, TOutput> function;
 

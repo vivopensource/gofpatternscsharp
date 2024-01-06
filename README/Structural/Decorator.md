@@ -82,7 +82,7 @@ class EmailNotifier : INotifier
     public void Execute(string input) => Console.WriteLine($"Email sent: {input}");
 }
 
-// Decotator using Interface
+// Decotator implementation using Decotator Interface
 class SmsNotifier : INotifier
 {
     private readonly INotifier notifier;
@@ -99,7 +99,7 @@ class SmsNotifier : INotifier
     }
 }
 
-// Decotator using Concrete Class
+// Decotator implementation using Decotator Concrete Class
 class LetterNotifier : Decorator<INotifier, string>, INotifier
 {
     public LetterNotifier(INotifier notifier) : base(notifier) { }
