@@ -8,7 +8,7 @@ internal class UserInterfaceExampleBoundedAccess : AbstractExample
 {
     protected override bool Execute()
     {
-        Logger.LogOptions("user types", new[] { Admin, Standard, Guest });
+        Logger.Log("user types", new[] { Admin, Standard, Guest });
 
         var input = AcceptInputEnum(Invalid, "user type");
 
@@ -24,7 +24,7 @@ internal class UserInterfaceExampleBoundedAccess : AbstractExample
             _ => new UserInterfaceProxyGuest(userInterface)
         };
 
-        Logger.LogOptions("operation commands", proxy.BoundedInputs.ToList());
+        Logger.Log("operation commands", proxy.BoundedInputs.ToList());
 
         ExecuteUserInterface(proxy);
 

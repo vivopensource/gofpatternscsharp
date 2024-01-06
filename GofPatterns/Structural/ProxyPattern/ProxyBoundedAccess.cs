@@ -2,6 +2,11 @@
 
 namespace GofPatterns.Structural.ProxyPattern;
 
+/// <summary>
+/// Proxy Pattern implementation with bounded access.
+/// The proxy component will only process the input if it is bounded.
+/// </summary>
+/// <typeparam name="TInput"></typeparam>
 public class ProxyBoundedAccess<TInput> : IProxyBoundedAccess<TInput> where TInput : notnull
 {
     private readonly IProxyComponent<TInput> component;
@@ -23,6 +28,12 @@ public class ProxyBoundedAccess<TInput> : IProxyBoundedAccess<TInput> where TInp
     public ISet<TInput> BoundedInputs { get; }
 }
 
+/// <summary>
+/// Proxy Pattern implementation with bounded access.
+/// The proxy component will only process the input if it is bounded, and it will return an output.
+/// </summary>
+/// <typeparam name="TInput"></typeparam>
+/// <typeparam name="TOutput"></typeparam>
 public class ProxyBoundedAccess<TInput, TOutput> : IProxyBoundedAccess<TInput, TOutput> where TInput : notnull
 {
     private readonly IProxyComponent<TInput, TOutput> component;

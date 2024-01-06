@@ -1,5 +1,6 @@
 ﻿using Core.Extensions;
 using GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents;
+using GofPatterns.Structural.ProxyPattern;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using static GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents.EnumConfigEnv;
@@ -15,16 +16,18 @@ internal class ConfigProviderExampleCachedOutput : AbstractExample
 {
     protected override bool Execute()
     {
-        Logger.LogOptions("config environments", new[] { Dev, Prod, Test });
+        Logger.Log("config environments", new[] { Dev, Prod, Test });
 
-        var configLoader = new ConfigProviderProxy(Logger);
+        // Pattern Definition
+        var component = new ConfigProvider(Logger);
+        var proxy = new ProxyCachedOutput<EnumConfigEnv, Config>(component);
 
-        ExecuteConfigLoader(configLoader);
+        ExecuteConfigLoader(proxy);
 
         return true;
     }
 
-    private void ExecuteConfigLoader(ConfigProviderProxy proxy)
+    private void ExecuteConfigLoader(ProxyCachedOutput<EnumConfigEnv, Config> proxy)
     {
         while (true)
         {
@@ -36,6 +39,7 @@ internal class ConfigProviderExampleCachedOutput : AbstractExample
                 return;
             }
 
+            // Pattern Execution
             var config = proxy.Process(input);
 
             var str = new SerializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build()

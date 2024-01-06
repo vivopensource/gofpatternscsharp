@@ -12,7 +12,7 @@ internal class NewsChannelExampleBoundedAccess : AbstractExample
 {
     protected override bool Execute()
     {
-        Logger.LogOptions("new channels", new[] { Acy, Uzt, Mko });
+        Logger.Log("new channels", new[] { Acy, Uzt, Mko });
 
         var input = AcceptInputEnum(Invalid, "new channels");
 

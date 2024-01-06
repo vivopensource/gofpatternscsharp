@@ -135,10 +135,65 @@ Unhandled exception. System.ArgumentException: 'Remove' is out of bounds
 #### Code
 
 ```csharp
-// TODO: Code
+// Create Inputs
+enum EnumConfigEnv { Dev, Prod, Test }
+
+// Create Output Component
+class Config
+{
+    public EnumConfigEnv EnvType { get; init; }
+    public string DatabaseConnection { get; init; } = string.Empty;
+}
+
+// Create Subject (also Real Subject here)
+class ConfigProvider : IProxyComponent<EnumConfigEnv, Config>
+{
+    public Config Process(EnumConfigEnv input)
+    {
+        Console.WriteLine($"Loading '{input}'.");
+
+        return new Config
+        {
+            EnvType = input,
+            DatabaseConnection = input + "-DatabaseConnection"
+        };
+    }
+}
+
+// Pattern execution
+var component = new ConfigProvider();
+var proxy = new ProxyCachedOutput<EnumConfigEnv, Config>(component);
+
+EnumConfigEnv type = EnumConfigEnv.Dev;
+Console.WriteLine($"Loading '{type}'.");
+Config conf = proxy.Process(type);
+Console.WriteLine($"Env={conf.EnvType}, DatabaseConnection={conf.DatabaseConnection}");
+
+type = EnumConfigEnv.Test;
+Console.WriteLine($"Loading '{type}'.");
+conf = proxy.Process(type);
+Console.WriteLine($"Env={conf.EnvType}, DatabaseConnection={conf.DatabaseConnection}");
+
+
+type = EnumConfigEnv.Dev;
+Console.WriteLine($"Loading '{type}'.");
+conf = proxy.Process(type); // 'Dev' was already in loaded and saved in cached, so  its picked up from cache.
+Console.WriteLine($"Env={conf.EnvType}, DatabaseConnection={conf.DatabaseConnection}");
+
+type = EnumConfigEnv.Prod;
+Console.WriteLine($"Loading '{type}'.");
+conf = proxy.Process(type);
+Console.WriteLine($"Env={conf.EnvType}, DatabaseConnection={conf.DatabaseConnection}");
 ```
 ```
-// TODO: Output
+// Output
+--- Loading 'Dev' ---
+Env=Dev, DatabaseConnection=Dev-DatabaseConnection
+--- Loading 'Test' ---
+Env=Test, DatabaseConnection=Test-DatabaseConnection
+Env=Dev, DatabaseConnection=Dev-DatabaseConnection
+--- Loading 'Prod' ---
+Env=Prod, DatabaseConnection=Prod-DatabaseConnection
 ```
 
 #### Full example
