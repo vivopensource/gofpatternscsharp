@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Optimize>true</Optimize>
@@ -19,10 +19,11 @@
         <PackageReleaseNotes>Tested release</PackageReleaseNotes>
         <PackageProjectUrl>https://github.com/vivopensource/gofpatternscsharp</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <InternalsVisibleTo Include="$(AssemblyName)Tests" />
+        <InternalsVisibleTo Include="$(AssemblyName)Tests"/>
     </ItemGroup>
 
     <ItemGroup>
