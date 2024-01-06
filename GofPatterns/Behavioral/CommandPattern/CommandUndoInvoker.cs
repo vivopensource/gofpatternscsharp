@@ -19,6 +19,7 @@ public class CommandUndoInvoker<TCommandUndo, TCommandRequest> : ICommandUndoInv
     public int ExecuteCommands()
     {
         var count = commandWrappers.Count;
+
         if (count < 1)
             return count;
 

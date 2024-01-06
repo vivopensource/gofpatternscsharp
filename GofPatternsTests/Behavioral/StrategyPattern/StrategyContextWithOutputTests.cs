@@ -1,4 +1,4 @@
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.Strategies;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents.Strategies;
 using GofPatterns.Behavioral.StrategyPattern;
 using GofPatterns.Behavioral.StrategyPattern.Exception;
 using GofPatterns.Behavioral.StrategyPattern.Interfaces;

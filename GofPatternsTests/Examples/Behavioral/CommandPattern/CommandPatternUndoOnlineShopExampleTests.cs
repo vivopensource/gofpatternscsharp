@@ -2,7 +2,7 @@
 using GofConsoleApp.Examples.ExecutionHelpers;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.Behavioral.CommandPattern.Enums.EnumProductOperationOptions;
+using static GofConsoleApp.Examples.Behavioral.CommandPattern.OnlineShopComponents.EnumProductOperationOptions;
 
 namespace GofPatternsTests.Examples.Behavioral.CommandPattern;
 

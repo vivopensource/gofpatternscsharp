@@ -13,32 +13,145 @@
 
 ## Examples
 
-### Execute
+### Type 1: Execute pattern without return value
 
 #### Code
 
 ```csharp
-ICommandInvoker<in TCommand, TCommandRequest> invoker = new CommandInvoker<TCommand, TCommandRequest>();
-invoker.SetCommand(ICommand<TCommandRequest> command1);
-invoker.SetCommand(ICommand<TCommandRequest> command2);
-commandInvoker.ExecuteCommands();
+
+// Requests
+interface IFoodRequest : ICommandRequest
+{
+    void Serve();
+    void Pack();
+}
+
+class Pizza : IFoodRequest
+{
+    private readonly int count;
+
+    public Pizza(int count = 1) => this.count = count;
+
+    public void Serve() => Console.WriteLine($"-> Serving {count} pizza.");
+
+    public void Pack() => Console.WriteLine($"-> Packing {count} pizza.");
+}
+
+class Burger : IFoodRequest
+{
+    private readonly int count;
+
+    public Burger(int count = 1) => this.count = count;
+
+    public void Serve() => Console.WriteLine($"-> Serving {count} burger.");
+
+    public void Pack() => Console.WriteLine($"-> Packing {count} burger.");
+}
+
+// Commands
+interface IFoodCommand : ICommand<IFoodRequest> { }
+
+class ServeFoodCommand : AbstractCommand<IFoodRequest>, IFoodCommand
+{
+    public override void Execute() => Request!.Serve();
+}
+
+class DeliverFoodCommand : AbstractCommand<IFoodRequest>, IFoodCommand
+{
+    public override void Execute() => Request!.Pack();
+}
+
+// Invoker
+class Restaurant : CommandInvoker<IFoodCommand, IFoodRequest>
+{
+    public void ServePizza(int count = 1)
+    {
+        var pizzas = new Pizza(count);
+        var serveOrder = new ServeFoodCommand();
+        serveOrder.AddRequest(pizzas);
+        AddCommand(serveOrder);
+    }
+
+    public void DeliverPizza(int count = 1)
+    {
+        var pizzas = new Pizza(count);
+        var deliverOrder = new DeliverFoodCommand();
+        deliverOrder.AddRequest(pizzas);
+        AddCommand(deliverOrder);
+    }
+
+    public void ServeBurger(int count = 1)
+    {
+        var burgers = new Burger(count);
+        var serveOrder = new ServeFoodCommand();
+        serveOrder.AddRequest(burgers);
+        AddCommand(serveOrder);
+    }
+
+    public void DeliverBurger(int count = 1)
+    {
+        var burgers = new Burger(count);
+        var deliverOrder = new DeliverFoodCommand();
+        deliverOrder.AddRequest(burgers);
+        AddCommand(deliverOrder);
+    }
+
+    public int Prepare() => ExecuteCommands();
+}
+
+// Pattern execution
+var restaurant = new Restaurant();
+
+// 1st Batch
+Console.WriteLine($"Processing 1st order batch.");
+restaurant.DeliverPizza(2);
+restaurant.DeliverBurger(5);
+restaurant.ServeBurger(6);
+var prepared = restaurant.Prepare();
+Console.WriteLine($"Prepared {prepared} orders.");
+
+Console.WriteLine("----------------------");
+
+Console.WriteLine($"Processing 2nd order batch.");
+restaurant.ServeBurger(3);
+restaurant.DeliverPizza(2);
+restaurant.ServePizza(3);
+restaurant.DeliverBurger(4);
+prepared = restaurant.Prepare();
+Console.WriteLine($"Prepared {prepared} orders.");
+```
+```
+// Output
+Processing 1st order batch.
+-> Packing 2 pizza.
+-> Packing 5 burger.
+-> Serving 6 burger.
+Prepared 3 orders.
+----------------------
+Processing 2nd order batch.
+-> Serving 3 burger.
+-> Packing 2 pizza.
+-> Serving 3 pizza.
+-> Packing 4 burger.
+Prepared 4 orders.
 ```
 #### Full example
 
 [CommandPatternRestaurantExample](./../../GofConsoleApp/Examples/Behavioral/CommandPattern/CommandPatternRestaurantExample.cs)
 
 
-### Execute with undo
+### Type 2: Execute pattern and expect return value
 
 #### Code
 
 ```csharp
-
+// Request
 class Draw : ICommandRequest {
     Paint() { Write("Painting..."); }
     Erase() { Write("Erasing..."); }
 };
 
+// Command
 class DrawCommand : ICommandUndo<Draw> {
     private Draw draw;
     public DrawCommand(Draw draw) { this.draw = draw; }
@@ -46,8 +159,10 @@ class DrawCommand : ICommandUndo<Draw> {
     void Undo() { draw.Erase(); }
 };
 
+// Invoker
 var canvas = new CommandUndoInvoker<DrawCommand, Draw>();
 
+// Pattern execution
 var draw = new Draw();
 
 var drawCommand = new DrawCommand();
@@ -62,6 +177,7 @@ canvas.ExecuteCommands();
 ```
 
 ```Log
+// Output
 Painting...
 Erasing...
 ```

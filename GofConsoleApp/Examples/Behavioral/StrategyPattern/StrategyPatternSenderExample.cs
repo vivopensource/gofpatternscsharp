@@ -1,7 +1,7 @@
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.Sender.Strategies;
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.StrategyContexts;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents.Strategies;
 using GofPatterns.Behavioral.StrategyPattern.Interfaces;
-using static GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums.EnumSendingOptions;
+using static GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents.EnumSendingOptions;
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern;
 

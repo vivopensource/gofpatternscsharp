@@ -1,8 +1,6 @@
-﻿using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Interfaces;
+﻿namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 
-namespace GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
-
-public class Responsibility<TInput> : BaseResponsibility<TInput>, IResponsibility<TInput>
+public class Responsibility<TInput> : ResponsibilityCheck<TInput>, IResponsibility<TInput>
 {
     private readonly Delegate function;
 
@@ -17,26 +15,17 @@ public class Responsibility<TInput> : BaseResponsibility<TInput>, IResponsibilit
     }
 }
 
-public class Responsibility<TInput, TOutput> : BaseResponsibility<TInput>, IResponsibility<TInput, TOutput>
+public class Responsibility<TInput, TOutput> : ResponsibilityCheck<TInput>, IResponsibility<TInput, TOutput>
 {
-    private readonly Func<TInput, TOutput>? function;
-    private readonly TOutput? output;
+    private readonly Func<TInput, TOutput> function;
 
-    public Responsibility(Predicate<TInput> predicate,  Func<TInput, TOutput> function) : base(predicate)
+    public Responsibility(Predicate<TInput> predicate, Func<TInput, TOutput> function) : base(predicate)
     {
         this.function = function;
     }
 
-    public Responsibility(Predicate<TInput> predicate, TOutput output) : base(predicate)
-    {
-        this.output = output;
-    }
-
     public TOutput Handle(TInput input)
     {
-        if (function != null)
-            return function.Invoke(input);
-
-        return output!;
+        return function.Invoke(input);
     }
 }

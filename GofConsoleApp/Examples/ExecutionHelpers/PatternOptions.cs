@@ -1,5 +1,5 @@
-﻿using GofConsoleApp.Examples.Behavioral.ChainOfResponsibilityPattern;
-using GofConsoleApp.Examples.Behavioral.CommandPattern;
+﻿using GofConsoleApp.Examples.Behavioral.CommandPattern;
+using GofConsoleApp.Examples.Behavioral.CorPattern;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
@@ -17,6 +17,7 @@ internal static class PatternOptions
     internal const string ProxyPatternOptionBoundedInputOutput = "12.3";
     internal const string ChainOfResponsibilityPatternOption = "21";
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
+    internal const string ChainOfResponsibilityPatternOption3 = "21.3";
     internal const string CommandPatternOption = "22";
     internal const string CommandPatternUndoOption = "22.2";
     internal const string StatePatternOptionBulbExample = "23";
@@ -38,28 +39,33 @@ internal static class PatternOptions
         },
         {
             ProxyPatternOption,
-            new PatternExampleMap("Proxy Pattern >> Cached Output", new ProxyPatternConfigProviderExampleCachedOutput())
+            new PatternExampleMap("Proxy Pattern >> Cached Output", new ConfigProviderExampleCachedOutput())
         },
         {
             ProxyPatternOptionBoundedInput,
-            new PatternExampleMap("Proxy Pattern >> Bounded Input", new ProxyPatternNewsChannelExampleBoundedInput())
+            new PatternExampleMap("Proxy Pattern >> Bounded Input", new NewsChannelExampleBoundedAccess())
         },
         {
             ProxyPatternOptionBoundedInputOutput,
             new PatternExampleMap("Proxy Pattern >> Bounded Input with Output",
-                new ProxyPatternUserInterfaceExampleBoundedInput())
+                new UserInterfaceExampleBoundedAccess())
         },
 
         // Behavioral Patterns
         {
             ChainOfResponsibilityPatternOption,
             new PatternExampleMap("Chain Of Responsibility Pattern >> Input",
-                new ChainOfResponsibilityPatternExampleInput())
+                new CorPatternExample())
         },
         {
             ChainOfResponsibilityPatternOption2,
             new PatternExampleMap("Chain Of Responsibility Pattern >> Input & Output",
-                new ChainOfResponsibilityPatternExampleInputWithOutput())
+                new CorPatternExampleWithOutput())
+        },
+        {
+            ChainOfResponsibilityPatternOption3,
+            new PatternExampleMap("Chain Of Responsibility Pattern >> Complex",
+                new CorPatternComplexExample())
         },
         {
             CommandPatternOption,

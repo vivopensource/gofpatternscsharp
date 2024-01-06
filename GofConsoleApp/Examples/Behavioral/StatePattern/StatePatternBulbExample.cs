@@ -1,7 +1,7 @@
-﻿using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample;
-using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.States;
+﻿using GofConsoleApp.Examples.Behavioral.StatePattern.BulbComponents;
+using GofConsoleApp.Examples.Behavioral.StatePattern.BulbComponents.States;
 using GofPatterns.Behavioral.StatePattern.Interfaces;
-using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.EnumStatePatternBulbExample;
+using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbComponents.EnumStatePatternBulbExample;
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern;
 

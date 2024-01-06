@@ -1,10 +1,9 @@
 ﻿using GofConsoleApp.Examples;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
-using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample;
-using GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.States;
+using GofConsoleApp.Examples.Behavioral.StatePattern.BulbComponents;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbExample.EnumStatePatternBulbExample;
+using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbComponents.EnumStatePatternBulbExample;
 
 namespace GofPatternsTests.Examples.Behavioral.StatePattern;
 

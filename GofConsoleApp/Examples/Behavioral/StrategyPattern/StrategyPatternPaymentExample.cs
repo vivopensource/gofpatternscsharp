@@ -1,12 +1,14 @@
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample;
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.Strategies;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents.Strategies;
 using GofPatterns.Behavioral.StrategyPattern.Interfaces;
-using static GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentExample.EnumPaymentOptions;
+using static GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents.EnumPaymentOptions;
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern;
 
 internal class StrategyPatternPaymentExample : AbstractExample
 {
+    private readonly IStrategyContext<decimal, bool> paymentContext = new PaymentStrategyContext();
+
     protected override bool Execute()
     {
         var inputOption = AcceptInputEnum(Invalid, "payment method (max 1000)", Invalid);
@@ -20,10 +22,11 @@ internal class StrategyPatternPaymentExample : AbstractExample
         else
             return Logger.LogAndReturnFalse($"Quitting program due to input: {inputOption}.");
 
-        senderContext.SetStrategy(strategy);
+        paymentContext.SetStrategy(strategy);
+        Logger.Log($"Payment using '{paymentContext.Strategy!.Name}'");
 
         var message = AcceptInputDecimal("payment amount");
-        var paymentResult = senderContext.ExecuteStrategy(message);
+        var paymentResult = paymentContext.ExecuteStrategy(message);
 
         return PrintPaymentResult(paymentResult);
     }
@@ -35,6 +38,4 @@ internal class StrategyPatternPaymentExample : AbstractExample
 
         return Logger.LogAndReturnFalse("Payment unsuccessful.");
     }
-
-    private readonly IStrategyContext<decimal, bool> senderContext = new PaymentStrategyContext();
 }

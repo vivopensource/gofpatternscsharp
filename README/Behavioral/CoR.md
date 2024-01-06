@@ -7,12 +7,46 @@
 
 ## Structure
 - It consists of handler and orchestrator.
-- Handler: A handler class that checks if handle is responsible to handle responsibility and then and execute it.
-- Orchestrator: The orchestrator class that configures the responsibility chain and call handlers iteratively.
+- Orchestrator: The orchestrator class that configures the responsibility chain or the handlers, and calls the handlers iteratively.
+- Handler: A handler class that (1) checks if it is responsible to handle the responsibility, and then it executes the responsibility.
+     - Exception: if the `ChainOrchestratorHandleOptions` is `HandleAlways` then the handler always executes the responsibility.
 
 ## Examples
 
-### Input
+### Type 1: Execute pattern without return value
+
+#### Code
+
+```csharp
+// TIn is Input
+IResponsibilityChainOrchestrator<TIn> orchestrator = new ResponsibilityChainOrchestrator<TIn>();
+orchestrator.Append(IResponsibility<TIn>, "Name>R1");
+orchestrator.Append(IResponsibility<TIn>, "Name>R2");
+orchestrator.Execute(input);
+```
+
+#### Full example
+
+[CorPatternExample](./../../GofConsoleApp/Examples/Behavioral/CorPattern/CorPatternExample.cs)
+
+### Type 2: Execute pattern and expect return value
+
+#### Code
+
+```csharp
+// TIn is Input
+// TOut is Output
+IResponsibilityChainOrchestrator<TIn,TOut> orchestrator = new ResponsibilityChainOrchestrator<TIn,TOut>();
+orchestrator.Append(IResponsibility<TIn,TOut>, "Name>R1");
+orchestrator.Append(IResponsibility<TIn,TOut>, "Name>R2");
+TOut output = orchestrator.Execute(input);
+```
+
+#### Full example
+[CorPatternExampleWithOutput](./../../GofConsoleApp/Examples/Behavioral/CorPattern/CorPatternExampleWithOutput.cs)
+
+
+### Type3: Execute pattern using complex orchestrator options
 
 #### Code
 
@@ -28,23 +62,8 @@ orchestrator.Execute(input);
 
 #### Full example
 
-[ChainOfResponsibilityPatternExampleInput](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/ChainOfResponsibilityPatternExampleInput.cs)
+[CorPatternComplexExample](./../../GofConsoleApp/Examples/Behavioral/CorPattern/CorPatternComplexExample.cs)
 
-### Input and Output
-
-#### Code
-
-```csharp
-// TIn is Input
-// TOut is Output
-IResponsibilityChainOrchestrator<TIn,TOut> orchestrator = new ResponsibilityChainOrchestrator<TIn,TOut>();
-orchestrator.Append(IResponsibility<TIn,TOut>, "Name>R1");
-orchestrator.Append(IResponsibility<TIn,TOut>, "Name>R2");
-TOut output = orchestrator.Execute(input);
-```
-
-#### Full example
-[ChainOfResponsibilityPatternExampleInputWithOutput](./../../GofConsoleApp/Examples/Behavioral/ChainOfResponsibilityPattern/ChainOfResponsibilityPatternExampleInputWithOutput.cs)
 
 ## Benefits
 - An object-oriented linked list with recursive traversal.

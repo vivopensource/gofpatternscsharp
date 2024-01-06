@@ -28,6 +28,7 @@ speed-measure-plugin.json
 .settings/
 *.sublime-workspace
 *.user
+*.DotSettings
 *.DotSettings.*
 *.feature.cs
 

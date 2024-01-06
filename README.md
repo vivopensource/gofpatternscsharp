@@ -3,9 +3,9 @@
 ## Introduction
 
 Contains the implementation of design patterns that are used to solve common problems in software design.
-Takes away the burden of writing the underlying code for designing and executing the design patterns, and focus on the problem at hand.
-There are templates that has to be implemented in the correct situation.
-There are examples that shows how to use the design patterns.
+Takes away the burden of writing the underlying code for writing and executing the design patterns, and focus on the problem at hand,
+i.e. using them for writing a well designed and implemented software solution.
+The solution offered in the package has to be implemented in the correct way, but does not worry there are examples that shows how to do that.
 
 ## Usage
 
@@ -21,13 +21,12 @@ dotnet add package GofPatterns
 
 ### Behavioral Patterns
 
-- [Chain of Responsibility (CoR)](README/Behavioral/CoR.md)
+- [Chain of Responsibility - CoR](README/Behavioral/CoR.md)
 - [Command](README/Behavioral/Command.md)
-- State
-- Strategy
+- [State](README/Behavioral/State.md)
+- [Strategy](README/Behavioral/Strategy.md)
 
 ### Structural Patterns
 
-- Proxy
-- Decorator
-
+- [Proxy](README/Structural/Proxy.md)
+- [Decorator](README/Structural/Decorator.md)

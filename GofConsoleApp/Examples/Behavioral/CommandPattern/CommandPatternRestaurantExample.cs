@@ -1,4 +1,4 @@
-﻿using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
+﻿using GofConsoleApp.Examples.Behavioral.CommandPattern.RestaurantComponents;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern;
 
@@ -10,7 +10,7 @@ internal class CommandPatternRestaurantExample : AbstractExample
 
         int count;
 
-        var restaurant = new Restaurant(Logger);
+        var restaurant = new RestaurantAsInvoker(Logger);
 
         // 1st Order Batch
         restaurant.DeliverPizza(2);

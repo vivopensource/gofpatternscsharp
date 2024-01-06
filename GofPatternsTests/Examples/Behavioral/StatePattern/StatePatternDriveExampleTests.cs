@@ -1,9 +1,9 @@
 ﻿using GofConsoleApp.Examples;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
-using GofConsoleApp.Examples.Behavioral.StatePattern.Drive;
+using GofConsoleApp.Examples.Behavioral.StatePattern.DriveComponents;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.Behavioral.StatePattern.Drive.EnumStatePatternDriveExample;
+using static GofConsoleApp.Examples.Behavioral.StatePattern.DriveComponents.EnumStatePatternDriveExample;
 
 namespace GofPatternsTests.Examples.Behavioral.StatePattern;
 

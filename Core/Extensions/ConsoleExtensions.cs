@@ -8,7 +8,7 @@ internal static class ConsoleExtensions
 {
     public static ILoggerFactory GetLoggerFactory() => LoggerFactory.Create(builder => { builder.AddConsole(); });
 
-    public static void LogOptions<T>(this IConsoleLogger logger, string identifier, IEnumerable<T> options)
+    public static void Log<T>(this IConsoleLogger logger, string identifier, IEnumerable<T> options)
     {
         var message = new StringBuilder($"Please enter from following {identifier}: ");
 

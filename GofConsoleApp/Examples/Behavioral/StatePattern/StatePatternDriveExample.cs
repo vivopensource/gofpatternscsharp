@@ -1,7 +1,7 @@
-﻿using GofConsoleApp.Examples.Behavioral.StatePattern.Drive;
-using GofConsoleApp.Examples.Behavioral.StatePattern.Drive.States;
+﻿using GofConsoleApp.Examples.Behavioral.StatePattern.DriveComponents;
+using GofConsoleApp.Examples.Behavioral.StatePattern.DriveComponents.States;
 using GofPatterns.Behavioral.StatePattern.Interfaces;
-using static GofConsoleApp.Examples.Behavioral.StatePattern.Drive.EnumStatePatternDriveExample;
+using static GofConsoleApp.Examples.Behavioral.StatePattern.DriveComponents.EnumStatePatternDriveExample;
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern;
 

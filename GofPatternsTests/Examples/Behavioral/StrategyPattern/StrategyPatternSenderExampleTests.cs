@@ -1,8 +1,8 @@
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
-using GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums;
+using GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents;
 using Moq;
 using NUnit.Framework;
-using static GofConsoleApp.Examples.Behavioral.StrategyPattern.Enums.EnumSendingOptions;
+using static GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents.EnumSendingOptions;
 
 namespace GofPatternsTests.Examples.Behavioral.StrategyPattern;
 

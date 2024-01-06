@@ -1,6 +1,6 @@
-﻿using GofConsoleApp.Examples.Behavioral.CommandPattern.CommandInvoker;
+﻿using GofConsoleApp.Examples.Behavioral.CommandPattern.OnlineShopComponents;
 using GofConsoleApp.Examples.ExecutionHelpers;
-using static GofConsoleApp.Examples.Behavioral.CommandPattern.Enums.EnumProductOperationOptions;
+using static GofConsoleApp.Examples.Behavioral.CommandPattern.OnlineShopComponents.EnumProductOperationOptions;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern;
 
@@ -10,7 +10,7 @@ internal class CommandPatternUndoOnlineShopExample : AbstractExample
     {
         EnumYesNo shopping;
 
-        var onlineShop = new OnlineShop(Logger); // Invoker
+        var onlineShop = new OnlineShopAsInvoker(Logger); // Invoker
 
         do
         {
