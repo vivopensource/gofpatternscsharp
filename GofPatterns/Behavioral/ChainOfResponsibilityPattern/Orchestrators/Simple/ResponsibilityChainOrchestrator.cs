@@ -49,7 +49,7 @@ public sealed class ResponsibilityChainOrchestrator<TInput> : IResponsibilityCha
 
     private void AssembleChain(ChainLink<IResponsibility<TInput>> chainLink, string? name = null)
     {
-        if (!string.IsNullOrWhiteSpace(name))
+        if (name is not null && !string.Empty.Equals(name.Trim()))
             chainLink.Name = name;
 
         if (Chain is null)
@@ -125,7 +125,7 @@ public sealed class ResponsibilityChainOrchestrator<TInput, TOutput> : IResponsi
 
     private void AssembleChain(ChainLink<IResponsibility<TInput, TOutput>> chainLink, string? name = null)
     {
-        if (!string.IsNullOrWhiteSpace(name))
+        if (name is not null && !string.Empty.Equals(name.Trim()))
             chainLink.Name = name;
 
         if (Chain is null)
