@@ -42,8 +42,10 @@
     </ItemGroup>
 
     <!-- .NET 4.7 -->
+    <!--
     <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
         <PackageReference Include="Microsoft.AspNet.WebApi.Client" />
     </ItemGroup>
+    -->
 
 </Project>
