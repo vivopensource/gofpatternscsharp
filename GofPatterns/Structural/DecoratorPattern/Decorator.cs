@@ -2,30 +2,30 @@
 
 public abstract class Decorator<TType> : IDecorator<TType> where TType : IDecorator<TType>
 {
-    protected readonly TType WrappedComponent;
+    private readonly TType wrappedComponent;
 
     protected Decorator(TType wrappedComponent)
     {
-        WrappedComponent = wrappedComponent;
+        this.wrappedComponent = wrappedComponent;
     }
 
     public virtual void Execute()
     {
-        WrappedComponent.Execute();
+        wrappedComponent.Execute();
     }
 }
 
 public class Decorator<TType, TInput> : IDecorator<TType, TInput> where TType : IDecorator<TType, TInput>
 {
-    protected readonly TType WrappedComponent;
+    private readonly TType wrappedComponent;
 
     protected Decorator(TType wrappedComponent)
     {
-        WrappedComponent = wrappedComponent;
+        this.wrappedComponent = wrappedComponent;
     }
 
     public virtual void Execute(TInput input)
     {
-        WrappedComponent.Execute(input);
+        wrappedComponent.Execute(input);
     }
 }

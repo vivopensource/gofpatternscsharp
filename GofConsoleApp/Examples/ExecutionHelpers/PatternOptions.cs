@@ -2,6 +2,7 @@
 using GofConsoleApp.Examples.Behavioral.CorPattern;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
+using GofConsoleApp.Examples.Structural.AdapterPattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
 using GofConsoleApp.Examples.Structural.ProxyPattern;
 
@@ -15,6 +16,7 @@ internal static class PatternOptions
     internal const string ProxyPatternOption = "12";
     internal const string ProxyPatternOptionBoundedInput = "12.2";
     internal const string ProxyPatternOptionBoundedInputOutput = "12.3";
+    internal const string AdapterPatternOption = "13";
     internal const string ChainOfResponsibilityPatternOption = "21";
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
     internal const string ChainOfResponsibilityPatternOption3 = "21.3";
@@ -47,8 +49,11 @@ internal static class PatternOptions
         },
         {
             ProxyPatternOptionBoundedInputOutput,
-            new PatternExampleMap("Proxy Pattern >> Bounded Input with Output",
-                new UserInterfaceExampleBoundedAccess())
+            new PatternExampleMap("Proxy Pattern >> Bounded Input with Output", new UserInterfaceExampleBoundedAccess())
+        },
+        {
+            AdapterPatternOption,
+            new PatternExampleMap("Adapter Pattern >> Adaptee:Employee , Target:Traveller", new AdapterPatternExample())
         },
 
         // Behavioral Patterns
