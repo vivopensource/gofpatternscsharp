@@ -13,7 +13,7 @@ internal class ConsoleLogger : IConsoleLogger
 
     public virtual void Log(string info)
     {
-        BaseLogger.LogInformation("Message: {Info}", info);
+        BaseLogger.LogInformation("{Info}", info);
     }
 
     public bool LogAndReturnTrue(string info)
