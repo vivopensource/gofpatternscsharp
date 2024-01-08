@@ -3,7 +3,7 @@ using GofConsoleApp.Examples.Structural.ProxyPattern.UserInterfaceComponents;
 using Moq;
 using NUnit.Framework;
 
-namespace GofPatternsTests.Examples.Structural;
+namespace GofPatternsTests.Examples.Structural.ProxyPattern;
 
 [TestFixture]
 internal class UserInterfaceExampleBoundedAccessTests : BaseTest

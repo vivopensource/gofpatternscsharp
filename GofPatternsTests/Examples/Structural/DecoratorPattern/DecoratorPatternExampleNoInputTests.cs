@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 
-namespace GofPatternsTests.Examples.Structural;
+namespace GofPatternsTests.Examples.Structural.DecoratorPattern;
 
 [TestFixture]
 internal class DecoratorPatternExampleNoInputTests : BaseTest
