@@ -119,5 +119,5 @@ Driving mode: SportsPlus
 - It makes state transitions explicit.
 - State objects can be shared.
 
-## Connection with other patterns
+## Similarity with other patterns
 - The state pattern can be interpreted as a strategy pattern, which is able to switch a strategy through invocations of methods defined in the pattern's interface.

@@ -123,3 +123,6 @@ typings/
 package-lock.json
 src/environments/environment-local.ts
 
+ProgramExample.cs
+ProgramExampleTests.cs
+

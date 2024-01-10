@@ -162,7 +162,7 @@ Payment successful.
 - The strategy pattern is intended to provide a means to define a family of algorithms, encapsulate each one as an object, and make them interchangeable.
 - Strategy is often used to implement the various algorithms (sometimes called "strategies") for a particular operation (for example, searching a file, or sorting a collection).
 
-## Connection with other patterns
+## Similarity with other patterns
 - Many patterns can be considered as a particular implementation of the strategy pattern.
 - The strategy pattern is a particularly straightforward example of dependency injection.
 - The strategy pattern is also known as the policy pattern. It is a particular implementation of the more general handle/body idiom.

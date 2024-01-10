@@ -63,7 +63,6 @@ class EmployeeTravellerAdapter : IAdapter<IEmployee, ITraveller>, ITraveller
 }
 
 // Pattern execution
-
 IEmployee employee = new Employee("1", "John", "Doe", "Success Lane 1");
 Console.WriteLine($"Employee: {employee.Id}, {employee.FirstName}, {employee.LastName}, {employee.Address}");
 
@@ -87,7 +86,7 @@ Traveller 'John Doe' is travelling to: Success Lane 1
 - Allows reusability of existing functionality.
 - Allows legacy code to work with modern code.
 
-## Connection with other patterns
+## Similarity with other patterns
 
 - Adapter provides a different interface to the wrapped object, Proxy provides it with the same interface, and Decorator provides it with an enhanced interface.
 - Adapter and Facade are similar: both wrap existing interfaces, and both can expose a different interface than the wrapped objects. However, the intents of these patterns are different. An Adapter focuses on providing a different interface to the wrapped object, while a Facade’s intent is to provide a simplified interface to a subsystem or class.

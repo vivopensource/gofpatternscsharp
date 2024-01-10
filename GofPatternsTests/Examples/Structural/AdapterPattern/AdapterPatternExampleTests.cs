@@ -10,11 +10,12 @@ internal class AdapterPatternExampleTests : BaseTest
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
-        // act
+        // arrange
         const int expectedNumberOfLogs = 4;
+        var sut = new AdapterPatternExample();
 
-        var actualResult =
-            new AdapterPatternExample().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        // act
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

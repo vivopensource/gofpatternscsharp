@@ -1,18 +1,18 @@
-﻿using GofConsoleApp.Examples.Structural.DecoratorPattern;
+﻿using GofConsoleApp.Examples.Behavioral.MediatorPattern;
 using Moq;
 using NUnit.Framework;
 
-namespace GofPatternsTests.Examples.Structural.DecoratorPattern;
+namespace GofPatternsTests.Examples.Behavioral.MediatorPattern;
 
 [TestFixture]
-internal class DecoratorPatternExampleNoInputTests : BaseTest
+internal class MediatorPatternExampleTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // arrange
-        const int expectedNumberOfLogs = 2;
-        var sut = new DecoratorPatternExampleNoInput();
+        const int expectedNumberOfLogs = 4;
+        var sut = new MediatorPatternExample();
 
         // act
         var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
@@ -22,4 +22,5 @@ internal class DecoratorPatternExampleNoInputTests : BaseTest
 
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedNumberOfLogs));
     }
+    
 }

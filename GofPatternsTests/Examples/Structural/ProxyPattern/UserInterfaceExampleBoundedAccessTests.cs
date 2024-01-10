@@ -26,8 +26,10 @@ internal class UserInterfaceExampleBoundedAccessTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
+        var sut = new UserInterfaceExampleBoundedAccess();
+
         // act
-        var actualResult = new UserInterfaceExampleBoundedAccess().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

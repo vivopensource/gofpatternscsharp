@@ -74,6 +74,6 @@ orchestrator.Execute(input);
 - The CoR pattern can be implemented as a chain of responsibility of either objects or static methods. The former is more in keeping with the object-oriented principle of encapsulation. The latter is more in keeping with the functional programming principle of statelessness.
 - The CoR pattern can be implemented as a chain of either synchronous or asynchronous handlers. The former is more in keeping with the functional programming principle of referential transparency and iterator pattern. The latter is more in keeping with the actor model principle of asynchronous messaging, location transparency, stateful actors and fault tolerance.
 
-## Connection with other patterns
+## Similarity with other patterns
 - The CoR pattern is structurally nearly identical to the decorator pattern, the difference being that for the decorator, all classes handle the request, while for the CoR.
 - The CoR pattern is often applied in conjunction with the composite pattern: an object's parent's CoR determines how the parent forwards requests to its children and whether the parent itself handles default requests (see also the mediator pattern).
