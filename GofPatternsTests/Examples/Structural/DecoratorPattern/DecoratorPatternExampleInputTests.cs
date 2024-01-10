@@ -15,9 +15,10 @@ internal class DecoratorPatternExampleInputTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns("Test notification");
 
+        var sut = new DecoratorPatternExampleInput();
+
         // act
-        var actualResult =
-            new DecoratorPatternExampleInput().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

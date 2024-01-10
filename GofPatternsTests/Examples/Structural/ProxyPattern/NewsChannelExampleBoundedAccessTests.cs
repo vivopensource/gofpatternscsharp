@@ -18,9 +18,10 @@ internal class NewsChannelExampleBoundedAccessTests : BaseTest
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
+        var sut = new NewsChannelExampleBoundedAccess();
+
         // act
-        var actualResult =
-            new NewsChannelExampleBoundedAccess().Execute(MockConsoleLogger.Object, MockInputReader.Object);
+        var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);
 
         // assert
         Assert.That(actualResult, Is.True);

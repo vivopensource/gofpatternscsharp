@@ -6,10 +6,11 @@
 - The command pattern allows you to create objects that can queue up actions that are performed on a specific object.
 
 ## Structure
-- It consists of invoker, command and request.
+- It consists of invoker, command, request, and client (client does pattern execution).
 - Invoker: An invoker class that will receive the command objects and execute it.
 - Command: A client class that will create a command object and pass it to the invoker class for execution. It will also contain the request object.
 - Request: A request class that will contain the action to be performed.
+- Client: A client class that will use the command objects.
 
 ## Examples
 
@@ -99,7 +100,7 @@ class Restaurant : CommandInvoker<IFoodCommand, IFoodRequest>
     public int Prepare() => ExecuteCommands();
 }
 
-// Pattern execution
+// Client - Pattern execution
 var restaurant = new Restaurant();
 
 // 1st Batch
@@ -112,6 +113,7 @@ Console.WriteLine($"Prepared {prepared} orders.");
 
 Console.WriteLine("----------------------");
 
+// 2nd Batch
 Console.WriteLine($"Processing 2nd order batch.");
 restaurant.ServeBurger(3);
 restaurant.DeliverPizza(2);
@@ -195,7 +197,7 @@ Erasing...
 - A way of structuring a system around a high-level idea of "get this done" where a command object does the work of making sure the right things happen at the right times.
 - The command pattern is useful for creating a system that can handle undoable actions.
 
-## Connection with other patterns
+## Similarity with other patterns
 
 - The command pattern is a variation on the strategy pattern. It involves separating an action from an object that invokes that action. The command pattern allows you to create objects that can queue up actions that are performed on a specific object. The command pattern is useful for creating a system that can handle undoable actions.
 - The command pattern is often used in conjunction with the composite pattern. A composite object is an object that is made up of other objects. The composite object treats its children as objects, but it also treats them as commands. This allows you to create a tree structure of commands.

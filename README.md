@@ -17,7 +17,12 @@ Nuget package is available at: [GofPatterns](https://www.nuget.org/packages/GofP
 dotnet add package GofPatterns
 ```
 
-## Available Patterns
+### Execute
+
+There are examples for each of the design patterns mentioned in [Implementations](#Implementations) section,
+just click on the link to the design pattern and it will take you to the respective page of the design pattern that provides information and example.
+
+## Implementations
 
 ### Behavioral Patterns
 
@@ -25,9 +30,11 @@ dotnet add package GofPatterns
 - [Command](README/Behavioral/Command.md)
 - [State](README/Behavioral/State.md)
 - [Strategy](README/Behavioral/Strategy.md)
+- [Mediator](README/Behavioral/Mediator.md)
 
 ### Structural Patterns
 
 - [Proxy](README/Structural/Proxy.md)
 - [Decorator](README/Structural/Decorator.md)
 - [Adapter](README/Structural/Adapter.md)
+- [Flyweight](README/Structural/Flyweight.md)

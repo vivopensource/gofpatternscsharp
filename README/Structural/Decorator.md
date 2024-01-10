@@ -131,7 +131,7 @@ Letter sent: Hello World!
 - A Decorator provides an enhanced interface to the original object.
 - It provides a flexible alternative to subclassing for extending functionality.
 
-## Connection with other patterns
+## Similarity with other patterns
 
 - Adapter provides a different interface to the wrapped object, Proxy provides it with the same interface, and Decorator provides it with an enhanced interface.
 - The decorator pattern is structurally nearly identical to the chain of responsibility pattern, the difference being that in a chain of responsibility, exactly one of the classes handles the request, while for the decorator, all classes handle the request.
