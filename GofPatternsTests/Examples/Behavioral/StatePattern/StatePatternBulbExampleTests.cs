@@ -108,5 +108,5 @@ internal class StatePatternBulbExampleTests : BaseTest
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
 
-    private readonly AbstractExample sut = new StatePatternBulbExample();
+    private readonly BaseExample sut = new StatePatternBulbExample();
 }

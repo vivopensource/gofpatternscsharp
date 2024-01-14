@@ -2,7 +2,7 @@
 
 namespace GofConsoleApp.Examples.Behavioral.MediatorPattern;
 
-internal class MediatorPatternExample : AbstractExample
+internal class MediatorPatternExample : BaseExample
 {
     protected override bool Execute()
     {

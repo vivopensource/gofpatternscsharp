@@ -8,6 +8,8 @@ namespace GofPatternsTests.Examples.Structural.ProxyPattern;
 [TestFixture]
 internal class UserInterfaceExampleBoundedAccessTests : BaseTest
 {
+    private const int LogCountForInput = 3;
+
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
@@ -18,11 +20,12 @@ internal class UserInterfaceExampleBoundedAccessTests : BaseTest
             EnumOperationOption.Mkdir.ToString(),
             EnumOperationOption.Create.ToString(),
             EnumOperationOption.Remove.ToString(),
+            EnumOperationOption.Rmdir.ToString(),
             "Quit program"
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 16;
+        var expectedLogCount = 2 + (expectedReaderCount - 1) * LogCountForInput;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -36,6 +39,7 @@ internal class UserInterfaceExampleBoundedAccessTests : BaseTest
 
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>(), It.IsAny<object>()), Times.Exactly(2));
     }
 
     [Test]
@@ -51,7 +55,7 @@ internal class UserInterfaceExampleBoundedAccessTests : BaseTest
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 12;
+        var expectedLogCount = 4 + (expectedReaderCount - 2) * LogCountForInput;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -63,6 +67,7 @@ internal class UserInterfaceExampleBoundedAccessTests : BaseTest
         // assert
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>(), It.IsAny<object>()), Times.Exactly(2));
     }
 
     [Test]
@@ -77,7 +82,7 @@ internal class UserInterfaceExampleBoundedAccessTests : BaseTest
         });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 9;
+        var expectedLogCount = 4 + (expectedReaderCount - 2) * LogCountForInput;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 

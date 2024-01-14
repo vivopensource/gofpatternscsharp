@@ -56,7 +56,7 @@ internal class NewsChannelExampleBoundedAccessTests : BaseTest
         var readerValues = new Queue<string>(new[] { EnumNewsChannel.NotSet.ToString() });
 
         var expectedReaderCount = readerValues.Count;
-        const int expectedLogCount = 3;
+        const int expectedLogCount = 2;
 
         MockInputReader.Setup(x => x.AcceptInput()).Returns(readerValues.Dequeue);
 
@@ -68,5 +68,6 @@ internal class NewsChannelExampleBoundedAccessTests : BaseTest
         // assert
         MockInputReader.Verify(x => x.AcceptInput(), Times.Exactly(expectedReaderCount));
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
+        MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>(), It.IsAny<object>()), Times.Once);
     }
 }

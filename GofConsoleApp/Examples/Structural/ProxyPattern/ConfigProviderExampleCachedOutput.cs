@@ -12,7 +12,7 @@ namespace GofConsoleApp.Examples.Structural.ProxyPattern;
 /// It loads the configuration of the respective env and it caches
 /// the output for the next time.
 /// </summary>
-internal class ConfigProviderExampleCachedOutput : AbstractExample
+internal class ConfigProviderExampleCachedOutput : BaseExample
 {
     protected override bool Execute()
     {

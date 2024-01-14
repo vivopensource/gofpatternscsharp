@@ -5,7 +5,7 @@ using static GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents.
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern;
 
-internal class StrategyPatternSenderExample : AbstractExample
+internal class StrategyPatternSenderExample : BaseExample
 {
     protected override bool Execute()
     {

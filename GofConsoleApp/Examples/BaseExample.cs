@@ -5,7 +5,7 @@ using GofConsoleApp.Examples.ExecutionHelpers;
 
 namespace GofConsoleApp.Examples;
 
-internal abstract class AbstractExample
+internal abstract class BaseExample
 {
     protected IConsoleLogger Logger { get; private set; } =
         new ConsoleLogger(ConsoleExtensions.GetLoggerFactory().CreateLogger(string.Empty));
@@ -43,8 +43,7 @@ internal abstract class AbstractExample
 
     protected string AcceptInputString(string identifier)
     {
-        if (!string.IsNullOrWhiteSpace(identifier))
-            Logger.Log($"Please enter the {identifier}...");
+        Logger.Log($"Please enter the {identifier}...");
 
         var input = InputReader.AcceptInput();
 
@@ -55,8 +54,7 @@ internal abstract class AbstractExample
 
     protected EnumYesNo AcceptInputYesNo(string identifier = "")
     {
-        if (!string.IsNullOrWhiteSpace(identifier))
-            Logger.Log($"Please enter the {identifier} (Yes/No)...");
+        Logger.Log($"Please enter the {identifier} (Yes/No)...");
 
         var input = InputReader.AcceptInput();
 
@@ -65,8 +63,7 @@ internal abstract class AbstractExample
 
     protected decimal AcceptInputDecimal(string identifier)
     {
-        if (!string.IsNullOrWhiteSpace(identifier))
-            Logger.Log($"Please enter the {identifier}...");
+        Logger.Log($"Please enter the {identifier}...");
 
         try
         {
@@ -83,7 +80,6 @@ internal abstract class AbstractExample
 
     protected bool IsInvalidOrQuit<TEnum>(TEnum input, TEnum invalid, TEnum quit, out bool output)
     {
-
         if (input!.Equals(invalid))
         {
             output = false;
