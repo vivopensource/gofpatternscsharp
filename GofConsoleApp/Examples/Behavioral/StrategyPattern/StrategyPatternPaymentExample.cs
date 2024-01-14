@@ -5,7 +5,7 @@ using static GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern;
 
-internal class StrategyPatternPaymentExample : AbstractExample
+internal class StrategyPatternPaymentExample : BaseExample
 {
     private readonly IStrategyContext<decimal, bool> paymentContext = new PaymentStrategyContext();
 

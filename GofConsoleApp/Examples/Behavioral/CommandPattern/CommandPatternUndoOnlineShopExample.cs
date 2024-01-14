@@ -4,7 +4,7 @@ using static GofConsoleApp.Examples.Behavioral.CommandPattern.OnlineShopComponen
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern;
 
-internal class CommandPatternUndoOnlineShopExample : AbstractExample
+internal class CommandPatternUndoOnlineShopExample : BaseExample
 {
     protected override bool Execute()
     {

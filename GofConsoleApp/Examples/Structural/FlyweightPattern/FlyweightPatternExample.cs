@@ -4,7 +4,7 @@ using GofPatterns.Structural.FlyweightPattern.Interfaces;
 
 namespace GofConsoleApp.Examples.Structural.FlyweightPattern;
 
-internal class FlyweightPatternExample : AbstractExample
+internal class FlyweightPatternExample : BaseExample
 {
     protected override bool Execute()
     {

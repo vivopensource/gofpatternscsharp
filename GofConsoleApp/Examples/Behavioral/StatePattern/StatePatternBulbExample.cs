@@ -5,7 +5,7 @@ using static GofConsoleApp.Examples.Behavioral.StatePattern.BulbComponents.EnumS
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern;
 
-internal class StatePatternBulbExample : AbstractExample
+internal class StatePatternBulbExample : BaseExample
 {
     private readonly IState<BulbStateContext> on = new OnState();
     private readonly IState<BulbStateContext> off = new OffState();

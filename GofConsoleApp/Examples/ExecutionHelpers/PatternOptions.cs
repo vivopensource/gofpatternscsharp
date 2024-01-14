@@ -3,6 +3,9 @@ using GofConsoleApp.Examples.Behavioral.CorPattern;
 using GofConsoleApp.Examples.Behavioral.MediatorPattern;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
+using GofConsoleApp.Examples.Creational.AbstractFactoryPattern;
+using GofConsoleApp.Examples.Creational.BuilderPattern;
+using GofConsoleApp.Examples.Creational.FactoryPattern;
 using GofConsoleApp.Examples.Structural.AdapterPattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
 using GofConsoleApp.Examples.Structural.FlyweightPattern;
@@ -30,6 +33,9 @@ internal static class PatternOptions
     internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
+    internal const string FactoryOption = "31";
+    internal const string AbstractFactoryOption = "32";
+    internal const string BuilderPatternOption = "33";
 
     internal static readonly IDictionary<string, PatternExampleMap> Patterns = new Dictionary<string, PatternExampleMap>
     {
@@ -107,6 +113,20 @@ internal static class PatternOptions
         {
             StrategyPatternOptionPayment,
             new PatternExampleMap("Strategy Pattern >> Payment Example", new StrategyPatternPaymentExample())
+        },
+
+        // Creational Patterns
+        {
+            FactoryOption,
+            new PatternExampleMap("Factory Pattern", new FactoryPatternExample())
+        },
+        {
+            AbstractFactoryOption,
+            new PatternExampleMap("Abstract Factory Pattern", new AbstractFactoryPatternExample())
+        },
+        {
+            BuilderPatternOption,
+            new PatternExampleMap("Builder Pattern", new BuilderPatternExample())
         }
     };
 }

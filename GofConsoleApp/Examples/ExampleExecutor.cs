@@ -16,7 +16,7 @@ internal static class ExampleExecutor
         return result;
     }
 
-    private static AbstractExample GetPatternInput(IConsoleLogger logger, IInputReader reader)
+    private static BaseExample GetPatternInput(IConsoleLogger logger, IInputReader reader)
     {
         while (true)
         {

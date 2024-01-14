@@ -63,5 +63,5 @@ internal class StrategyPatternPaymentExampleTests : BaseTest
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
 
-    private readonly AbstractExample sut = new StrategyPatternPaymentExample();
+    private readonly BaseExample sut = new StrategyPatternPaymentExample();
 }

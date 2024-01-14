@@ -2,7 +2,7 @@ namespace GofConsoleApp.Examples.ExecutionHelpers;
 
 internal sealed class PatternExampleMap
 {
-    public PatternExampleMap(string name, AbstractExample example)
+    public PatternExampleMap(string name, BaseExample example)
     {
         Name = name;
         Example = example;
@@ -10,5 +10,5 @@ internal sealed class PatternExampleMap
 
     public string Name { get; }
 
-    public AbstractExample Example { get; }
+    public BaseExample Example { get; }
 }

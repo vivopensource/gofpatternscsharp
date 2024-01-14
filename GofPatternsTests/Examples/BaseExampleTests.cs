@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace GofPatternsTests.Examples;
 
 [TestFixture]
-internal class AbstractExampleTests : BaseTest
+internal class BaseExampleTests : BaseTest
 {
     [Test]
     public void AcceptInputDecimal_WithValidInput_ReturnsTrue()
@@ -32,7 +32,7 @@ internal class AbstractExampleTests : BaseTest
             new TestExample().Execute(MockConsoleLogger.Object, MockInputReader.Object));
     }
 
-    private class TestExample : AbstractExample
+    private class TestExample : BaseExample
     {
         protected override bool Execute()
         {
