@@ -16,6 +16,11 @@ internal class ConsoleLogger : IConsoleLogger
         BaseLogger.LogInformation("{Info}", info);
     }
 
+    public virtual void Log(string message, object obj)
+    {
+        BaseLogger.LogInformation("{Message}: {Obj}", message, obj);
+    }
+
     public bool LogAndReturnTrue(string info)
     {
         Log(info);

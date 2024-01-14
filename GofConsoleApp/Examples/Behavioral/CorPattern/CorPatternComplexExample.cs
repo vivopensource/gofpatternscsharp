@@ -9,7 +9,7 @@ using ResponsibilityFooBar = GofConsoleApp.Examples.Behavioral.CorPattern.InputE
 
 namespace GofConsoleApp.Examples.Behavioral.CorPattern;
 
-internal class CorPatternComplexExample : AbstractExample
+internal class CorPatternComplexExample : BaseExample
 {
     protected override bool Execute()
     {

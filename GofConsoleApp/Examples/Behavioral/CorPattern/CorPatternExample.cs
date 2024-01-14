@@ -1,11 +1,10 @@
-﻿using GofConsoleApp.Examples.Behavioral.CorPattern.InputExampleComponents;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators;
-using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple;
+﻿using Core.Console.Interfaces;
+using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities;
 using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Responsibilities.Implementations;
 
 namespace GofConsoleApp.Examples.Behavioral.CorPattern;
 
-internal class CorPatternExample : AbstractExample
+internal class CorPatternExample : BaseExample
 {
     protected override bool Execute()
     {
@@ -16,7 +15,9 @@ internal class CorPatternExample : AbstractExample
 
     private void ImplementationUsingInterface()
     {
-        var orchestrator = new GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple.ResponsibilityChainOrchestrator<string>();
+        var orchestrator =
+            new GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple.ResponsibilityChainOrchestrator
+                <string>();
 
         // Responsibility - Foo, Handle - WhenResponsible, Invoke Next >>> WhenNotResponsible
         var fooHandler = new ResponsibilityFoo(Logger);
@@ -44,8 +45,9 @@ internal class CorPatternExample : AbstractExample
 
     private void ImplementationUsingConcreteClass()
     {
-        
-        var orchestrator = new GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple.ResponsibilityChainOrchestrator<string>();
+        var orchestrator =
+            new GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple.ResponsibilityChainOrchestrator
+                <string>();
 
         // Responsibility - Foo, Handle - WhenResponsible, Invoke Next >>> WhenNotResponsible
         var executeFoo = new Action<string>(x => Logger.Log($"Handling '{x}' by 'Foo Handler'"));
@@ -71,5 +73,28 @@ internal class CorPatternExample : AbstractExample
         // IsResponsible >>>>> Bar (Executes)
         // !!! Stops
         orchestrator.Execute("Bar");
+    }
+
+
+    private class ResponsibilityFoo : IResponsibility<string>
+    {
+        private readonly IConsoleLogger logger;
+
+        public ResponsibilityFoo(IConsoleLogger logger) => this.logger = logger;
+
+        public bool IsResponsible(string input) => "Foo".Equals(input);
+
+        public void Handle(string input) => logger.Log($"Handled '{input}' by 'FooCoR'");
+    }
+
+    private class ResponsibilityBar : IResponsibility<string>
+    {
+        private readonly IConsoleLogger logger;
+
+        public ResponsibilityBar(IConsoleLogger logger) => this.logger = logger;
+
+        public bool IsResponsible(string input) => "Bar".Equals(input);
+
+        public void Handle(string input) => logger.Log($"Handled '{input}' by 'BarCoR'");
     }
 }

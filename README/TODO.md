@@ -9,7 +9,7 @@
 - Template Method
 - Visitor
 
-#### Structural TODO...
+#### Structural
 - Bridge
 - Composite
 - Facade

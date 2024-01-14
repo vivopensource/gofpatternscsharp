@@ -4,7 +4,7 @@ using GofConsoleApp.Examples.Structural.AdapterPattern.Target;
 
 namespace GofConsoleApp.Examples.Structural.AdapterPattern;
 
-internal class AdapterPatternExample : AbstractExample
+internal class AdapterPatternExample : BaseExample
 {
     protected override bool Execute()
     {

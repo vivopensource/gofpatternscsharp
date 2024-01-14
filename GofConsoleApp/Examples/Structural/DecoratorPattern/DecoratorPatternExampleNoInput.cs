@@ -2,7 +2,7 @@
 
 namespace GofConsoleApp.Examples.Structural.DecoratorPattern;
 
-internal class DecoratorPatternExampleNoInput : AbstractExample
+internal class DecoratorPatternExampleNoInput : BaseExample
 {
     protected override bool Execute()
     {

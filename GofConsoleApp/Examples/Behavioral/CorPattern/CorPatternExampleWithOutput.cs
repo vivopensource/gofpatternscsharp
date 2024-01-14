@@ -4,7 +4,7 @@ using GofPatterns.Behavioral.ChainOfResponsibilityPattern.Orchestrators.Simple;
 
 namespace GofConsoleApp.Examples.Behavioral.CorPattern;
 
-internal class CorPatternExampleWithOutput : AbstractExample
+internal class CorPatternExampleWithOutput : BaseExample
 {
     protected override bool Execute()
     {

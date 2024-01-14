@@ -5,7 +5,7 @@ using static GofConsoleApp.Examples.Behavioral.StatePattern.DriveComponents.Enum
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern;
 
-internal class StatePatternDriveExample : AbstractExample
+internal class StatePatternDriveExample : BaseExample
 {
     private readonly IState<DriveStateContext, string> eco = new EcoState();
     private readonly IState<DriveStateContext, string> sport = new SportState();

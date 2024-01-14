@@ -108,5 +108,5 @@ internal class StatePatternDriveExampleTests : BaseTest
         MockConsoleLogger.Verify(x => x.Log(It.IsAny<string>()), Times.Exactly(expectedLogCount));
     }
 
-    private readonly AbstractExample sut = new StatePatternDriveExample();
+    private readonly BaseExample sut = new StatePatternDriveExample();
 }
