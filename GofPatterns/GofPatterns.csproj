@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <!--<TargetFrameworks>net6.0;net45</TargetFrameworks>-->
+        <!--<TargetFramework>net6.0</TargetFramework>-->
+        <TargetFrameworks>net6.0;net45</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Optimize>true</Optimize>
@@ -10,7 +10,7 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <PackageId>GofPatterns</PackageId>
         <Title>Gof Patterns</Title>
-        <Version>1.2.8</Version>
+        <Version>1.2.9</Version>
         <Authors>viveksacademia</Authors>
         <Company>vivopensource</Company>
         <Description>Desgin Patterns for C# (Gang of Four)</Description>
@@ -48,9 +48,8 @@
     </ItemGroup>
 
     <!-- .NET 4.5 -->
-    <!--
     <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
         <PackageReference Include="Microsoft.AspNet.WebApi.Client" />
-    </ItemGroup> -->
+    </ItemGroup>
 
 </Project>
