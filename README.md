@@ -11,7 +11,8 @@ The solution offered in the package has to be implemented in the correct way, bu
 
 ### Install
 
-Nuget package is available at: [GofPatterns](https://www.nuget.org/packages/GofPatterns/)
+- Target frameworks: NET 6 (Common soon NET 4.5)
+- Nuget package is available at: [GofPatterns](https://www.nuget.org/packages/GofPatterns/).
 
 ```bash
 dotnet add package GofPatterns
@@ -31,6 +32,7 @@ just click on the link to the design pattern and it will take you to the respect
 - [State](README/Behavioral/State.md)
 - [Strategy](README/Behavioral/Strategy.md)
 - [Mediator](README/Behavioral/Mediator.md)
+- [Observer](README/Behavioral/Observer.md)
 
 ### Structural Patterns
 

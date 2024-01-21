@@ -18,18 +18,18 @@ internal class StatePatternBulbExample : BaseExample
 
         do
         {
-            var inputOption = AcceptInputEnum(Invalid, "state", Invalid);
+            var state = AcceptInputEnum(Invalid, "state", Invalid);
 
-            if (IsInvalidOrQuit(inputOption, Invalid, Quit, out var output))
+            if (IsInvalidOrQuit(state, Invalid, Quit, out var output))
                 return output;
 
-            if (bulb.State.Name.Equals(inputOption.ToString()))
+            if (bulb.State.Name.Equals(state.ToString()))
             {
                 Logger.Log($"Bulb already in {bulb.State.Name} state.");
                 continue;
             }
 
-            switch (inputOption)
+            switch (state)
             {
                 case On:
                     bulb.SetState(on);
