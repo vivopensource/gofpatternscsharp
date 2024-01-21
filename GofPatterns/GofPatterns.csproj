@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <!--<TargetFrameworks>net6.0;net47</TargetFrameworks>-->
+        <!--<TargetFrameworks>net6.0;net45</TargetFrameworks>-->
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Optimize>true</Optimize>
@@ -10,14 +10,14 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <PackageId>GofPatterns</PackageId>
         <Title>Gof Patterns</Title>
-        <Version>1.2.7</Version>
+        <Version>1.2.8</Version>
         <Authors>viveksacademia</Authors>
         <Company>vivopensource</Company>
         <Description>Desgin Patterns for C# (Gang of Four)</Description>
         <PackageTags>
-            patterns; design-patterns; Gof; gang-of-four; 
+            patterns; design-patterns; gang-of-four; Gof;
             behavioral-patterns; structural-patterns; creational-patterns;
-            chain-of-responsibility-pattern; cor; command-pattern; state-pattern; strategy-pattern; mediator-pattern;
+            chain-of-responsibility-pattern; cor; command-pattern; state-pattern; strategy-pattern; mediator-pattern; observer-pattern;
             decorator-pattern; proxy-pattern; adapter-pattern; flyweight-pattern;
             factory-pattern; abstract-factory-pattern; builder-pattern
         </PackageTags>
@@ -47,11 +47,10 @@
         </None>
     </ItemGroup>
 
-    <!-- .NET 4.7 -->
+    <!-- .NET 4.5 -->
     <!--
-    <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+    <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
         <PackageReference Include="Microsoft.AspNet.WebApi.Client" />
-    </ItemGroup>
-    -->
+    </ItemGroup> -->
 
 </Project>

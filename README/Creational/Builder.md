@@ -34,7 +34,7 @@ Console.WriteLine($"Output: {builder.Output()}");
 Output: 7.2
 ```
 
-Classes and interfaces used in code:
+### Classes and interfaces used in example:
 - [IBuilder](./../../GofPatterns/Creational/BuilderPattern/IBuilder.cs)
 - [Builder](./../../GofPatterns/Creational/BuilderPattern/Builder.cs)
 
