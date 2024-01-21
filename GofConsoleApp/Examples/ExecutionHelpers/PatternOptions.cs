@@ -1,6 +1,7 @@
 ﻿using GofConsoleApp.Examples.Behavioral.CommandPattern;
 using GofConsoleApp.Examples.Behavioral.CorPattern;
 using GofConsoleApp.Examples.Behavioral.MediatorPattern;
+using GofConsoleApp.Examples.Behavioral.ObserverPattern;
 using GofConsoleApp.Examples.Behavioral.StatePattern;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern;
 using GofConsoleApp.Examples.Creational.AbstractFactoryPattern;
@@ -24,6 +25,9 @@ internal static class PatternOptions
     internal const string AdapterPatternOption = "13";
     internal const string FlyweightPatternOption = "14";
     internal const string MediatorPatternOption = "15";
+    internal const string ObserverPatternOption = "16.1";
+    internal const string ObserverPatternOptionWithType = "16.2";
+
     internal const string ChainOfResponsibilityPatternOption = "21";
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
     internal const string ChainOfResponsibilityPatternOption3 = "21.3";
@@ -33,6 +37,7 @@ internal static class PatternOptions
     internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
+
     internal const string FactoryOption = "31";
     internal const string AbstractFactoryOption = "32";
     internal const string BuilderPatternOption = "33";
@@ -72,6 +77,14 @@ internal static class PatternOptions
         {
             MediatorPatternOption,
             new PatternExampleMap("Flyweight Pattern >> Drawing shapes", new MediatorPatternExample())
+        },
+        {
+            ObserverPatternOption,
+            new PatternExampleMap("Observer Pattern >> News Publisher", new ObserverPatternExample())
+        },
+        {
+            ObserverPatternOptionWithType,
+            new PatternExampleMap("Observer Pattern >> News Publisher with type", new ObserverPatternExampleWithCategory())
         },
 
         // Behavioral Patterns

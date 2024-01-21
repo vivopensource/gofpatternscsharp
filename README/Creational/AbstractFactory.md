@@ -62,16 +62,16 @@ Console.WriteLine($"Car: {car.Name}, Engine type: {car.EngineType}, Fuel: {car.F
 Car: Hutchback, Engine type: V6, Fuel: Diesel
 Car: Sedan, Engine type: V8, Fuel: Petrol
 ```
-Classes and interfaces used in code:
-- [IFactoryItem](./../../GofPatterns/Creational/AbstractFactoryPattern/IFactoryItem.cs)
-- [IFactory](./../../GofPatterns/Creational/AbstractFactoryPattern/IFactory.cs)
-- [IBaseFactory](./../../GofPatterns/Creational/AbstractFactoryPattern/IBaseFactory.cs)
-- [BaseFactory](./../../GofPatterns/Creational/AbstractFactoryPattern/BaseFactory.cs)
 
 #### Full example
 
 [AbstractFactoryPatternExample](./../../GofConsoleApp/Examples/Creational/AbstractFactoryPattern/AbstractFactoryPatternExample.cs)
 
+### Classes and interfaces used in example:
+- [IFactoryItem](./../../GofPatterns/Creational/AbstractFactoryPattern/IFactoryItem.cs)
+- [IFactory](./../../GofPatterns/Creational/AbstractFactoryPattern/IFactory.cs)
+- [IBaseFactory](./../../GofPatterns/Creational/AbstractFactoryPattern/IBaseFactory.cs)
+- [BaseFactory](./../../GofPatterns/Creational/AbstractFactoryPattern/BaseFactory.cs)
 
 ## Benefits
 
