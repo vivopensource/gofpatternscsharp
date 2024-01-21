@@ -11,7 +11,7 @@ The solution offered in the package has to be implemented in the correct way, bu
 
 ### Install
 
-- Target frameworks: NET 6 (Common soon NET 4.5)
+- Target frameworks: Net 6, Net 4.5
 - Nuget package is available at: [GofPatterns](https://www.nuget.org/packages/GofPatterns/).
 
 ```bash
