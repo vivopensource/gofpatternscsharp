@@ -1,5 +1,4 @@
 using GofPatterns.Behavioral.StrategyPattern.Exception;
-using GofPatterns.Behavioral.StrategyPattern.Interfaces;
 
 namespace GofPatterns.Behavioral.StrategyPattern;
 

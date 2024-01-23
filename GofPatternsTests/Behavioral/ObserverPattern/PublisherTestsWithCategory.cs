@@ -1,7 +1,6 @@
 ﻿using GofConsoleApp.Examples.Behavioral.ObserverPattern.Components;
 using GofPatterns.Behavioral.ObserverPattern;
 using GofPatterns.Behavioral.ObserverPattern.Exceptions;
-using GofPatterns.Behavioral.ObserverPattern.Interfaces;
 using Moq;
 using NUnit.Framework;
 using static GofConsoleApp.Examples.Behavioral.ObserverPattern.Components.EnumTopic;

@@ -1,8 +1,4 @@
-﻿using GofPatterns.Behavioral.CommandPattern.Interfaces;
-using GofPatterns.Behavioral.CommandPattern.Interfaces.Commands;
-using GofPatterns.Behavioral.CommandPattern.Interfaces.Invokers;
-
-namespace GofPatterns.Behavioral.CommandPattern;
+﻿namespace GofPatterns.Behavioral.CommandPattern;
 
 /// <summary>
 /// Command invoker class for command pattern.

@@ -1,5 +1,4 @@
 ﻿using GofPatterns.Behavioral.StatePattern;
-using GofPatterns.Behavioral.StatePattern.Interfaces;
 
 namespace GofConsoleApp.Examples.Behavioral.StatePattern.DriveComponents;
 

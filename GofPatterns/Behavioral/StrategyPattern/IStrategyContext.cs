@@ -1,4 +1,4 @@
-namespace GofPatterns.Behavioral.StrategyPattern.Interfaces;
+namespace GofPatterns.Behavioral.StrategyPattern;
 
 /// <summary>
 ///     Strategy is a behavioral design pattern that turns a set of behaviors into objects

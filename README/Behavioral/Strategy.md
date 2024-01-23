@@ -156,6 +156,10 @@ Payment successful.
 
 [StrategyPatternPaymentExample](./../../GofConsoleApp/Examples/Behavioral/StrategyPattern/StrategyPatternPaymentExample.cs)
 
+### Classes and interfaces used in example:
+- [IStrategy](./../../GofPatterns/Behavioral/StrategyPattern/IStrategy.cs) - interface for strategies
+- [IStrategyContext](./../../GofPatterns/Behavioral/StrategyPattern/IStrategyContext.cs) - interface for strategy context
+- [StrategyContext](./../../GofPatterns/Behavioral/StrategyPattern/StrategyContext.cs) - class for strategy context
 
 ## Benefits
 - Strategy is one of the patterns included in the influential book Design Patterns by Gamma et al. that popularized the concept of using design patterns to describe how to design flexible and reusable object-oriented software.

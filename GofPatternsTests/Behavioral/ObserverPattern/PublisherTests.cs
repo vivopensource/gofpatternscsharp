@@ -1,6 +1,5 @@
 ﻿using GofConsoleApp.Examples.Behavioral.ObserverPattern.Components;
 using GofPatterns.Behavioral.ObserverPattern;
-using GofPatterns.Behavioral.ObserverPattern.Interfaces;
 using Moq;
 using NUnit.Framework;
 

@@ -1,5 +1,5 @@
 ﻿using Core.Console.Interfaces;
-using GofPatterns.Behavioral.ObserverPattern.Interfaces;
+using GofPatterns.Behavioral.ObserverPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.ObserverPattern.Components;
 

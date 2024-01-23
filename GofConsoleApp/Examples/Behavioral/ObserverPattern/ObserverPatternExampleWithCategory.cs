@@ -1,7 +1,6 @@
 ﻿using Core.Extensions;
 using GofConsoleApp.Examples.Behavioral.ObserverPattern.Components;
 using GofPatterns.Behavioral.ObserverPattern;
-using GofPatterns.Behavioral.ObserverPattern.Interfaces;
 
 namespace GofConsoleApp.Examples.Behavioral.ObserverPattern;
 

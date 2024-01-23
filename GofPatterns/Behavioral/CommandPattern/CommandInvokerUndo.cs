@@ -1,12 +1,7 @@
-﻿using GofPatterns.Behavioral.CommandPattern.Interfaces;
-using GofPatterns.Behavioral.CommandPattern.Interfaces.Commands;
-using GofPatterns.Behavioral.CommandPattern.Interfaces.Invokers;
-
-namespace GofPatterns.Behavioral.CommandPattern;
+﻿namespace GofPatterns.Behavioral.CommandPattern;
 
 // ReSharper disable once MemberCanBeProtected.Global
-
-public class CommandUndoInvoker<TCommandUndo, TCommandRequest> : ICommandUndoInvoker<TCommandUndo, TCommandRequest>
+public class CommandInvokerUndo<TCommandUndo, TCommandRequest> : ICommandInvokerUndo<TCommandUndo, TCommandRequest>
     where TCommandUndo : ICommandUndo<TCommandRequest> where TCommandRequest : ICommandRequest
 {
     private IList<CommandWrapper> commandWrappers = new List<CommandWrapper>();

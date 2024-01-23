@@ -5,6 +5,13 @@
 - This pattern is considered to be a behavioral pattern due to the way it can alter the program's running behavior.
 - It abstracts how objects cooperate, it manages their interaction. The mediator itself does not have any functionality, it only knows about the colleagues and their interaction.
 
+## Structure
+
+- It consists of mediator, colleague, and client (client does pattern execution).
+- Mediator: An abstract mediator class that defines the contract for concrete mediators.
+- Colleague: An abstract colleague class that defines the contract for concrete colleagues and also maintains a reference to the mediator.
+- Client: A client class that will use the mediator and the colleagues.
+
 ## Examples
 
 ```csharp
@@ -40,6 +47,13 @@ Listening 'Person1': Hello from Person2
 #### Full example
 
 [MediatorPatternExample](./../../GofConsoleApp/Examples/Behavioral/MediatorPattern/MediatorPatternExample.cs)
+
+### Classes and interfaces used in example:
+
+- [IMediator](./../../GofPatterns/Behavioral/MediatorPattern/IMediator.cs) - interface for mediators
+- [Mediator](./../../GofPatterns/Behavioral/MediatorPattern/Mediator.cs) - class for mediators
+- [IMediatorColleague](./../../GofPatterns/Behavioral/MediatorPattern/IMediatorColleague.cs) - interface for colleagues
+- [MediatorColleague](./../../GofPatterns/Behavioral/MediatorPattern/MediatorColleague.cs) - abstract class for colleagues
 
 ## Benefits
 

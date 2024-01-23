@@ -1,4 +1,4 @@
-﻿namespace GofPatterns.Behavioral.ObserverPattern.Interfaces;
+﻿namespace GofPatterns.Behavioral.ObserverPattern;
 
 /// <summary>
 /// Publisher (or Broadcaster) interface.

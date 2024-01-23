@@ -2,10 +2,11 @@
 
 ## Introduction
 
-Contains the implementation of design patterns that are used to solve common problems in software design.
-Takes away the burden of writing the underlying code for writing and executing the design patterns, and focus on the problem at hand,
-i.e. using them for writing a well designed and implemented software solution.
-The solution offered in the package has to be implemented in the correct way, but does not worry there are examples that shows how to do that.
+This repository focuses on providing the implementation of the design patterns mentioned by [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) to solve common problems in software design.
+It takes away the burden of writing the underlying code and executing the design patterns, and focus on the problem at hand,  i.e. using them straight away for creating a well designed and implemented software solution.
+
+The patterns are provided in the most standard way possible, so that they can be easily understood and implemented.
+There are examples provided for each of the design patterns, which can be used as a reference for understanding and implementing them (see  [Implementations](#Implementations) section).
 
 ## Usage
 

@@ -52,12 +52,12 @@ class Burger : IFoodRequest
 // Commands
 interface IFoodCommand : ICommand<IFoodRequest> { }
 
-class ServeFoodCommand : AbstractCommand<IFoodRequest>, IFoodCommand
+class ServeFoodCommand : Command<IFoodRequest>, IFoodCommand
 {
     public override void Execute() => Request!.Serve();
 }
 
-class DeliverFoodCommand : AbstractCommand<IFoodRequest>, IFoodCommand
+class DeliverFoodCommand : Command<IFoodRequest>, IFoodCommand
 {
     public override void Execute() => Request!.Pack();
 }
@@ -188,6 +188,16 @@ Erasing...
 
 [CommandPatternUndoOnlineShopExample](./../../GofConsoleApp/Examples/Behavioral/CommandPattern/CommandPatternUndoOnlineShopExample.cs)
 
+### Classes and interfaces used in example:
+- [ICommandRequest](./../../GofPatterns/Behavioral/CommandPattern/ICommandRequest.cs) - interface for requests (sent to command)
+- [ICommand](./../../GofPatterns/Behavioral/CommandPattern/ICommand.cs) - interface for commands
+- [ICommandUndo](./../../GofPatterns/Behavioral/CommandPattern/ICommandUndo.cs) - interface for commands with undo feature
+- [ICommandInvoker](./../../GofPatterns/Behavioral/CommandPattern/CommandInvoker.cs) - interface for command-invokers
+- [CommandInvoker](./../../GofPatterns/Behavioral/CommandPattern/CommandInvoker.cs) - class for command-invoker
+- [ICommandInvokerUndo](./../../GofPatterns/Behavioral/CommandPattern/ICommandInvokerUndo.cs) - interface for command-invokers with undo feature
+- [CommandInvokerUndo](./../../GofPatterns/Behavioral/CommandPattern/CommandInvokerUndo.cs) - class for command-invoker with undo feature
+- [Command](./../../GofPatterns/Behavioral/CommandPattern/Command.cs) - class for command
+- [CommandUndo](./../../GofPatterns/Behavioral/CommandPattern/CommandUndo.cs) - class for command with undo feature
 
 ## Benefits
 

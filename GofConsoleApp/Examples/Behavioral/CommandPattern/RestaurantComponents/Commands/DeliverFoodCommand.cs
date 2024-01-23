@@ -3,7 +3,7 @@ using GofPatterns.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.RestaurantComponents.Commands;
 
-internal class DeliverFoodCommand : AbstractCommand<IFoodRequest>, IFoodCommand
+internal class DeliverFoodCommand : Command<IFoodRequest>, IFoodCommand
 {
     public override void Execute()
     {

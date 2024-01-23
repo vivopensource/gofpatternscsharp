@@ -1,5 +1,4 @@
 ﻿using GofPatterns.Behavioral.ObserverPattern.Exceptions;
-using GofPatterns.Behavioral.ObserverPattern.Interfaces;
 
 namespace GofPatterns.Behavioral.ObserverPattern;
 

@@ -1,6 +1,4 @@
-﻿using GofPatterns.Behavioral.MediatorPattern.Interfaces;
-
-namespace GofPatterns.Behavioral.MediatorPattern;
+﻿namespace GofPatterns.Behavioral.MediatorPattern;
 
 public abstract class MediatorColleague<TColleagueIdentifier, TInput> : IMediatorColleague<TColleagueIdentifier, TInput>
     where TColleagueIdentifier : notnull

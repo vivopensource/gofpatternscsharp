@@ -1,6 +1,4 @@
-﻿using GofPatterns.Behavioral.StatePattern.Interfaces;
-
-namespace GofPatterns.Behavioral.StatePattern;
+﻿namespace GofPatterns.Behavioral.StatePattern;
 
 /// <summary>
 /// Context class for state pattern. 
