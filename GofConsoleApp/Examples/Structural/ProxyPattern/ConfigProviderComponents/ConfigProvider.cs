@@ -1,5 +1,5 @@
 ﻿using Core.Console.Interfaces;
-using GofPatterns.Structural.ProxyPattern.Interfaces;
+using GofPatterns.Structural.ProxyPattern;
 
 namespace GofConsoleApp.Examples.Structural.ProxyPattern.ConfigProviderComponents;
 

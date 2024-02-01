@@ -1,6 +1,4 @@
-﻿using GofPatterns.Structural.FlyweightPattern.Interfaces;
-
-namespace GofPatterns.Structural.FlyweightPattern;
+﻿namespace GofPatterns.Structural.FlyweightPattern;
 
 public class FlyweightMapping<TType, TInput>
 {

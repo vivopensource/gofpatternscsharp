@@ -72,6 +72,7 @@ Traveller 'John Doe' is travelling to: Success Str 1
 [AdapterPatternExample](./../../GofConsoleApp/Examples/Structural/AdapterPattern/AdapterPatternExample.cs)
 
 ### Classes and interfaces used in example:
+
 - [IAdapter](./../../GofPatterns/Structural/AdapterPattern/IAdapter.cs)
 
 ## Benefits

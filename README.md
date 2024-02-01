@@ -2,11 +2,17 @@
 
 ## Introduction
 
-This repository focuses on providing the implementation of the design patterns mentioned by [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) to solve common problems in software design.
-It takes away the burden of writing the underlying code and executing the design patterns, and focus on the problem at hand,  i.e. using them straight away for creating a well designed and implemented software solution.
+This repository provides the implementation of the design patterns mentioned 
+by the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) for C#,
+to solve common problems in software design.
+It takes away the burden of writing the underlying code for the design patterns, and focus on the problem at hand,
+i.e. using the patterns straight away for developing a well designed software solution.
 
-The patterns are provided in the most standard way possible, so that they can be easily understood and implemented.
-There are examples provided for each of the design patterns, which can be used as a reference for understanding and implementing them (see  [Implementations](#Implementations) section).
+It contains the ready-made classes and interfaces of the design patterns.
+They are written in the most standard way possible so that they can be easily understood and implemented.
+There are examples provided for each patterns provided by the library,
+and these example are referred for understanding and using them appropriately
+(see [Available Patterns](#available-patterns) section).
 
 ## Usage
 
@@ -21,10 +27,10 @@ dotnet add package GofPatterns
 
 ### Execute
 
-There are examples for each of the design patterns mentioned in [Implementations](#Implementations) section,
-just click on the link to the design pattern and it will take you to the respective page of the design pattern that provides information and example.
+There are examples for each of the design patterns mentioned in [Available Patterns](#available-patterns) section,
+just click on the link of the design pattern to go to the respective page of the design pattern that provides information and example.
 
-## Implementations
+## Available Patterns
 
 ### Behavioral Patterns
 
