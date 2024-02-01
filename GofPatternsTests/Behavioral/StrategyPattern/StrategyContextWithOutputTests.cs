@@ -1,7 +1,6 @@
 using GofConsoleApp.Examples.Behavioral.StrategyPattern.PaymentComponents.Strategies;
 using GofPatterns.Behavioral.StrategyPattern;
 using GofPatterns.Behavioral.StrategyPattern.Exception;
-using GofPatterns.Behavioral.StrategyPattern.Interfaces;
 using NUnit.Framework;
 
 namespace GofPatternsTests.Behavioral.StrategyPattern;

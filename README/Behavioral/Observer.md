@@ -92,8 +92,8 @@ John Doe received: Holiday season experience flight booking at all time high.
 [ObserverPatternExampleWithCategory](./../../GofConsoleApp/Examples/Behavioral/ObserverPattern/ObserverPatternExampleWithCategory.cs)
 
 ### Classes and interfaces used in example:
-- [ISubscriber](./../../GofPatterns/Behavioral/ObserverPattern/Interfaces/ISubscriber.cs) - interface for subscribers
-- [IPublisher](./../../GofPatterns/Behavioral/ObserverPattern/Interfaces/IPublisher.cs) - interface for publishers
+- [ISubscriber](./../../GofPatterns/Behavioral/ObserverPattern/ISubscriber.cs) - interface for subscribers
+- [IPublisher](./../../GofPatterns/Behavioral/ObserverPattern/IPublisher.cs) - interface for publishers
 - [Publisher](./../../GofPatterns/Behavioral/ObserverPattern/Publisher.cs) - class for publishers
 
 

@@ -2,10 +2,17 @@
 
 ## Introduction
 
-Contains the implementation of design patterns that are used to solve common problems in software design.
-Takes away the burden of writing the underlying code for writing and executing the design patterns, and focus on the problem at hand,
-i.e. using them for writing a well designed and implemented software solution.
-The solution offered in the package has to be implemented in the correct way, but does not worry there are examples that shows how to do that.
+This repository provides the implementation of the design patterns mentioned 
+by the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns) for C#,
+to solve common problems in software design.
+It takes away the burden of writing the underlying code for the design patterns, and focus on the problem at hand,
+i.e. using the patterns straight away for developing a well designed software solution.
+
+It contains the ready-made classes and interfaces of the design patterns.
+They are written in the most standard way possible so that they can be easily understood and implemented.
+There are examples provided for each patterns provided by the library,
+and these example are referred for understanding and using them appropriately
+(see [Available Patterns](#available-patterns) section).
 
 ## Usage
 
@@ -20,10 +27,10 @@ dotnet add package GofPatterns
 
 ### Execute
 
-There are examples for each of the design patterns mentioned in [Implementations](#Implementations) section,
-just click on the link to the design pattern and it will take you to the respective page of the design pattern that provides information and example.
+There are examples for each of the design patterns mentioned in [Available Patterns](#available-patterns) section,
+just click on the link of the design pattern to go to the respective page of the design pattern that provides information and example.
 
-## Implementations
+## Available Patterns
 
 ### Behavioral Patterns
 

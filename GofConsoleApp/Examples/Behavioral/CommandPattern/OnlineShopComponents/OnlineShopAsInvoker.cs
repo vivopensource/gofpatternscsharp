@@ -1,33 +1,32 @@
 ﻿using Core.Console.Interfaces;
 using GofPatterns.Behavioral.CommandPattern;
-using GofPatterns.Behavioral.CommandPattern.Interfaces.Invokers;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.OnlineShopComponents;
 
 internal class OnlineShopAsInvoker
 {
     private readonly IConsoleLogger logger;
-    private readonly ICommandUndoInvoker<TransactionCommand, ProductRequest> commandUndoInvoker;
+    private readonly ICommandInvokerUndo<TransactionCommand, ProductRequest> commandInvokerUndo;
 
     public OnlineShopAsInvoker(IConsoleLogger logger)
     {
         this.logger = logger;
-        commandUndoInvoker = new CommandUndoInvoker<TransactionCommand, ProductRequest>();
+        commandInvokerUndo = new CommandInvokerUndo<TransactionCommand, ProductRequest>();
     }
 
     public void PurchaseProduct(string productName)
     {
         var productRequest = new ProductRequest(logger, productName); // Request
         var transactionCommand = new TransactionCommand(productRequest); // Command
-        commandUndoInvoker.AddCommand(transactionCommand, false);
+        commandInvokerUndo.AddCommand(transactionCommand, false);
     }
 
     public void ReturnProduct(string productName)
     {
         var productRequest = new ProductRequest(logger, productName); // Request
         var transactionCommand = new TransactionCommand(productRequest); // Command
-        commandUndoInvoker.AddCommand(transactionCommand, true);
+        commandInvokerUndo.AddCommand(transactionCommand, true);
     }
 
-    public int CheckOut() => commandUndoInvoker.ExecuteCommands();
+    public int CheckOut() => commandInvokerUndo.ExecuteCommands();
 }

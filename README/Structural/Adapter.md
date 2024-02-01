@@ -28,18 +28,10 @@ interface IEmployee
 // Adaptee implementation
 class Employee : IEmployee
 {
-    public Employee(string id, string firstName, string lastName, string address)
-    {
-        Id = id;
-        FirstName = firstName;
-        LastName = lastName;
-        Address = address;
-    }
-
-    public string Id { get; }
-    public string FirstName { get; }
-    public string LastName { get; }
-    public string Address { get; }
+    public string Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Address { get; set; }
 }
 
 // Target
@@ -49,7 +41,7 @@ interface ITraveller
     string Address { get; }
 }
 
-// Adapter
+// Adapter -> (IAdapter<Adaptee, Target>)
 class EmployeeTravellerAdapter : IAdapter<IEmployee, ITraveller>, ITraveller
 {
     public EmployeeTravellerAdapter(IEmployee adaptee)
@@ -63,7 +55,7 @@ class EmployeeTravellerAdapter : IAdapter<IEmployee, ITraveller>, ITraveller
 }
 
 // Pattern execution
-IEmployee employee = new Employee("1", "John", "Doe", "Success Lane 1");
+IEmployee employee = new Employee { Id = "1", FirstName = "John", LastName = "Doe", Address = "Success Str 1" };
 Console.WriteLine($"Employee: {employee.Id}, {employee.FirstName}, {employee.LastName}, {employee.Address}");
 
 ITraveller sutAdapter = new EmployeeTravellerAdapter(employee);
@@ -72,13 +64,16 @@ Console.WriteLine($"Traveller '{sutAdapter.FullName}' is travelling to: {sutAdap
 
 ```
 // Output
-Employee: 1, John, Doe, Success Lane 1
-Traveller 'John Doe' is travelling to: Success Lane 1
+Employee: 1, John, Doe, Success Str 1
+Traveller 'John Doe' is travelling to: Success Str 1
 ```
 #### Full example
 
 [AdapterPatternExample](./../../GofConsoleApp/Examples/Structural/AdapterPattern/AdapterPatternExample.cs)
 
+### Classes and interfaces used in example:
+
+- [IAdapter](./../../GofPatterns/Structural/AdapterPattern/IAdapter.cs)
 
 ## Benefits
 

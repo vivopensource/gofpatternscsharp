@@ -1,5 +1,4 @@
 ﻿using GofPatterns.Core;
-using GofPatterns.Structural.ProxyPattern.Interfaces;
 
 namespace GofPatterns.Structural.ProxyPattern;
 

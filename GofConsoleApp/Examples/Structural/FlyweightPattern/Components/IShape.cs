@@ -1,6 +1,6 @@
 ﻿using Core.Console.Interfaces;
 using Core.Extensions;
-using GofPatterns.Structural.FlyweightPattern.Interfaces;
+using GofPatterns.Structural.FlyweightPattern;
 
 namespace GofConsoleApp.Examples.Structural.FlyweightPattern.Components;
 

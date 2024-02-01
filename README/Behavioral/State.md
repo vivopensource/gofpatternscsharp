@@ -113,6 +113,10 @@ Driving mode: SportsPlus
 
 [StatePatternDriveExample](./../../GofConsoleApp/Examples/Behavioral/StatePattern/StatePatternDriveExample.cs)
 
+### Classes and interfaces used in example:
+- [IState](./../../GofPatterns/Behavioral/StatePattern/IState.cs) - interface for states
+- [IStateContext](./../../GofPatterns/Behavioral/StatePattern/IStateContext.cs) - interface for state context
+- [StateContext](./../../GofPatterns/Behavioral/StatePattern/StateContext.cs) - class for state context 
 
 ## Benefits
 - It localizes state-specific behavior and partitions behavior for different states.

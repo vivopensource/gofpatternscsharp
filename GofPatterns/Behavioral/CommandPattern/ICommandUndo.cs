@@ -1,4 +1,4 @@
-namespace GofPatterns.Behavioral.CommandPattern.Interfaces.Commands;
+namespace GofPatterns.Behavioral.CommandPattern;
 
 public interface ICommandUndo<in TRequest> : ICommand<TRequest> where TRequest : ICommandRequest
 {

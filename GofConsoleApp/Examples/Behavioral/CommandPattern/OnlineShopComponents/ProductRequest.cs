@@ -1,5 +1,5 @@
 ﻿using Core.Console.Interfaces;
-using GofPatterns.Behavioral.CommandPattern.Interfaces;
+using GofPatterns.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.OnlineShopComponents;
 

@@ -88,11 +88,19 @@ Drawing circle at co-ordinate => X1:9, X2:10, Y1:11, Y2:12
 Drawing square at co-ordinate => X1:5, X2:6, Y1:7, Y2:8
 Is circleObj1 same as circleObj2? True
 Is squareObj1 same as squareObj2? True
-
 ```
+
 #### Full example
 
 [FlyweightPatternExample](./../../GofConsoleApp/Examples/Structural/FlyweightPattern/FlyweightPatternExample.cs)
+
+
+### Classes and interfaces used in example:
+
+- [IFlyweight](./../../GofPatterns/Structural/FlyweightPattern/IFlyweight.cs)
+- [IFlyweightFactory](./../../GofPatterns/Structural/FlyweightPattern/IFlyweightFactory.cs)
+- [FlyweightFactory](./../../GofPatterns/Structural/FlyweightPattern/FlyweightFactory.cs)
+- [FlyweightMapping](./../../GofPatterns/Structural/FlyweightPattern/FlyweightMapping.cs)
 
 ## Benefits
 

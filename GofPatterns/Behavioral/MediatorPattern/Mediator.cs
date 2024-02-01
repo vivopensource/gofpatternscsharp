@@ -1,8 +1,6 @@
-﻿using GofPatterns.Behavioral.MediatorPattern.Interfaces;
+﻿namespace GofPatterns.Behavioral.MediatorPattern;
 
-namespace GofPatterns.Behavioral.MediatorPattern;
-
-public class Mediator<TColleagueIdentifier, TInput> : ICommunicator<TColleagueIdentifier, TInput> where TColleagueIdentifier : notnull
+public class Mediator<TColleagueIdentifier, TInput> : IMediator<TColleagueIdentifier, TInput> where TColleagueIdentifier : notnull
 {
     private readonly Dictionary<TColleagueIdentifier, IMediatorColleague<TColleagueIdentifier, TInput>> colleagueObjects = new();
 

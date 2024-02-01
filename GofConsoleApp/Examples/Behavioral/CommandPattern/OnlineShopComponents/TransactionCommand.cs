@@ -2,7 +2,7 @@
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.OnlineShopComponents;
 
-internal class TransactionCommand : AbstractCommandUndo<ProductRequest>
+internal class TransactionCommand : CommandUndo<ProductRequest>
 {
     public TransactionCommand(ProductRequest productRequest)
     {

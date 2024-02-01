@@ -1,6 +1,4 @@
-﻿using GofPatterns.Structural.ProxyPattern.Interfaces;
-
-namespace GofPatterns.Structural.ProxyPattern;
+﻿namespace GofPatterns.Structural.ProxyPattern;
 
 /// <summary>
 /// Proxy Pattern implementation with bounded access.
