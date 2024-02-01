@@ -1,5 +1,5 @@
 ﻿using GofConsoleApp.Examples.Behavioral.CommandPattern.RestaurantComponents.Requests;
-using GofPatterns.Behavioral.CommandPattern.Interfaces.Commands;
+using GofPatterns.Behavioral.CommandPattern;
 
 namespace GofConsoleApp.Examples.Behavioral.CommandPattern.RestaurantComponents.Commands;
 

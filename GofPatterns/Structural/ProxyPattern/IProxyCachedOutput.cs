@@ -1,4 +1,4 @@
-﻿namespace GofPatterns.Structural.ProxyPattern.Interfaces;
+﻿namespace GofPatterns.Structural.ProxyPattern;
 
 public interface IProxyCachedOutput<TInput, TOutput> : IProxyComponent<TInput, TOutput> where TInput : notnull
 {

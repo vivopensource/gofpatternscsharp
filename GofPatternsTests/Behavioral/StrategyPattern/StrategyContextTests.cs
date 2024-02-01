@@ -2,7 +2,6 @@ using Core.Console.Interfaces;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents.Strategies;
 using GofPatterns.Behavioral.StrategyPattern;
 using GofPatterns.Behavioral.StrategyPattern.Exception;
-using GofPatterns.Behavioral.StrategyPattern.Interfaces;
 using Moq;
 using NUnit.Framework;
 

@@ -64,6 +64,19 @@ orchestrator.Execute(input);
 
 [CorPatternComplexExample](./../../GofConsoleApp/Examples/Behavioral/CorPattern/CorPatternComplexExample.cs)
 
+### Classes and interfaces used in example:
+- [IResponsibility](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Responsibilities/IResponsibility.cs) - interface for responsibilities
+- [IResponsibilityChainOrchestrator](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Orchestrators/Simple/IResponsibilityChainOrchestrator.cs) - interface for simple orchestrators
+- [ResponsibilityChainOrchestrator](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Orchestrators/Simple/ResponsibilityChainOrchestrator.cs) - class for simple orchestrator
+- [IResponsibilityChainOrchestrator](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Orchestrators/Complex/IResponsibilityChainOrchestrator.cs) - interface for Complex orchestrators
+- [ResponsibilityChainOrchestrator](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Orchestrators/Complex/ResponsibilityChainOrchestrator.cs) - class for Complex orchestrator
+- [ChainOrchestratorHandleOptions](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Orchestrators/Complex/Enums/ChainOrchestratorHandleOptions.cs) - enum for complex orchestrator to handle responsibilities
+- [ChainOrchestratorInvokeNextOptions](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Orchestrators/Complex/Enums/ChainOrchestratorInvokeNextOptions.cs) - enum for complex orchestrator to invoke next responsibilities
+
+
+### Useful classes and interfaces:
+- [Responsibility](./../../GofPatterns/Behavioral/ChainOfResponsibilityPattern/Responsibilities/Implementations/Responsibility.cs) - class for responsibility
+
 
 ## Benefits
 - An object-oriented linked list with recursive traversal.

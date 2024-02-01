@@ -1,4 +1,4 @@
-﻿namespace GofPatterns.Behavioral.CommandPattern.Interfaces.Commands;
+﻿namespace GofPatterns.Behavioral.CommandPattern;
 
 /// <summary>
 /// Base Command interface for command pattern.

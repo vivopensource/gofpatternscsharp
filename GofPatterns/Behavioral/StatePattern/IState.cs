@@ -1,4 +1,4 @@
-﻿namespace GofPatterns.Behavioral.StatePattern.Interfaces;
+﻿namespace GofPatterns.Behavioral.StatePattern;
 
 /// <summary>
 /// Base State interface for state pattern. 

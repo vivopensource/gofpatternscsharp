@@ -1,7 +1,6 @@
 ﻿using Core.Console;
 using GofConsoleApp.Examples.Behavioral.MediatorPattern;
 using GofPatterns.Behavioral.MediatorPattern;
-using GofPatterns.Behavioral.MediatorPattern.Interfaces;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;

@@ -1,6 +1,6 @@
 using GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents;
 using GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents.Strategies;
-using GofPatterns.Behavioral.StrategyPattern.Interfaces;
+using GofPatterns.Behavioral.StrategyPattern;
 using static GofConsoleApp.Examples.Behavioral.StrategyPattern.SenderComponents.EnumSendingOptions;
 
 namespace GofConsoleApp.Examples.Behavioral.StrategyPattern;

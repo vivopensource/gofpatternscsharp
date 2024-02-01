@@ -125,6 +125,10 @@ Letter sent: Hello World!
 
 [DecoratorPatternExampleInput](./../../GofConsoleApp/Examples/Structural/DecoratorPattern/DecoratorPatternExampleInput.cs)
 
+### Classes and interfaces used in example:
+
+- [IDecorator](./../../GofPatterns/Structural/DecoratorPattern/IDecorator.cs)
+- [Decorator](./../../GofPatterns/Structural/DecoratorPattern/Decorator.cs)
 
 ## Benefits
 

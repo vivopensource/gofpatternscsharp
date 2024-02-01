@@ -1,4 +1,4 @@
-﻿namespace GofPatterns.Structural.ProxyPattern.Interfaces;
+﻿namespace GofPatterns.Structural.ProxyPattern;
 
 public interface IProxyBoundedAccess<TInput> : IProxyComponent<TInput> where TInput : notnull
 {

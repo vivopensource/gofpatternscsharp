@@ -1,5 +1,4 @@
 ﻿using GofPatterns.Structural.ProxyPattern;
-using GofPatterns.Structural.ProxyPattern.Interfaces;
 using NUnit.Framework;
 
 namespace GofPatternsTests.Structural.ProxyPattern;

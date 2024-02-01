@@ -2,7 +2,6 @@
 using GofConsoleApp.Examples.Structural.FlyweightPattern;
 using GofConsoleApp.Examples.Structural.FlyweightPattern.Components;
 using GofPatterns.Structural.FlyweightPattern;
-using GofPatterns.Structural.FlyweightPattern.Interfaces;
 using Moq;
 using NUnit.Framework;
 
