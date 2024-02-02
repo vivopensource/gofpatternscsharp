@@ -6,7 +6,10 @@
 internal interface IEmployee
 {
     string Id { get; }
+
     string FirstName { get; }
+
     string LastName { get; }
+
     string Address { get; }
 }

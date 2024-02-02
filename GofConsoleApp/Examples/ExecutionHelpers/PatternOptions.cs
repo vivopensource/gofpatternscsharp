@@ -8,6 +8,7 @@ using GofConsoleApp.Examples.Creational.AbstractFactoryPattern;
 using GofConsoleApp.Examples.Creational.BuilderPattern;
 using GofConsoleApp.Examples.Creational.FactoryPattern;
 using GofConsoleApp.Examples.Structural.AdapterPattern;
+using GofConsoleApp.Examples.Structural.BridgePattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
 using GofConsoleApp.Examples.Structural.FlyweightPattern;
 using GofConsoleApp.Examples.Structural.ProxyPattern;
@@ -37,6 +38,7 @@ internal static class PatternOptions
     internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
+    internal const string BridgePatterOption = "25";
 
     internal const string FactoryOption = "31";
     internal const string AbstractFactoryOption = "32";
@@ -126,6 +128,10 @@ internal static class PatternOptions
         {
             StrategyPatternOptionPayment,
             new PatternExampleMap("Strategy Pattern >> Payment Example", new StrategyPatternPaymentExample())
+        },
+        {
+            BridgePatterOption,
+            new PatternExampleMap("Bridge Pattern", new BridgePatternExample())
         },
 
         // Creational Patterns

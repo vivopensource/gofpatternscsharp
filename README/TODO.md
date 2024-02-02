@@ -5,11 +5,9 @@
 - Interpreter
 - Iterator
 - Memento
-- Observer
 - Template Method
 - Visitor
 
 #### Structural
-- Bridge
 - Composite
 - Facade

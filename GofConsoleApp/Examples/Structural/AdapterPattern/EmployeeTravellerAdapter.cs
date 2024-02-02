@@ -4,9 +4,9 @@ using GofPatterns.Structural.AdapterPattern;
 
 namespace GofConsoleApp.Examples.Structural.AdapterPattern;
 
-internal class EmployeeTravellerAdapter : IAdapter<IEmployee, ITraveller>, ITraveller
+internal class EmployeeTravellerAdapter : IAdapter<Adaptee.IEmployee, ITraveller>, ITraveller
 {
-    public EmployeeTravellerAdapter(IEmployee adaptee)
+    public EmployeeTravellerAdapter(Adaptee.IEmployee adaptee)
     {
         FullName = $"{adaptee.FirstName} {adaptee.LastName}";
         Address = adaptee.Address;
