@@ -13,10 +13,9 @@
 
 ## Examples
 
-### Components
+### Data
 
 ```csharp
-// Data
 class Employee
 {
     public Employee(string id, string firstName, string lastName)
@@ -32,105 +31,99 @@ class Employee
 }
 ```
 
-### 1. Implement pattern in most basic way
+### 2. Using multiple implementations
 
 ```csharp
 // Abstraction in bridge pattern
-interface IManagement
-    : IBridgeAbstraction<IProcessEmployee> // Used as placeholder only
-{
-    void Manage(Employee emp);
-}
+interface IManagement : IBridgeAbstractionsImpl<IProcess, Employee> { }
 
 // Refined abstraction - Event management
-class EventManagement : IManagement
+class EventManagement : BridgeAbstractionsImpl<IProcess, Employee>, IManagement
 {
-    private readonly IProcessEmployee impl;
-
-    public EventManagement(string name, IProcessEmployee impl)
-    {
-        this.impl = impl;
-        Console.WriteLine($"Managing event for: {name}.");
-    }
-
-    public void Manage(Employee emp)
-    {
-        impl.Process(emp);
-    }
+    public EventManagement(string purpose) =>
+        Console.WriteLine($"Managing event for: {purpose}.");
 }
 
 // Refined abstraction - Travel management
-class TravelManagement : IManagement
+class TravelManagement : BridgeAbstractionsImpl<IProcess, Employee>, IManagement
 {
-    private readonly IProcessEmployee impl;
-
-    public TravelManagement(string name, IProcessEmployee impl)
-    {
-        this.impl = impl;
-        Console.WriteLine($"Managing travel for: {name}.");
-    }
-
-    public void Manage(Employee emp)
-    {
-        impl.Process(emp);
-    }
+    public TravelManagement(string purpose) =>
+        Console.WriteLine($"Managing travel for: {purpose}.");
 }
 
 // Implementor for bridge pattern
-interface IProcessEmployee
-    : IBridgeImplementation  // Used as placeholder only
-{
-    void Process(Employee emp);
-}
+interface IProcess : IBridgeImplementationImpl<Employee> { }
 
 // Concrete implementor - Register
-class Register : IProcessEmployee
+class Registration : IProcess
 {
-    public void Process(Employee emp) =>
-        Console.WriteLine($"Registering employee: {emp.Id} [{emp.FirstName} {emp.LastName}].");
+    public void Execute(Employee emp) =>
+        Console.WriteLine($" - Registering employee: {emp.Id} [{emp.FirstName} {emp.LastName}].");
 }
 
 // Concrete implementor - Task assignment
-class TaskAssignment : IProcessEmployee
+class TaskAssignment : IProcess
 {
     private readonly string name;
 
     public TaskAssignment(string name) => this.name = name;
 
-    public void Process(Employee emp) =>
-        Console.WriteLine($"Assigning employee {emp.Id} [{emp.FirstName} {emp.LastName}] with task [{name}].");
+    public void Execute(Employee emp) =>
+        Console.WriteLine($" - Assigning employee {emp.Id} [{emp.FirstName} {emp.LastName}] with task [{name}].");
 }
 
 // Pattern execution
 var emp1 = new Employee("1", "Jane", "Doe");
 var emp2 = new Employee("2", "John", "Doe");
 
-IProcessEmployee register = new Register();
-IManagement yearlyEvent = new EventManagement("Yearly Event", register);
-yearlyEvent.Manage(emp1);
-yearlyEvent.Manage(emp2);
+IProcess registerEvent = new Registration();
+IProcess taskPresentation = new TaskAssignment("Goals presentation");
 
-IProcessEmployee taskSalesPitch = new TaskAssignment("Sales pitch");
-IManagement salesTravel = new TravelManagement("Sales", taskSalesPitch);
-salesTravel.Manage(emp1);
+IManagement annualConference1 = new EventManagement("Annual conference");
+annualConference1.Add(registerEvent, taskPresentation);
+annualConference1.Execute(emp1);
 
-IProcessEmployee taskSystemUpgrade = new TaskAssignment("System upgrade");
-IManagement maintenanceTravel = new TravelManagement("Maintenance", taskSystemUpgrade);
-maintenanceTravel.Manage(emp2);
+IManagement annualConference2 = new EventManagement("Annual conference");
+annualConference2.Add(registerEvent);
+annualConference2.Execute(emp2);
+
+IProcess taskSalesPitch = new TaskAssignment("Sales pitch");
+IManagement salesTravel = new TravelManagement("Sales");
+salesTravel.Add(taskSalesPitch);
+salesTravel.Execute(emp1);
+
+IProcess registerTravel = new Registration();
+IProcess taskSystemUpgrade = new TaskAssignment("System upgrade");
+IManagement maintenanceTravel = new TravelManagement("Maintenance");
+maintenanceTravel.Add(registerTravel, taskSystemUpgrade);
+maintenanceTravel.Execute(emp2);
 ```
 
 ```
 // Output
-Managing event for: Yearly Event.
-Registering employee: 1 [Jane Doe].
-Registering employee: 2 [John Doe].
+Managing event for: Annual conference.
+ - Registering employee: 1 [Jane Doe].
+ - Assigning employee 1 [Jane Doe] with task [Goals presentation].
+Managing event for: Annual conference.
+ - Registering employee: 2 [John Doe].
 Managing travel for: Sales.
-Assigning employee 1 [Jane Doe] with task [Sales pitch].
+ - Assigning employee 1 [Jane Doe] with task [Sales pitch].
 Managing travel for: Maintenance.
-Assigning employee 2 [John Doe] with task [System upgrade].
+ - Registering employee: 2 [John Doe].
+ - Assigning employee 2 [John Doe] with task [System upgrade].
 ```
 
-### Classes and interfaces used in example:
+#### Full example
+
+[BridgePatternExample](./../../GofConsoleApp/Examples/Structural/BridgePattern/BridgePatternExample.cs)
+
+
+### 3. Using marker interfaces
+
+[Bridge Pattern with Marker](Bridge/Bridge_Marker.md)
+
+
+### Classes and interfaces used in examples:
 
 - [IBridgeAbstraction](./../../GofPatterns/Structural/BridgePattern/IBridgeAbstraction.cs)
 - [IBridgeImplementation](./../../GofPatterns/Structural/BridgePattern/IBridgeImplementation.cs)

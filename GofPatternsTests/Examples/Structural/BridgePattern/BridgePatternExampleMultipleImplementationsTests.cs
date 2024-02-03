@@ -5,15 +5,15 @@ using NUnit.Framework;
 namespace GofPatternsTests.Examples.Structural.BridgePattern;
 
 [TestFixture]
-[TestOf(typeof(BridgePatternExample))]
-internal class BridgePatternExampleTests : BaseTest
+[TestOf(typeof(BridgePatternExampleMultipleImplementations))]
+internal class BridgePatternExampleMultipleImplementationsTests : BaseTest
 {
     [Test]
     public void Execute_PerformsSuccessfulExampleRun_ReturnsTrue()
     {
         // arrange
-        const int expectedNumberOfLogs = 7;
-        var sut = new BridgePatternExample();
+        const int expectedNumberOfLogs = 10;
+        var sut = new BridgePatternExampleMultipleImplementations();
 
         // act
         var actualResult = sut.Execute(MockConsoleLogger.Object, MockInputReader.Object);

@@ -38,7 +38,8 @@ internal static class PatternOptions
     internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
-    internal const string BridgePatterOption = "25";
+    internal const string BridgePatterOptionMultipleImplementations = "25.2";
+    internal const string BridgePatterOptionMarker = "25.3";
 
     internal const string FactoryOption = "31";
     internal const string AbstractFactoryOption = "32";
@@ -86,7 +87,8 @@ internal static class PatternOptions
         },
         {
             ObserverPatternOptionWithType,
-            new PatternExampleMap("Observer Pattern >> News Publisher with type", new ObserverPatternExampleWithCategory())
+            new PatternExampleMap("Observer Pattern >> News Publisher with type",
+                new ObserverPatternExampleWithCategory())
         },
 
         // Behavioral Patterns
@@ -130,8 +132,13 @@ internal static class PatternOptions
             new PatternExampleMap("Strategy Pattern >> Payment Example", new StrategyPatternPaymentExample())
         },
         {
-            BridgePatterOption,
-            new PatternExampleMap("Bridge Pattern", new BridgePatternExample())
+            BridgePatterOptionMultipleImplementations,
+            new PatternExampleMap("Bridge Pattern >> Multiple Implementations",
+                new BridgePatternExampleMultipleImplementations())
+        },
+        {
+            BridgePatterOptionMarker,
+            new PatternExampleMap("Bridge Pattern >> With Marker", new BridgePatternExampleWithMarker())
         },
 
         // Creational Patterns

@@ -1,25 +1,26 @@
 ﻿using Core.Console.Interfaces;
 using GofPatterns.Structural.BridgePattern;
 
-namespace GofConsoleApp.Examples.Structural.BridgePattern;
+namespace GofConsoleApp.Examples.Structural.BridgePattern.Marker;
 
 // Implementor for bridge pattern
-internal interface IProcessEmployee : IBridgeImplementation
+internal interface IProcess 
+    : IBridgeImplementation // (Marker)
 {
     void Process(Employee emp, IConsoleLogger logger);
 }
 
 // Concrete implementor - Register
-internal class Register : IProcessEmployee
+internal class Registration : IProcess
 {
     public void Process(Employee emp, IConsoleLogger logger)
     {
-        logger.Log($"Registering employee: {emp.Id} [{emp.FirstName} {emp.LastName}].");
+        logger.Log($" - Registering employee: {emp.Id} [{emp.FirstName} {emp.LastName}].");
     }
 }
 
 // Concrete implementor - Task assignment
-internal class TaskAssignment : IProcessEmployee
+internal class TaskAssignment : IProcess
 {
     private readonly string name;
 
@@ -30,6 +31,6 @@ internal class TaskAssignment : IProcessEmployee
 
     public void Process(Employee emp, IConsoleLogger logger)
     {
-        logger.Log($"Assigning employee {emp.Id} [{emp.FirstName} {emp.LastName}] with task [{name}].");
+        logger.Log($" - Assigning employee {emp.Id} [{emp.FirstName} {emp.LastName}] with task [{name}].");
     }
 }
