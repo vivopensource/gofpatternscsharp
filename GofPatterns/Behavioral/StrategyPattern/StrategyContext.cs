@@ -2,6 +2,10 @@ using GofPatterns.Behavioral.StrategyPattern.Exception;
 
 namespace GofPatterns.Behavioral.StrategyPattern;
 
+/// <summary>
+/// Context class that defines the contract for the strategy pattern.
+/// </summary>
+/// <typeparam name="TInput"></typeparam>
 public class StrategyContext<TInput> : IStrategyContext<TInput>
 {
     public StrategyContext() { }
@@ -27,6 +31,12 @@ public class StrategyContext<TInput> : IStrategyContext<TInput>
     public IStrategy<TInput>? Strategy { private set; get; }
 }
 
+/// <summary>
+/// Context class that defines the contract for the strategy pattern.
+/// It is used when the strategy pattern is used to return a value.
+/// </summary>
+/// <typeparam name="TInput"></typeparam>
+/// <typeparam name="TOutput"></typeparam>
 public class StrategyContext<TInput, TOutput> : IStrategyContext<TInput, TOutput>
 {
     public StrategyContext() { }

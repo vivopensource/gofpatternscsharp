@@ -29,7 +29,10 @@ public class StateContext<TContext> : IStateContext<TContext> where TContext : I
 }
 
 /// <summary>
-/// <inheritdoc cref="StateContext{TContext}" />
+/// Context class for state pattern. 
+/// It is responsible for holding the current state, executing the state, and changing the state.
+/// It can be directly used as a context class, or inherited by other classes to make them context.
+/// It returns a value after execution.
 /// </summary>
 /// <typeparam name="TContext">IStateContext</typeparam>
 /// <typeparam name="TOut">Output</typeparam>
