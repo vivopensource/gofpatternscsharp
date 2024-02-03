@@ -3,13 +3,13 @@ using GofPatterns.Structural.BridgePattern;
 
 namespace GofConsoleApp.Examples.Structural.BridgePattern;
 
-// Implementations for bridge pattern
+// Implementor for bridge pattern
 internal interface IProcessEmployee : IBridgeImplementation
 {
     void Process(Employee emp, IConsoleLogger logger);
 }
 
-// Bridge pattern - Concrete implementation - Register
+// Concrete implementor - Register
 internal class Register : IProcessEmployee
 {
     public void Process(Employee emp, IConsoleLogger logger)
@@ -18,7 +18,7 @@ internal class Register : IProcessEmployee
     }
 }
 
-// Bridge pattern - Concrete implementation - Task assignment
+// Concrete implementor - Task assignment
 internal class TaskAssignment : IProcessEmployee
 {
     private readonly string name;

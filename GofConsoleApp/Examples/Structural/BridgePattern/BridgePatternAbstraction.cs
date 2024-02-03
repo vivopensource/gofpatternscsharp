@@ -3,13 +3,13 @@ using GofPatterns.Structural.BridgePattern;
 
 namespace GofConsoleApp.Examples.Structural.BridgePattern;
 
-// Abstractions in bridge pattern
+// Abstraction in bridge pattern
 internal interface IManagement : IBridgeAbstraction<IProcessEmployee>
 {
     void Manage(Employee emp);
 }
 
-// Bridge pattern - Refine abstraction - Event management
+// Refined abstraction - Event management
 internal class EventManagement : IManagement
 {
     private readonly IProcessEmployee impl;
@@ -29,7 +29,7 @@ internal class EventManagement : IManagement
     }
 }
 
-// Bridge pattern - Refine abstraction - Travel management
+// Refined abstraction - Travel management
 internal class TravelManagement : IManagement
 {
     private readonly IProcessEmployee impl;
