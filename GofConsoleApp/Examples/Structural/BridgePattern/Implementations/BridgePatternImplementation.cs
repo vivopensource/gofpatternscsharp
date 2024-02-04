@@ -1,7 +1,7 @@
 ﻿using Core.Console.Interfaces;
 using GofPatterns.Structural.BridgePattern.Implementations;
 
-namespace GofConsoleApp.Examples.Structural.BridgePattern.MultipleImplementations;
+namespace GofConsoleApp.Examples.Structural.BridgePattern.Implementations;
 
 // Implementor for bridge pattern
 internal interface IProcess : IBridgeImplementationImpl<Employee> { }

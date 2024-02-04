@@ -38,6 +38,7 @@ internal static class PatternOptions
     internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
+    internal const string BridgePatterOptionSingleImplementations = "25";
     internal const string BridgePatterOptionMultipleImplementations = "25.2";
     internal const string BridgePatterOptionMarker = "25.3";
 
@@ -132,8 +133,13 @@ internal static class PatternOptions
             new PatternExampleMap("Strategy Pattern >> Payment Example", new StrategyPatternPaymentExample())
         },
         {
+            BridgePatterOptionSingleImplementations,
+            new PatternExampleMap("Bridge Pattern >> With Single Implementation",
+                new BridgePatternExampleSingleImplementations())
+        },
+        {
             BridgePatterOptionMultipleImplementations,
-            new PatternExampleMap("Bridge Pattern >> Multiple Implementations",
+            new PatternExampleMap("Bridge Pattern >> With Multiple Implementations",
                 new BridgePatternExampleMultipleImplementations())
         },
         {

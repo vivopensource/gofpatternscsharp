@@ -1,4 +1,5 @@
-﻿## Using Bridge pattern with Marker interface
+﻿## Bridge pattern with single implementation
+
 
 ### Data
 
@@ -18,55 +19,34 @@ class Employee
 }
 ```
 
-### Example using Marker interface
+
+### 1. With parameter input
 
 ```csharp
 // Abstraction in bridge pattern
-interface IManagement 
-    : IBridgeAbstraction<IProcess> // (Marker)
-{
-    void Manage(Employee emp);
-}
+interface IManagement : IBridgeAbstractionImpl<IProcess, Employee> { }
 
 // Refined abstraction - Event management
-class EventManagement : IManagement
+class EventManagement : BridgeAbstractionImpl<IProcess, Employee>, IManagement
 {
-    private readonly List<IProcess> impls;
-
-    public EventManagement(string purpose, params IProcess[] impls)
-    {
-        this.impls = new List<IProcess>(impls);
+    public EventManagement(string purpose) =>
         Console.WriteLine($"Managing event for: {purpose}.");
-    }
-
-    public void Manage(Employee emp) => impls.ForEach(impl => impl.Process(emp));
 }
 
 // Refined abstraction - Travel management
-class TravelManagement : IManagement
+class TravelManagement : BridgeAbstractionImpl<IProcess, Employee>, IManagement
 {
-    private readonly List<IProcess> impls;
-
-    public TravelManagement(string purpose, params IProcess[] impls)
-    {
-        this.impls = new List<IProcess>(impls);
+    public TravelManagement(string purpose) =>
         Console.WriteLine($"Managing travel for: {purpose}.");
-    }
-
-    public void Manage(Employee emp) => impls.ForEach(impl => impl.Process(emp));
 }
 
 // Implementor for bridge pattern
-interface IProcess 
-    : IBridgeImplementation // (Marker)
-{
-    void Process(Employee emp);
-}
+interface IProcess : IBridgeImplementationImpl<Employee> { }
 
 // Concrete implementor - Register
 class Registration : IProcess
 {
-    public void Process(Employee emp) =>
+    public void Execute(Employee emp) =>
         Console.WriteLine($" - Registering employee: {emp.Id} [{emp.FirstName} {emp.LastName}].");
 }
 
@@ -77,7 +57,7 @@ class TaskAssignment : IProcess
 
     public TaskAssignment(string name) => this.name = name;
 
-    public void Process(Employee emp) =>
+    public void Execute(Employee emp) =>
         Console.WriteLine($" - Assigning employee {emp.Id} [{emp.FirstName} {emp.LastName}] with task [{name}].");
 }
 
@@ -108,16 +88,19 @@ maintenanceTravel.Manage(emp2);
 // Output
 Managing event for: Annual conference.
  - Registering employee: 1 [Jane Doe].
- - Assigning employee 1 [Jane Doe] with task [Goals presentation].
 Managing event for: Annual conference.
  - Registering employee: 2 [John Doe].
 Managing travel for: Sales.
  - Assigning employee 1 [Jane Doe] with task [Sales pitch].
 Managing travel for: Maintenance.
- - Registering employee: 2 [John Doe].
  - Assigning employee 2 [John Doe] with task [System upgrade].
 ```
 
 #### Full example
 
-[BridgePatternExampleWithMarker](./../../../GofConsoleApp/Examples/Structural/BridgePattern/BridgePatternExampleWithMarker.cs)
+[BridgePatternExampleSingleImplementations](./../../../GofConsoleApp/Examples/Structural/BridgePattern/BridgePatternExampleSingleImplementations.cs)
+
+### 2. Tests used as example without parameter input
+
+[BridgeAbstractionImplTests](./../../../GofPatternsTests/Structural/BridgePattern/Implementations/BridgeAbstractionImplTests.cs)
+

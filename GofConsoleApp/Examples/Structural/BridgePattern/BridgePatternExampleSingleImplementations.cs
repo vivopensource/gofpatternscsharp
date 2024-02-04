@@ -1,9 +1,9 @@
 ﻿using GofConsoleApp.Examples.Structural.BridgePattern.Implementations;
-using GofConsoleApp.Examples.Structural.BridgePattern.Implementations.Multiple;
+using GofConsoleApp.Examples.Structural.BridgePattern.Implementations.Single;
 
 namespace GofConsoleApp.Examples.Structural.BridgePattern;
 
-internal class BridgePatternExampleMultipleImplementations : BaseExample
+internal class BridgePatternExampleSingleImplementations : BaseExample
 {
     protected override bool Execute()
     {
@@ -11,10 +11,8 @@ internal class BridgePatternExampleMultipleImplementations : BaseExample
         var emp2 = new Employee("2", "John", "Doe");
 
         IProcess registerEvent = new Registration(Logger);
-        IProcess taskPresentation = new TaskAssignment("Goals presentation", Logger);
-
         IManagement annualConference1 = new EventManagement("Annual conference", Logger);
-        annualConference1.Add(registerEvent, taskPresentation);
+        annualConference1.Add(registerEvent);
         annualConference1.Execute(emp1);
 
         IManagement annualConference2 = new EventManagement("Annual conference", Logger);
@@ -26,15 +24,11 @@ internal class BridgePatternExampleMultipleImplementations : BaseExample
         salesTravel.Add(taskSalesPitch);
         salesTravel.Execute(emp1);
 
-        IProcess registerTravel = new Registration(Logger);
         IProcess taskSystemUpgrade = new TaskAssignment("System upgrade", Logger);
         IManagement maintenanceTravel = new TravelManagement("Maintenance", Logger);
-        maintenanceTravel.Add(registerTravel, taskSystemUpgrade);
+        maintenanceTravel.Add(taskSystemUpgrade);
         maintenanceTravel.Execute(emp2);
 
-        return annualConference1.ImplementationCount == 2 &&
-               annualConference2.ImplementationCount == 1 &&
-               salesTravel.ImplementationCount == 1 &&
-               maintenanceTravel.ImplementationCount == 2;
+        return true;
     }
 }

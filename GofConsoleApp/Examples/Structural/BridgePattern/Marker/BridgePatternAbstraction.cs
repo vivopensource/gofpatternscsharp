@@ -14,12 +14,13 @@ internal interface IManagement
 internal class EventManagement : IManagement
 {
     private readonly IConsoleLogger logger;
-    private readonly List<IProcess> impls;
+    private readonly List<IProcess> impls = new();
 
-    public EventManagement(string purpose, IConsoleLogger logger, params IProcess[] impls)
+    public EventManagement(string purpose, IConsoleLogger logger, IProcess impl, params IProcess[] impls)
     {
         this.logger = logger;
-        this.impls = new List<IProcess>(impls);
+        this.impls.Add(impl);
+        this.impls.AddRange(impls);
 
         logger.Log($"Managing event for: {purpose}.");
     }
@@ -34,12 +35,13 @@ internal class EventManagement : IManagement
 internal class TravelManagement : IManagement
 {
     private readonly IConsoleLogger logger;
-    private readonly List<IProcess> impls;
+    private readonly List<IProcess> impls = new();
 
-    public TravelManagement(string purpose, IConsoleLogger logger, params IProcess[] impls)
+    public TravelManagement(string purpose, IConsoleLogger logger, IProcess impl, params IProcess[] impls)
     {
         this.logger = logger;
-        this.impls = new List<IProcess>(impls);
+        this.impls.Add(impl);
+        this.impls.AddRange(impls);
 
         logger.Log($"Managing travel for: {purpose}.");
     }

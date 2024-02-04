@@ -13,6 +13,11 @@
 
 ## Examples
 
+- The examples are based on (abstraction) the management of events and travel for employees, and (implementation) the registration and task assignment processes.
+- The examples display the decoupling of the abstraction from its implementation. The abstraction is the `IManagement` interface, the refined abstractions are `EventManagement` and `TravelManagement` classes, the implementor is the `IProcess` interface and the concrete implementors are `Registration` and `TaskAssignment` classes.
+
+![Bridge](Bridge/Bridge.png)
+
 ### Data
 
 ```csharp
@@ -31,7 +36,9 @@ class Employee
 }
 ```
 
-### 2. Using multiple implementations
+### 1. Bridge pattern with multiple implementations
+
+#### (1.1) With parameter input
 
 ```csharp
 // Abstraction in bridge pattern
@@ -113,20 +120,37 @@ Managing travel for: Maintenance.
  - Assigning employee 2 [John Doe] with task [System upgrade].
 ```
 
-#### Full example
+##### Full example
 
 [BridgePatternExample](./../../GofConsoleApp/Examples/Structural/BridgePattern/BridgePatternExample.cs)
 
+#### (1.2) Tests used as example without parameter input
 
-### 3. Using marker interfaces
+[BridgeAbstractionsImplTests](./../../GofPatternsTests/Structural/BridgePattern/Implementations/BridgeAbstractionsImplTests.cs)
 
-[Bridge Pattern with Marker](Bridge/Bridge_Marker.md)
+
+### 2. Bridge pattern with single implementation
+
+[Example documentation](Bridge/Bridge_SingleImplementation.md)
+
+
+### 3. Using Bridge pattern with Marker interface
+
+[Example documentation](Bridge/Bridge_Marker.md)
 
 
 ### Classes and interfaces used in examples:
 
 - [IBridgeAbstraction](./../../GofPatterns/Structural/BridgePattern/IBridgeAbstraction.cs)
 - [IBridgeImplementation](./../../GofPatterns/Structural/BridgePattern/IBridgeImplementation.cs)
+
+Implemented code
+
+- [IBridgeAbstractionsImpl](./../../GofPatterns/Structural/BridgePattern/Implementations/IBridgeAbstractionsImpl.cs)
+- [BridgeAbstractionsImpl](./../../GofPatterns/Structural/BridgePattern/Implementations/BridgeAbstractionsImpl.cs)
+- [IBridgeAbstractionImpl](./../../GofPatterns/Structural/BridgePattern/Implementations/IBridgeAbstractionImpl.cs)
+- [BridgeAbstractionImpl](./../../GofPatterns/Structural/BridgePattern/Implementations/BridgeAbstractionImpl.cs)
+- [BridgeImplementationImpl](./../../GofPatterns/Structural/BridgePattern/Implementations/IBridgeImplementationImpl.cs)
 
 ## Benefits
 

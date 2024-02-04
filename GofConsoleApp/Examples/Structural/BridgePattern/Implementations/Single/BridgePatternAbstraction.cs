@@ -1,13 +1,13 @@
 ﻿using Core.Console.Interfaces;
 using GofPatterns.Structural.BridgePattern.Implementations;
 
-namespace GofConsoleApp.Examples.Structural.BridgePattern.MultipleImplementations;
+namespace GofConsoleApp.Examples.Structural.BridgePattern.Implementations.Single;
 
 // Abstraction in bridge pattern
-internal interface IManagement : IBridgeAbstractionsImpl<IProcess, Employee> { }
+internal interface IManagement : IBridgeAbstractionImpl<IProcess, Employee> { }
 
 // Refined abstraction - Event management
-internal class EventManagement : BridgeAbstractionsImpl<IProcess, Employee>, IManagement
+internal class EventManagement : BridgeAbstractionImpl<IProcess, Employee>, IManagement
 {
     public EventManagement(string purpose, IConsoleLogger logger)
     {
@@ -16,7 +16,7 @@ internal class EventManagement : BridgeAbstractionsImpl<IProcess, Employee>, IMa
 }
 
 // Refined abstraction - Travel management
-internal class TravelManagement : BridgeAbstractionsImpl<IProcess, Employee>, IManagement
+internal class TravelManagement : BridgeAbstractionImpl<IProcess, Employee>, IManagement
 {
     public TravelManagement(string purpose, IConsoleLogger logger)
     {
