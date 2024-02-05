@@ -4,15 +4,20 @@ name: Test
 on:
   push:
     branches:
-      - '**'
-      - '!master'
-      - '!dev'
+      - 'dev'
+  pull_request:
+    branches: [ "dev"]
 
 jobs:
 
-  test:
+  build:
 
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Debug]
+        os: [windows-latest, ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
 
     env:
       Solution_Name: GofPatterns.sln
