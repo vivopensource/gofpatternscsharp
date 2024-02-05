@@ -10,7 +10,7 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <PackageId>GofPatterns</PackageId>
         <Title>Gof Patterns</Title>
-        <Version>1.3.3</Version>
+        <Version>1.3.2</Version>
         <Authors>viveksacademia</Authors>
         <Company>vivopensource</Company>
         <Description>Desgin Patterns for C# (Gang of Four)</Description>
