@@ -2,15 +2,13 @@
 name: Pull Request
 
 on:
-  push:
-    branches:
-      - '**'
   pull_request:
-    branches: [ "dev"]
+    branches:
+      - 'dev'
 
 jobs:
 
-  pr_test:
+  test:
 
     strategy:
       matrix:
