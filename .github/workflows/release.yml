@@ -1,26 +1,41 @@
-name: Build, test, and deploy
+
+name: Release
 
 on:
   push:
     branches:
-      - '**' # 'main'
+      - branches: '**' # 'main'
       - 'RELEASE/v**'
 
 
 jobs:
   build:
 
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration: [Release]
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      Solution_Name: GofPatterns.sln
+      Test_Project_Path: GofPatternsTests\GofPatternsTests.csproj
 
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      
+      # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+      
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
     
     - name: Restore dependencies
       run: dotnet restore
@@ -34,6 +49,12 @@ jobs:
     - name: Pack
       run: dotnet pack GofPatterns/GofPatterns.csproj -c Release --no-restore --no-build --include-symbols -p:SymbolPackageFormat=snupkg -o .
 
-    - name: Push to NuGet
+    - name: Deploy - Push to NuGet
       run: dotnet nuget push *.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
+
+      # Restore the application to populate the obj folder with RuntimeIdentifiers
+    - name: Restore the application
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
 
