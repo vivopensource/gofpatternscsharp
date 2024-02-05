@@ -4,7 +4,7 @@ name: Release
 on:
   push:
     branches:
-      - '**'
+      - 'main'
 
 
 jobs:
@@ -49,7 +49,7 @@ jobs:
           output: both
           thresholds: '80 90'
 
-      - name: Add Coverage PR Comment
+      - name: Code Coverage Result MD
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           recreate: true

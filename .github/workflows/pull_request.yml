@@ -8,9 +8,9 @@ on:
 
 jobs:
 
-  test-windows:
+  test-pr:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     env:
       Solution_Name: GofPatterns.sln
@@ -26,9 +26,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-
-      - name: Setup MSBuild.exe
-        uses: microsoft/setup-msbuild@v1.0.2
 
       - name: Restore dependencies
         run: dotnet restore
@@ -52,7 +49,7 @@ jobs:
           output: both
           thresholds: '80 90'
 
-      - name: Add Coverage PR Comment
+      - name: Code Coverage Result MD
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           recreate: true
@@ -60,9 +57,3 @@ jobs:
 
       - name: Write to Job Summary
         run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
-      
-      # Restore the application to populate the obj folder with RuntimeIdentifiers
-      - name: Restore the application
-        run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-        env:
-          Configuration: Debug
