@@ -1,4 +1,6 @@
-﻿namespace GofPatterns.Structural.BridgePattern.Implementations;
+﻿using GofPatterns.Core.Extensions;
+
+namespace GofPatterns.Structural.BridgePattern.Implementations;
 
 /// <summary>
 /// Bridge abstraction interface with multiple implementations.
@@ -11,8 +13,7 @@ public class BridgeAbstractionsImpl<TImplementation> : IBridgeAbstractionsImpl<T
 
     public void Add(TImplementation implementation, params TImplementation[] implementations)
     {
-        impls.Add(implementation);
-        impls.AddRange(implementations);
+        impls.Build(implementation, implementations);
     }
 
     public void Execute()
@@ -35,8 +36,7 @@ public class BridgeAbstractionsImpl<TImplementation, TInput> : IBridgeAbstractio
 
     public void Add(TImplementation implementation, params TImplementation[] implementations)
     {
-        impls.Add(implementation);
-        impls.AddRange(implementations);
+        impls.Build(implementation, implementations);
     }
 
     public void Execute(TInput input)

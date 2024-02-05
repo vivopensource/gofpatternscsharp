@@ -124,7 +124,7 @@ Managing travel for: Maintenance.
 
 [BridgePatternExample](./../../GofConsoleApp/Examples/Structural/BridgePattern/BridgePatternExample.cs)
 
-#### (1.2) Tests used as example without parameter input
+#### (1.2) Without parameter input, refer test
 
 [BridgeAbstractionsImplTests](./../../GofPatternsTests/Structural/BridgePattern/Implementations/BridgeAbstractionsImplTests.cs)
 
