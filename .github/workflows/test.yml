@@ -30,7 +30,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Install the .NET Core workload
     - name: Install .NET Core
       uses: actions/setup-dotnet@v3
       with:
@@ -42,12 +41,5 @@ jobs:
     - name: Build
       run: dotnet build
 
-    # Execute all unit tests in the solution
     - name: Test
       run: dotnet test
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
