@@ -9,6 +9,7 @@ using GofConsoleApp.Examples.Creational.BuilderPattern;
 using GofConsoleApp.Examples.Creational.FactoryPattern;
 using GofConsoleApp.Examples.Structural.AdapterPattern;
 using GofConsoleApp.Examples.Structural.BridgePattern;
+using GofConsoleApp.Examples.Structural.CompositePattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
 using GofConsoleApp.Examples.Structural.FlyweightPattern;
 using GofConsoleApp.Examples.Structural.ProxyPattern;
@@ -25,9 +26,11 @@ internal static class PatternOptions
     internal const string ProxyPatternOptionBoundedInputOutput = "12.3";
     internal const string AdapterPatternOption = "13";
     internal const string FlyweightPatternOption = "14";
-    internal const string MediatorPatternOption = "15";
-    internal const string ObserverPatternOption = "16.1";
-    internal const string ObserverPatternOptionWithType = "16.2";
+    internal const string BridgePatterOptionSingleImplementations = "15";
+    internal const string BridgePatterOptionMultipleImplementations = "15.2";
+    internal const string BridgePatterOptionMarker = "15.3";
+    internal const string CompositePatternOptionWithInput = "16.1";
+    internal const string CompositePatternOptionWithoutInput = "16.2";
 
     internal const string ChainOfResponsibilityPatternOption = "21";
     internal const string ChainOfResponsibilityPatternOption2 = "21.2";
@@ -38,9 +41,9 @@ internal static class PatternOptions
     internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
-    internal const string BridgePatterOptionSingleImplementations = "25";
-    internal const string BridgePatterOptionMultipleImplementations = "25.2";
-    internal const string BridgePatterOptionMarker = "25.3";
+    internal const string MediatorPatternOption = "25";
+    internal const string ObserverPatternOption = "26.1";
+    internal const string ObserverPatternOptionWithType = "26.2";
 
     internal const string FactoryOption = "31";
     internal const string AbstractFactoryOption = "32";
@@ -79,17 +82,26 @@ internal static class PatternOptions
             new PatternExampleMap("Flyweight Pattern >> Drawing shapes", new FlyweightPatternExample())
         },
         {
-            MediatorPatternOption,
-            new PatternExampleMap("Flyweight Pattern >> Drawing shapes", new MediatorPatternExample())
+            BridgePatterOptionSingleImplementations,
+            new PatternExampleMap("Bridge Pattern >> With Single Implementation",
+                new BridgePatternExampleSingleImplementations())
         },
         {
-            ObserverPatternOption,
-            new PatternExampleMap("Observer Pattern >> News Publisher", new ObserverPatternExample())
+            BridgePatterOptionMultipleImplementations,
+            new PatternExampleMap("Bridge Pattern >> With Multiple Implementations",
+                new BridgePatternExampleMultipleImplementations())
         },
         {
-            ObserverPatternOptionWithType,
-            new PatternExampleMap("Observer Pattern >> News Publisher with type",
-                new ObserverPatternExampleWithCategory())
+            BridgePatterOptionMarker,
+            new PatternExampleMap("Bridge Pattern >> With Marker", new BridgePatternExampleWithMarker())
+        },
+        {
+            CompositePatternOptionWithInput,
+            new PatternExampleMap("CompositePattern >> With Input", new CompositePatternExampleWithInput())
+        },
+        {
+            CompositePatternOptionWithoutInput,
+            new PatternExampleMap("CompositePattern >> Without Input", new CompositePatternExampleWithoutInput())
         },
 
         // Behavioral Patterns
@@ -133,18 +145,17 @@ internal static class PatternOptions
             new PatternExampleMap("Strategy Pattern >> Payment Example", new StrategyPatternPaymentExample())
         },
         {
-            BridgePatterOptionSingleImplementations,
-            new PatternExampleMap("Bridge Pattern >> With Single Implementation",
-                new BridgePatternExampleSingleImplementations())
+            MediatorPatternOption,
+            new PatternExampleMap("Flyweight Pattern >> Drawing shapes", new MediatorPatternExample())
         },
         {
-            BridgePatterOptionMultipleImplementations,
-            new PatternExampleMap("Bridge Pattern >> With Multiple Implementations",
-                new BridgePatternExampleMultipleImplementations())
+            ObserverPatternOption,
+            new PatternExampleMap("Observer Pattern >> News Publisher", new ObserverPatternExample())
         },
         {
-            BridgePatterOptionMarker,
-            new PatternExampleMap("Bridge Pattern >> With Marker", new BridgePatternExampleWithMarker())
+            ObserverPatternOptionWithType,
+            new PatternExampleMap("Observer Pattern >> News Publisher with type",
+                new ObserverPatternExampleWithCategory())
         },
 
         // Creational Patterns
