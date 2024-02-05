@@ -1,0 +1,44 @@
+
+name: Release
+
+on:
+  push:
+    branches:
+      - 'main'
+
+
+jobs:
+
+  release:
+
+    runs-on: ubuntu-latest
+
+    env:
+      Solution_Name: GofPatterns.sln
+      Test_Project_Path: GofPatternsTests\GofPatternsTests.csproj
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+      
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build -c Release --no-restore
+    
+    - name: Test
+      run: dotnet test -c Release --no-restore --no-build --verbosity normal --filter "Category!=LongRunning"
+
+    - name: Pack
+      run: dotnet pack GofPatterns/GofPatterns.csproj -c Release --no-restore --no-build --include-symbols -p:SymbolPackageFormat=snupkg -o .
+      
+    # Push to NuGet
+    - name: Deploy 
+      run: dotnet nuget push *.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
