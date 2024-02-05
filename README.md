@@ -54,3 +54,13 @@ just click on the link of the design pattern to go to the respective page of the
 - [Factory](README/Creational/Factory.md)
 - [Abstract Factory](README/Creational/AbstractFactory.md)
 - [Builder](README/Creational/Builder.md)
+
+
+## Code coverage
+
+- The code coverage is exceptional for the library, and the examples provided for each pattern
+- The library is tested for all the patterns, and the examples are also tested for the patterns they are demonstrating.
+
+### Result
+
+To view the coverage result please see the Actions tab of the repository.
