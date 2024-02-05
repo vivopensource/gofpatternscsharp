@@ -1,0 +1,35 @@
+name: Build, test, and deploy
+
+on:
+  push:
+    branches:
+      - '**' # 'main'
+      - 'RELEASE/v**'
+
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build -c Release --no-restore
+    
+    - name: Test
+      run: dotnet test -c Release --no-restore --no-build --verbosity normal --filter "Category!=LongRunning"
+
+    - name: Pack
+      run: dotnet pack GofPatterns/GofPatterns.csproj -c Release --no-restore --no-build --include-symbols -p:SymbolPackageFormat=snupkg -o .
