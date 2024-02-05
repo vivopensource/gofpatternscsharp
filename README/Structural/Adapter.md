@@ -78,7 +78,7 @@ Traveller 'John Doe' is travelling to: Success Str 1
 ## Benefits
 
 - Allows two incompatible interfaces to work together.
-- Allows reusability of existing functionality.
+- Allows re-usability of existing functionality.
 - Allows legacy code to work with modern code.
 
 ## Similarity with other patterns

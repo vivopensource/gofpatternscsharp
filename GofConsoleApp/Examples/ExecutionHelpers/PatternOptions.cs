@@ -8,6 +8,7 @@ using GofConsoleApp.Examples.Creational.AbstractFactoryPattern;
 using GofConsoleApp.Examples.Creational.BuilderPattern;
 using GofConsoleApp.Examples.Creational.FactoryPattern;
 using GofConsoleApp.Examples.Structural.AdapterPattern;
+using GofConsoleApp.Examples.Structural.BridgePattern;
 using GofConsoleApp.Examples.Structural.DecoratorPattern;
 using GofConsoleApp.Examples.Structural.FlyweightPattern;
 using GofConsoleApp.Examples.Structural.ProxyPattern;
@@ -37,6 +38,9 @@ internal static class PatternOptions
     internal const string StatePatternOptionDriveExample = "23.2";
     internal const string StrategyPatternOptionSender = "24";
     internal const string StrategyPatternOptionPayment = "24.2";
+    internal const string BridgePatterOptionSingleImplementations = "25";
+    internal const string BridgePatterOptionMultipleImplementations = "25.2";
+    internal const string BridgePatterOptionMarker = "25.3";
 
     internal const string FactoryOption = "31";
     internal const string AbstractFactoryOption = "32";
@@ -84,7 +88,8 @@ internal static class PatternOptions
         },
         {
             ObserverPatternOptionWithType,
-            new PatternExampleMap("Observer Pattern >> News Publisher with type", new ObserverPatternExampleWithCategory())
+            new PatternExampleMap("Observer Pattern >> News Publisher with type",
+                new ObserverPatternExampleWithCategory())
         },
 
         // Behavioral Patterns
@@ -126,6 +131,20 @@ internal static class PatternOptions
         {
             StrategyPatternOptionPayment,
             new PatternExampleMap("Strategy Pattern >> Payment Example", new StrategyPatternPaymentExample())
+        },
+        {
+            BridgePatterOptionSingleImplementations,
+            new PatternExampleMap("Bridge Pattern >> With Single Implementation",
+                new BridgePatternExampleSingleImplementations())
+        },
+        {
+            BridgePatterOptionMultipleImplementations,
+            new PatternExampleMap("Bridge Pattern >> With Multiple Implementations",
+                new BridgePatternExampleMultipleImplementations())
+        },
+        {
+            BridgePatterOptionMarker,
+            new PatternExampleMap("Bridge Pattern >> With Marker", new BridgePatternExampleWithMarker())
         },
 
         // Creational Patterns

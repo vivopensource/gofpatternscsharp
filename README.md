@@ -47,6 +47,7 @@ just click on the link of the design pattern to go to the respective page of the
 - [Decorator](README/Structural/Decorator.md)
 - [Adapter](README/Structural/Adapter.md)
 - [Flyweight](README/Structural/Flyweight.md)
+- [Bridge](README/Structural/Bridge.md)
 
 ### Creational Patterns
 
