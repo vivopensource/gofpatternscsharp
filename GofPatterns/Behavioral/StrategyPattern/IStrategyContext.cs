@@ -1,8 +1,7 @@
 namespace GofPatterns.Behavioral.StrategyPattern;
 
 /// <summary>
-///     Strategy is a behavioral design pattern that turns a set of behaviors into objects
-///     and makes them interchangeable inside original context object.
+/// Context interface that defines the contract for the strategy pattern.
 /// </summary>
 /// <typeparam name="TInput"></typeparam>
 public interface IStrategyContext<TInput>
@@ -15,8 +14,8 @@ public interface IStrategyContext<TInput>
 }
 
 /// <summary>
-///     Strategy is a behavioral design pattern that turns a set of behaviors into objects
-///     and makes them interchangeable inside original context object.
+/// Context interface that defines the contract for the strategy pattern.
+/// It is used when the strategy pattern is used to return a value.
 /// </summary>
 /// <typeparam name="TInput"></typeparam>
 /// <typeparam name="TOutput"></typeparam>
