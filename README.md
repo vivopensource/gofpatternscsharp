@@ -48,6 +48,7 @@ just click on the link of the design pattern to go to the respective page of the
 - [Adapter](README/Structural/Adapter.md)
 - [Flyweight](README/Structural/Flyweight.md)
 - [Bridge](README/Structural/Bridge.md)
+- [Composite](README/Structural/Composite.md)
 
 ### Creational Patterns
 
@@ -63,4 +64,4 @@ just click on the link of the design pattern to go to the respective page of the
 
 ### Result
 
-To view the coverage result please see the Actions tab of the repository.
+To view the latest coverage result, please see the Pull request tab of the repository.

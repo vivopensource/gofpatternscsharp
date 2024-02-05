@@ -9,5 +9,4 @@
 - Visitor
 
 #### Structural
-- Composite
 - Facade
