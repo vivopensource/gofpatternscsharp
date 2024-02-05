@@ -1,5 +1,5 @@
 
-name: Test
+name: Pull Request
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  build:
+  pr_test:
 
     strategy:
       matrix:
